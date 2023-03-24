@@ -25,6 +25,13 @@
     radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), 
     #211F20;
 } 
+@mixin footer-gradient-background {
+    background: url('../img/noise_transparent@2x.png'), 
+    radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), 
+    #211F20;
+} 
+
+
 
 @mixin font-h2 {
     font-family: 'Georgia', serif;
@@ -133,9 +140,7 @@
 
 
 
-body {
-     background-color: var(--color-dark-3xl);
-}
+
 
 .wrapper {
     width: 1280px;
@@ -144,8 +149,10 @@ body {
 }
 
 .button-rectangle-primary {
-    display: inline-block;
-    padding: 15px 45px;
+    display: inline-flex;
+    align-items: center;
+    height: 52px;
+    padding: 0 45px;
     background-color: var(--color-primary);
     border-radius: 26px;
     color: var(--color-dark-3xl);
@@ -153,6 +160,86 @@ body {
 
     &:hover {
         background-color: var(--color-primary-light);
+    }
+}
+
+.button-rectangle-secondary {
+    display: inline-flex;
+    align-items: center;
+    height: 52px;
+    padding: 0 43px;
+    border: var(--color-primary) 2px solid;
+    border-radius: 26px;
+    color: var(--color-dark-3xl);
+    @include font-button();
+
+    &:hover {
+        background-color: var(--color-primary-light);
+        border: var(--color-primary-light) 2px solid;
+    }
+}
+
+.button-round {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    width: 52px;
+    border: var(--color-primary) 2px solid;
+    border-radius: 50%;
+    @include font-h4();
+    color: var(--color-dark-3xl);
+    &:hover {
+        background-color: var(--color-primary-light);
+        border: var(--color-primary-light) 2px solid;
+    }
+    
+}
+
+.link {
+    color: var(--color-dark-s);
+    @include font-paragraph-l();
+    margin-left: 35px;
+    &:hover{
+       color: var(--color-light-s); 
+    }
+}
+
+.link_active {
+    color: var(--color-light-s);
+    border-bottom: var(--color-primary) solid 3px;
+    &:hover{
+        color: var(--color-light-s); 
+        border-bottom: none;
+    }
+}
+
+
+.card-mini {
+    background-color: var(--color-light-s);
+    border-radius: 9px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+
+    & img {
+        width: 270px;
+        height: 270px;
+    }
+    & h4 {
+        color: var(--color-dark-l);
+        @include font-h4();
+        text-align: center;
+        margin: 30px 0;
+    }
+    &:hover {
+        background-color: var(--color-light-xl);
+        & .button-rectangle-secondary {
+            background-color: var(--color-primary-light);
+            border: var(--color-primary-light) 2px solid;
+        }
     }
 }
 
@@ -164,7 +251,6 @@ body {
         padding: 30px 40px;
     }
 }
-
 .header-content {    
     display: flex;
     align-items: center;
@@ -189,16 +275,16 @@ body {
         display: flex;
     }
 
-    & .nav-main > ul > li > .link {
-        color: var(--color-dark-s);
-        @include font-paragraph-l();
-        margin-left: 35px;
-    }
+    // & .nav-main > ul > li > .link {
+    //     color: var(--color-dark-s);
+    //     @include font-paragraph-l();
+    //     margin-left: 35px;
+    // }
 
-    & .nav-main > ul > li > .link_active {
-        color: var(--color-light-s);
-        border-bottom: var(--color-primary) solid 3px;
-    }
+    // & .nav-main > ul > li > .link_active {
+    //     color: var(--color-light-s);
+    //     border-bottom: var(--color-primary) solid 3px;
+    // }
 }
 
 
@@ -206,6 +292,7 @@ body {
 .hero-banner {
     @include start-screen-gradient-background();
     height: 100vh;
+    width: 100%;
 
     & .wrapper {
         padding-top: 180px;
@@ -213,7 +300,6 @@ body {
         height: 100%;
     }
 }
-
 .hero-banner-content {
     display: flex;
     align-items:stretch;
@@ -242,4 +328,194 @@ body {
 
 }
 
+.about {
+    background-color: var(--color-light-xl);
+    width: 100%;
+}
+.about-content {
+    display: flex;
+    justify-content: center;
 
+    & .about-text {     
+        width: 430px;
+        margin-left: 120px;
+
+        & h3 {
+            color: var(--color-dark-l);
+            @include font-h3();
+        }
+        & p {
+            color: var(--color-dark-2xl);
+            @include font-paragraph-l();
+            margin-top: 25px;
+        }
+
+    }
+    & .about-img {
+        width: 300px;
+        background: url('../img/about-pets.png') 100% 100%/contain no-repeat;
+    }
+}
+
+.ourFriends {
+    background-color: var(--color-light-l);
+}
+.ourFriends-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    & h3 {
+        color: var(--color-dark-l);
+        @include font-h3();
+        text-align: center;
+    }
+    & .carousel-wrapper {
+        margin: 60px 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        & .button-round {
+            flex-shrink:0;
+        }
+        & .carousel-items-conteiner{
+            display: flex;
+            overflow: hidden;
+            padding: 0 53px;
+            & .card-mini {
+                flex-shrink:0;
+                margin: 0 45px;
+                &:first-child{
+                    margin-left: 0;
+                }
+            }
+        }
+
+
+
+
+    }
+}
+
+.help {
+    width: 100%;
+    background-color: var(--color-light-xl);
+}
+.help-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h3 {
+        color: var(--color-dark-l);
+        @include font-h3();
+        text-align: center;
+    }
+    & .help-items-conteiner{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap:wrap;
+        width: 100%;
+        padding: 0 87px;
+        & .help-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            margin: 55px 40px 0;
+            & p {
+                color: var(--color-dark-l);
+                @include font-h4();
+                text-align: center;
+                margin-top: 30px;
+            }
+
+        }
+    }
+    
+}
+
+.donation {
+    width: 100%;
+    background-color: var(--color-light-l);
+}
+.donation-content {
+    display: flex;
+    justify-content: center;
+
+    & .donation-text {     
+        width: 380px;
+        margin-left: 30px;
+
+        & h3 {
+            color: var(--color-dark-l);
+            @include font-h3();
+        }
+        & h5 {
+            margin-top: 20px;
+            color: var(--color-dark-l);
+            @include font-h5();
+        }
+        & .credit-card{
+            margin-top: 20px;
+            border-radius: 9px;
+            padding: 10px 15px;
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--color-primary);
+
+            & p {
+                margin-left: 15px;
+                @include font-h4();
+                color: var(--color-dark-l);
+            }
+        }
+        & > p {
+            color: var(--color-dark-m);
+            @include font-paragraph-s();
+            margin-top: 20px;
+        }
+
+    }
+    & .donation-img {
+        width: 505px;
+        background: url('../img/donation-dog.png') 100% 100%/contain no-repeat;
+    }
+}
+
+footer {
+    width: 100%;
+    @include footer-gradient-background();
+
+    & .wrapper{
+        padding-bottom: 0;
+    }
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+
+    & .footer-info {
+        margin: 16px 0 60px;
+
+        & h3 {
+            color: var(--color-light-xl);
+            @include font-h3();
+        }
+        & .icon-text{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+
+            & p {
+                margin-left: 20px;
+                color: var(--color-primary);
+                @include font-h4();
+            }
+        }
+    }
+    & .footer-img {
+        flex-basis: 300px;
+        background: url('../img/footer-puppy.png') 100% 100%/contain no-repeat;
+    }
+
+}
