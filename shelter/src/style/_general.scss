@@ -17,6 +17,10 @@
     --color-primary-light: #FDDCC4;
 }
 
+html {    
+    scroll-behavior: smooth;
+}
+
 @mixin start-screen-gradient-background {
     background: url('../img/noise_transparent@2x.png'), 
     radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), 
@@ -153,6 +157,7 @@
     color: var(--color-dark-3xl);
     @include font-button();
     cursor: pointer;
+    transition: all .5s ease-out;
 
     &:hover {
         background-color: var(--color-primary-light);
@@ -169,6 +174,7 @@
     color: var(--color-dark-3xl);
     @include font-button();
     cursor: pointer;
+    transition: all .5s ease-out;
 
     &:hover {
         background-color: var(--color-primary-light);
@@ -187,6 +193,7 @@
     @include font-h4();
     color: var(--color-dark-3xl);
     cursor: pointer;
+    transition: all .5s ease-out;
     & p {
         margin-bottom: 2px;
     }
@@ -216,15 +223,14 @@
     color: var(--color-dark-s);
     @include font-paragraph-l();
     margin-left: 35px;
+    transition: all .3s ease-out;
     &:hover{
        color: var(--color-light-s); 
     }
     &_active{
         color: var(--color-light-s);
         border-bottom: var(--color-primary) solid 3px;
-        &:hover{
-            border-bottom: none;
-        }
+        cursor: default;        
     }
     &-onlight {
         color: var(--color-dark-l);
@@ -233,8 +239,9 @@
          }
         &_active{
             border-bottom: var(--color-primary) solid 3px;
+            cursor: default;
             &:hover{
-                border-bottom: none;
+                color: var(--color-dark-l);
             }
         }
     }
@@ -249,6 +256,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 30px;
+    cursor: pointer;
 
     & img {
         width: 270px;
@@ -272,6 +280,7 @@
 
 .header-main {
     width: 100%;
+    min-width: 1280px;
     position: fixed;
     & .wrapper {
         padding: 30px 40px;
@@ -318,8 +327,9 @@
 
 
 footer {
-    width: 100%;
     @include footer-gradient-background();
+    width: 100%;
+    min-width: 1280px;
 
     & .wrapper{
         padding-bottom: 0;

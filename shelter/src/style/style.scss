@@ -9,6 +9,7 @@
     @include start-screen-gradient-background();
     height: 100vh;
     width: 100%;
+    min-width: 1280px;
 
     & .wrapper {
         padding-top: 180px;
@@ -47,6 +48,7 @@
 .about {
     background-color: var(--color-light-xl);
     width: 100%;
+    min-width: 1280px;
 }
 .about-content {
     display: flex;
@@ -75,6 +77,8 @@
 
 .ourFriends {
     background-color: var(--color-light-l);
+    width: 100%;
+    min-width: 1280px;
 }
 .ourFriends-content {
     display: flex;
@@ -82,6 +86,11 @@
     align-items: center;
     width: 100%;
     & h3 {
+        color: var(--color-dark-l);
+        @include font-h3();
+        text-align: center;
+    }
+    & h1 {
         color: var(--color-dark-l);
         @include font-h3();
         text-align: center;
@@ -129,9 +138,11 @@
     }
 }
 
+
 .help {
-    width: 100%;
     background-color: var(--color-light-xl);
+    width: 100%;
+    min-width: 1280px;
 }
 .help-content {
     display: flex;
@@ -166,8 +177,9 @@
 }
 
 .donation {
-    width: 100%;
     background-color: var(--color-light-l);
+    width: 100%;
+    min-width: 1280px;
 }
 .donation-content {
     display: flex;
