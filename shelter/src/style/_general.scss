@@ -1,3 +1,34 @@
+@font-face {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Georgia'),
+         url('../fonts/georgia/georgia-regular.ttf') format("ttf");
+}
+@font-face {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Georgia'),
+         url('../fonts/georgia/georgia-bold.ttf') format("ttf");
+}
+@font-face {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arial'),
+         url('../fonts/arial/arial-regular.ttf') format("ttf");
+}
+@font-face {
+    font-family: 'Arial';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Arial'),
+         url('../fonts/arial/arial-italic.ttf') format("ttf");
+}
+
+
+
 :root {    
     /* Light */
     --color-light-xl: #FFFFFF;
