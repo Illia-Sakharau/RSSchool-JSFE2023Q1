@@ -1,0 +1,227 @@
+@import "_normalize.scss";
+@import "_general.scss";
+
+
+
+
+.hero-banner {
+    @include start-screen-gradient-background();
+    height: 908px;
+    width: 100%;
+    min-width: 1280px;
+
+    & .wrapper {
+        padding-top: 180px;
+        padding-bottom: 0;
+        height: 100%;
+    }
+}
+.hero-banner-content {
+    display: flex;
+    align-items:stretch;
+    height: 100%;
+
+    & .hero-banner-text {
+        align-self:center;        
+        width: 460px;
+        margin-bottom: 120px;
+
+        & h1 {
+            color: var(--color-light-xl);
+            @include font-h2();
+        }
+        & p {
+            color: var(--color-dark-s);
+            @include font-paragraph-l();
+            margin: 42px 0;
+        }
+
+    }
+    & .hero-banner-img {
+        flex-grow:1;
+        background: url('../img/start-screen-puppy.png') 100% 100%/contain no-repeat;
+    }
+
+}
+
+.about {
+    background-color: var(--color-light-xl);
+    width: 100%;
+    min-width: 1280px;
+}
+.about-content {
+    display: flex;
+    justify-content: center;
+
+    & .about-text {     
+        width: 430px;
+        margin-left: 120px;
+
+        & h3 {
+            color: var(--color-dark-l);
+            @include font-h3();
+        }
+        & p {
+            color: var(--color-dark-2xl);
+            @include font-paragraph-l();
+            margin-top: 25px;
+        }
+
+    }
+    & .about-img {
+        width: 300px;
+        background: url('../img/about-pets.png') 100% 100%/contain no-repeat;
+    }
+}
+
+.ourFriends {
+    background-color: var(--color-light-l);
+    width: 100%;
+    min-width: 1280px;
+}
+.ourFriends-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    & h3 {
+        color: var(--color-dark-l);
+        @include font-h3();
+        text-align: center;
+    }
+    & h1 {
+        color: var(--color-dark-l);
+        @include font-h3();
+        text-align: center;
+    }
+    & .carousel-wrapper {
+        margin: 60px 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        & .button-round {
+            flex-shrink:0;
+        }
+        & .carousel-items-conteiner{
+            display: flex;
+            overflow: hidden;
+            padding: 0 53px;
+            & .card-mini {
+                flex-shrink:0;
+                margin: 0 45px;
+                &:first-child{
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    & .grid-conteiner {
+        display: grid;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        justify-items: center;
+        grid-gap: 30px 40px;
+        margin: 60px 0;
+
+    }
+
+    & .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .button-round{
+            margin: 0 10px;
+        }
+    }
+}
+
+
+.help {
+    background-color: var(--color-light-xl);
+    width: 100%;
+    min-width: 1280px;
+}
+.help-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h3 {
+        color: var(--color-dark-l);
+        @include font-h3();
+        text-align: center;
+    }
+    & .help-items-conteiner{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap:wrap;
+        width: 100%;
+        padding: 0 87px;
+        & .help-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            margin: 55px 40px 0;
+            & p {
+                color: var(--color-dark-l);
+                @include font-h4();
+                text-align: center;
+                margin-top: 30px;
+            }
+
+        }
+    }
+    
+}
+
+.donation {
+    background-color: var(--color-light-l);
+    width: 100%;
+    min-width: 1280px;
+}
+.donation-content {
+    display: flex;
+    justify-content: center;
+
+    & .donation-text {     
+        width: 380px;
+        margin-left: 30px;
+
+        & h3 {
+            color: var(--color-dark-l);
+            @include font-h3();
+        }
+        & h5 {
+            margin-top: 20px;
+            color: var(--color-dark-l);
+            @include font-h5();
+        }
+        & .credit-card{
+            margin-top: 20px;
+            border-radius: 9px;
+            padding: 10px 15px;
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--color-primary);
+
+            & p {
+                margin-left: 15px;
+                @include font-h4();
+                color: var(--color-dark-l);
+            }
+        }
+        & > p {
+            color: var(--color-dark-m);
+            @include font-paragraph-s();
+            margin-top: 20px;
+        }
+
+    }
+    & .donation-img {
+        width: 505px;
+        background: url('../img/donation-dog.png') 100% 100%/contain no-repeat;
+    }
+}
+
+
