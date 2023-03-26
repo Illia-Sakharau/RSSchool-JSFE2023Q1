@@ -586,6 +586,7 @@ html {
   width: 100%;
   min-width: 1280px;
   position: fixed;
+  transition: all 0.5s ease-out;
 }
 .header-main .wrapper {
   padding: 30px 40px;
@@ -614,6 +615,7 @@ html {
   font-size: 32px;
   line-height: 110%;
   letter-spacing: 0.06em;
+  transition: all 0.5s ease-out;
 }
 .header-content .logo-subtitle {
   color: var(--color-light-xl);
@@ -624,6 +626,7 @@ html {
   line-height: 15px;
   letter-spacing: 0.1em;
   margin-top: 10px;
+  transition: all 0.5s ease-out;
 }
 .header-content .nav-main > ul {
   display: flex;
@@ -682,7 +685,7 @@ footer .wrapper {
 
 .hero-banner {
   background: url("../img/noise_transparent@2x.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-  height: 100vh;
+  height: 908px;
   width: 100%;
   min-width: 1280px;
 }

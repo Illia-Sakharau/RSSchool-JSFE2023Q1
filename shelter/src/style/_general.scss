@@ -282,6 +282,7 @@ html {
     width: 100%;
     min-width: 1280px;
     position: fixed;
+    transition: all .5s ease-out;
     & .wrapper {
         padding: 30px 40px;
     }
@@ -303,11 +304,13 @@ html {
     .logo-title {
         color: var(--color-primary);
         @include font-logo_title();
+        transition: all .5s ease-out;
     }        
     .logo-subtitle {
         color: var(--color-light-xl);
         @include font-logo_subtitle();
         margin-top: 10px ;
+        transition: all .5s ease-out;
     }
     .nav-main > ul {
         display: flex;

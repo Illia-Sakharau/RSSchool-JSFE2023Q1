@@ -1,13 +1,12 @@
 @import "_normalize.scss";
 @import "_general.scss";
-@import "_main-page.scss";
 
 
 
 
 .hero-banner {
     @include start-screen-gradient-background();
-    height: 100vh;
+    height: 908px;
     width: 100%;
     min-width: 1280px;
 
