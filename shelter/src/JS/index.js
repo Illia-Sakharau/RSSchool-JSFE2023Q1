@@ -20,7 +20,6 @@ const headerStyle = function() {
     const headerContent = document.getElementsByClassName('header-content')[0];
     const link = document.getElementsByClassName('link');
 
-    console.log(link);
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 60) {
             headerMain.classList.add('header-main_light');

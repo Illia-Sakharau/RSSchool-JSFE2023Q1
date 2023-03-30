@@ -8,12 +8,15 @@
     @include start-screen-gradient-background();
     height: 908px;
     width: 100%;
-    min-width: 1280px;
 
     & .wrapper {
         padding-top: 180px;
         padding-bottom: 0;
         height: 100%;
+    }
+    
+    @media (max-width: $min-desktop-width) {
+        height: auto;
     }
 }
 .hero-banner-content {
@@ -23,8 +26,11 @@
 
     & .hero-banner-text {
         align-self:center;        
-        width: 460px;
+        max-width: 460px;
+        width: 40%;
         margin-bottom: 80px;
+        display: flex;
+        flex-direction: column;
 
         & h1 {
             color: var(--color-light-xl);
@@ -35,6 +41,9 @@
             @include font-paragraph-l();
             margin: 42px 0;
         }
+        & .button-rectangle-primary {
+            align-self: center;
+        }
 
     }
     & .hero-banner-img {
@@ -42,21 +51,30 @@
         background: url('../img/start-screen-puppy.png') 100% 100%/contain no-repeat;
     }
 
+    @media (max-width: $min-desktop-width) {
+        flex-direction: column;
+        & .hero-banner-text {
+            width: 100%;
+        }
+        & .hero-banner-img {
+            height: 593px;
+        }
+    }
+
 }
 
 .about {
     background-color: var(--color-light-xl);
     width: 100%;
-    min-width: 1280px;
 }
 .about-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 80px 120px;
 
     & .about-text {     
         width: 430px;
-        margin-left: 120px;
 
         & h3 {
             color: var(--color-dark-l);
@@ -74,12 +92,21 @@
         height: 408px;
         background: url('../img/about-pets.png') 100% 100%/contain no-repeat;
     }
+
+    @media (max-width: $min-desktop-width) {
+        flex-direction: column-reverse;
+    }
 }
 
 .ourFriends {
     background-color: var(--color-light-l);
     width: 100%;
-    min-width: 1280px;
+    & .wrapper{
+        @media (max-width: $min-desktop-width) {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
 }
 .ourFriends-content {
     display: flex;
@@ -101,20 +128,21 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        align-items: center;
+        align-items: center;        
         & .button-round {
             flex-shrink:0;
         }
         & .carousel-items-conteiner{
             display: flex;
             overflow: hidden;
-            padding: 0 53px;
+            margin: 0 53px;
+            column-gap: 90px;
             & .card-mini {
                 flex-shrink:0;
-                margin: 0 45px;
-                &:first-child{
-                    margin-left: 0;
-                }
+            }
+            @media (max-width: $min-desktop-width) {
+                margin: 0 12px;
+                column-gap: 40px;
             }
         }
     }
@@ -126,6 +154,17 @@
         justify-items: center;
         grid-gap: 30px 40px;
         margin: 60px 0;
+        @media (max-width: $max-tablet-width) {
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(2, 435px);
+            grid-auto-rows: 0;
+            overflow-y: hidden;
+        }
+        @media (max-width: $min-desktop-width) {
+            grid-template-columns: repeat(2,1fr);
+            grid-template-rows: repeat(3, 435px);
+            margin: 30px 0 10px;
+        }
 
     }
 
@@ -143,7 +182,6 @@
 .help {
     background-color: var(--color-light-xl);
     width: 100%;
-    min-width: 1280px;
 }
 .help-content {
     display: flex;
@@ -156,15 +194,15 @@
     }
     & .help-items-conteiner{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap:wrap;
+        gap: 55px 120px;
         width: 100%;
-        padding: 0 87px;
+        padding: 60px 80px 0;
         & .help-item {
             display: flex;
             flex-direction: column;
             align-items: center; 
-            margin: 57px 0 0;
             & p {
                 color: var(--color-dark-l);
                 @include font-h4();
@@ -173,30 +211,29 @@
             }
 
         }
-        &_line2 {
+        @media (max-width: $max-tablet-width) {
             justify-content: space-around;
-            padding: 0 111px;
+            gap: 55px 60px;
+            padding: 60px 0 0;
             & .help-item {
-                margin: 56px 0 0;    
-            }
+                width: 170px;
+            }            
         }
-    }
-    
+    }    
 }
 
 .donation {
     background-color: var(--color-light-l);
     width: 100%;
-    min-width: 1280px;
 }
 .donation-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 60px 30px;
 
     & .donation-text {     
         width: 380px;
-        margin-left: 30px;
 
         & h3 {
             color: var(--color-dark-l);
@@ -232,6 +269,10 @@
         width: 505px;
         height: 261px;
         background: url('../img/donation-dog.png') 100% 100%/contain no-repeat;
+    }
+
+    @media (max-width: $min-desktop-width) {
+        flex-direction: column-reverse;
     }
 }
 

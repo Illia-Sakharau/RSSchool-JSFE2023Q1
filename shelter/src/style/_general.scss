@@ -48,6 +48,14 @@
     --color-primary-light: #FDDCC4;
 }
 
+/* Breakpoints */
+$min-tablet-width: 590px;
+$max-mobile-width: 767px;
+$min-desktop-width: 960px;
+$max-tablet-width: 1279px;
+
+
+
 html {    
     scroll-behavior: smooth;
 }
@@ -173,7 +181,8 @@ html {
 
 
 .wrapper {
-    width: 1280px;
+    max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
     padding: 80px 40px 100px;
 }
@@ -312,7 +321,6 @@ html {
 
 .header-main {
     width: 100%;
-    min-width: 1280px;
     position: fixed;
     transition: all .5s ease-out;
     & .wrapper {
@@ -365,7 +373,6 @@ html {
 footer {
     @include footer-gradient-background();
     width: 100%;
-    min-width: 1280px;
 
     & .wrapper{
         padding-top: 40px;
@@ -375,6 +382,7 @@ footer {
 .footer-content {
     display: flex;
     justify-content: space-between;
+    gap: 65px 30px;
 
     & .footer-info {
         margin: 16px 0 0;
@@ -403,5 +411,8 @@ footer {
         height: 310px;
         background: url('../img/footer-puppy.png') 100% 100%/contain no-repeat;
     }
-
+    @media (max-width: $max-tablet-width) {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 }
