@@ -88,16 +88,11 @@ html {
     font-size: 35px;
     line-height: 130%;
     letter-spacing: 0.06em;
+    @media (max-width: $max-mobile-width) {
+        font-size: 25px;
+    }
 }
 
-@mixin font-h3-mobile {
-    font-family: 'Georgia', serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 130%;
-    letter-spacing: 0.06em;
-}
 
 @mixin font-h4 {
     font-family: 'Georgia', serif;
@@ -185,6 +180,9 @@ html {
     width: 100%;
     margin: 0 auto;
     padding: 80px 40px 100px;
+    @media (max-width: $max-mobile-width) { 
+        padding: 42px 10px;
+    }
 }
 
 .button-rectangle-primary {
@@ -414,5 +412,22 @@ footer {
     @media (max-width: $max-tablet-width) {
         flex-wrap: wrap;
         justify-content: space-around;
+        & .footer-info {
+            margin: 0;
+        }
     }
+    @media (max-width: $max-mobile-width) {
+        row-gap: 40px;
+        & .footer-info {
+            & h3 {
+                text-align: center;
+            }
+        }
+        & .footer-img {
+            flex-basis: 260px;
+            height: 269px;
+        }
+
+    }
+    
 }
