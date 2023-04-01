@@ -15,30 +15,7 @@ console.log(`Shelter. week-1 100/100 \n
 
 
 
-const headerStyle = function() {
-    const headerMain = document.getElementsByClassName('header-main')[0];
-    const headerContent = document.getElementsByClassName('header-content')[0];
-    const link = document.getElementsByClassName('link');
 
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 60) {
-            headerMain.classList.add('header-main_light');
-            headerContent.classList.add('header-content_light');
-            for (let i = 0; i < link.length; i++) {
-                link[i].classList.add('link-onlight');
-            };
-            
-        } else {
-            headerMain.classList.remove('header-main_light');
-            headerContent.classList.remove('header-content_light');
-            for (let i = 0; i < link.length; i++) {
-                link[i].classList.remove('link-onlight');
-            };
-        }
-    })
-}
-
-headerStyle();
 
 
 

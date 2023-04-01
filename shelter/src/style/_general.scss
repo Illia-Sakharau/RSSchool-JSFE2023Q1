@@ -260,7 +260,6 @@ html {
 .link {
     color: var(--color-dark-s);
     @include font-paragraph-l();
-    margin-left: 35px;
     transition: all .3s ease-out;
     &:hover{
        color: var(--color-light-s); 
@@ -323,10 +322,17 @@ html {
     transition: all .5s ease-out;
     & .wrapper {
         padding: 30px 40px;
+        @media (max-width: $min-desktop-width) {
+            padding: 30px;        
+        }
+        @media (max-width: $max-mobile-width) {
+            padding: 30px 20px;        
+        }
     }
     &_light {
         background-color: var(--color-light-xl);
     }
+    
 }
 .first-empty {
     width: 100%;
@@ -337,32 +343,83 @@ html {
     align-items: center;
     justify-content: space-between;
     height: 60px;
-    z-index: 1000;
+    z-index: 99;
 
-    .logo-title {
+    & .logo-title {
         color: var(--color-primary);
         @include font-logo_title();
         transition: all .5s ease-out;
     }        
-    .logo-subtitle {
+    & .logo-subtitle {
         color: var(--color-light-xl);
         @include font-logo_subtitle();
         margin-top: 10px ;
         margin-left: 5px;
         transition: all .5s ease-out;
     }
-    .nav-main > ul {
+    & .header-main__menu-icon {
+        display: none;
+        height: 30px;
+        width: 30px;
+        background: url('../img/icon/burger.svg') 50% no-repeat;
+    }
+    & .nav-main > ul {
         display: flex;
+        column-gap: 35px;
     }
 
     &_light {
-        .logo-title {
+        & .logo-title {
             color: var(--color-dark-l);
         }            
-        .logo-subtitle {
+        & .logo-subtitle {
             color: var(--color-dark-3xl);
         }
+        & > .header-main__menu-icon {
+            background: url('../img/icon/burger-dark.svg') 50% no-repeat;
+        }
     
+    }
+
+    @media (max-width: $max-mobile-width) {
+        
+        & .header-main__menu-icon {
+            
+            transition: transform 0.5s ease-out;
+            display: block;
+            z-index: 101;
+            &_active {
+                transform: rotate(90deg);
+            }
+        }
+
+        & .nav-main {
+            transform: translate(320px);
+            transition: transform 0.5s ease-out;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 320px;
+            background-color: var(--color-dark-3xl);
+            z-index: 100;            
+            & ul {
+                height: 100%;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                row-gap: 40px;
+                & .link {
+                    @include font-paragraph-mobile-menu();
+                }
+            }
+            &_light {
+                background-color: var(--color-light-xl);
+            }
+            &_active {                
+                transform: translate(0);                
+            }
+        }
     }
 
 }

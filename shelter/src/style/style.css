@@ -555,7 +555,6 @@ html {
   font-weight: 400;
   font-size: 15px;
   line-height: 160%;
-  margin-left: 35px;
   transition: all 0.3s ease-out;
 }
 .link:hover {
@@ -623,6 +622,16 @@ html {
 .header-main .wrapper {
   padding: 30px 40px;
 }
+@media (max-width: 960px) {
+  .header-main .wrapper {
+    padding: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .header-main .wrapper {
+    padding: 30px 20px;
+  }
+}
 .header-main_light {
   background-color: var(--color-light-xl);
 }
@@ -637,7 +646,7 @@ html {
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  z-index: 1000;
+  z-index: 99;
 }
 .header-content .logo-title {
   color: var(--color-primary);
@@ -661,14 +670,66 @@ html {
   margin-left: 5px;
   transition: all 0.5s ease-out;
 }
+.header-content .header-main__menu-icon {
+  display: none;
+  height: 30px;
+  width: 30px;
+  background: url("../img/icon/burger.svg") 50% no-repeat;
+}
 .header-content .nav-main > ul {
   display: flex;
+  -moz-column-gap: 35px;
+       column-gap: 35px;
 }
 .header-content_light .logo-title {
   color: var(--color-dark-l);
 }
 .header-content_light .logo-subtitle {
   color: var(--color-dark-3xl);
+}
+.header-content_light > .header-main__menu-icon {
+  background: url("../img/icon/burger-dark.svg") 50% no-repeat;
+}
+@media (max-width: 767px) {
+  .header-content .header-main__menu-icon {
+    transition: transform 0.5s ease-out;
+    display: block;
+    z-index: 101;
+  }
+  .header-content .header-main__menu-icon_active {
+    transform: rotate(90deg);
+  }
+  .header-content .nav-main {
+    transform: translate(320px);
+    transition: transform 0.5s ease-out;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 320px;
+    background-color: var(--color-dark-3xl);
+    z-index: 100;
+  }
+  .header-content .nav-main ul {
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 40px;
+  }
+  .header-content .nav-main ul .link {
+    font-family: "Arial", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 160%;
+  }
+  .header-content .nav-main_light {
+    background-color: var(--color-light-xl);
+  }
+  .header-content .nav-main_active {
+    transform: translate(0);
+  }
 }
 
 footer {
@@ -1008,7 +1069,6 @@ footer .wrapper {
 }
 .ourFriends-content .grid-conteiner {
   display: grid;
-  display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   grid-gap: 30px 40px;
@@ -1202,5 +1262,41 @@ footer .wrapper {
 @media (max-width: 960px) {
   .donation-content {
     flex-direction: column-reverse;
+  }
+}
+@media (max-width: 767px) {
+  .donation-content {
+    row-gap: 42px;
+  }
+  .donation-content .donation-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .donation-content .donation-text h3 {
+    text-align: center;
+  }
+  .donation-content .donation-text h5 {
+    line-height: 160%;
+    letter-spacing: 0;
+    text-align: center;
+  }
+  .donation-content .donation-text .credit-card p {
+    font-family: "Georgia", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+  }
+  .donation-content .donation-text > p {
+    text-align: justify;
+    margin: 20px 10px 0;
+  }
+  .donation-content .donation-img {
+    width: calc(100vw - 60px);
+    height: 42.1875vw;
+    background-position: center;
   }
 }
