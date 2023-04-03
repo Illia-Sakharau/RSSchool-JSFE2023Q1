@@ -740,6 +740,11 @@ footer .wrapper {
   padding-top: 40px;
   padding-bottom: 0;
 }
+@media (max-width: 1279px) {
+  footer .wrapper {
+    padding-top: 30px;
+  }
+}
 
 .footer-content {
   display: flex;
@@ -757,6 +762,7 @@ footer .wrapper {
   font-size: 35px;
   line-height: 130%;
   letter-spacing: 0.06em;
+  max-width: 280px;
 }
 @media (max-width: 767px) {
   .footer-content .footer-info h3 {
@@ -770,6 +776,11 @@ footer .wrapper {
 }
 .footer-content .footer-info .icon-text_place {
   margin-top: 32px;
+}
+@media (max-width: 767px) {
+  .footer-content .footer-info .icon-text_place {
+    margin-top: 40px;
+  }
 }
 .footer-content .footer-info .icon-text p {
   margin-left: 20px;
@@ -790,6 +801,8 @@ footer .wrapper {
   .footer-content {
     flex-wrap: wrap;
     justify-content: space-around;
+    -moz-column-gap: 0;
+         column-gap: 0;
   }
   .footer-content .footer-info {
     margin: 0;
@@ -799,8 +812,16 @@ footer .wrapper {
   .footer-content {
     row-gap: 40px;
   }
+  .footer-content .footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .footer-content .footer-info h3 {
     text-align: center;
+  }
+  .footer-content .footer-info .icon-text_place {
+    width: 100%;
   }
   .footer-content .footer-img {
     flex-basis: 260px;
@@ -821,6 +842,9 @@ footer .wrapper {
 @media (max-width: 960px) {
   .hero-banner {
     height: 1165px;
+  }
+  .hero-banner .wrapper {
+    padding-top: 151px;
   }
 }
 @media (max-width: 767px) {
@@ -850,7 +874,42 @@ footer .wrapper {
   font-size: 44px;
   line-height: 130%;
 }
+.hero-banner-content .hero-banner-text p {
+  color: var(--color-dark-s);
+  font-family: "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  margin: 42px 0;
+}
+.hero-banner-content .hero-banner-text .button-rectangle-primary {
+  align-self: flex-start;
+}
+.hero-banner-content .hero-banner-img {
+  flex-grow: 1;
+  background: url("../img/start-screen-puppy.png") 100% 100%/contain no-repeat;
+}
+@media (max-width: 960px) {
+  .hero-banner-content {
+    flex-direction: column;
+  }
+  .hero-banner-content .hero-banner-text {
+    width: 100%;
+    max-width: calc(100vw - 308px);
+    margin-bottom: 100px;
+  }
+  .hero-banner-content .hero-banner-text .button-rectangle-primary {
+    align-self: center;
+  }
+  .hero-banner-content .hero-banner-img {
+    height: 593px;
+  }
+}
 @media (max-width: 767px) {
+  .hero-banner-content .hero-banner-text {
+    max-width: 100%;
+  }
   .hero-banner-content .hero-banner-text h1 {
     font-family: "Georgia", serif;
     font-style: normal;
@@ -866,39 +925,9 @@ footer .wrapper {
     font-size: 25px;
   }
 }
-.hero-banner-content .hero-banner-text p {
-  color: var(--color-dark-s);
-  font-family: "Arial", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 160%;
-  margin: 42px 0;
-}
 @media (max-width: 767px) {
   .hero-banner-content .hero-banner-text p {
     text-align: center;
-  }
-}
-.hero-banner-content .hero-banner-text .button-rectangle-primary {
-  align-self: flex-start;
-}
-.hero-banner-content .hero-banner-img {
-  flex-grow: 1;
-  background: url("../img/start-screen-puppy.png") 100% 100%/contain no-repeat;
-}
-@media (max-width: 960px) {
-  .hero-banner-content {
-    flex-direction: column;
-  }
-  .hero-banner-content .hero-banner-text {
-    width: 100%;
-  }
-  .hero-banner-content .hero-banner-text .button-rectangle-primary {
-    align-self: center;
-  }
-  .hero-banner-content .hero-banner-img {
-    height: 593px;
   }
 }
 
@@ -948,6 +977,9 @@ footer .wrapper {
   .about-content {
     flex-direction: column-reverse;
   }
+  .about-content .about-text {
+    width: calc(100vw - 338px);
+  }
 }
 @media (max-width: 767px) {
   .about-content {
@@ -963,6 +995,9 @@ footer .wrapper {
     margin-left: 15px;
     margin-right: 15px;
     text-align: justify;
+  }
+  .about-content .about-text p:last-child {
+    margin-top: 22px;
   }
   .about-content .about-img {
     width: 260px;
@@ -992,7 +1027,6 @@ footer .wrapper {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  row-gap: 60px;
 }
 .ourFriends-content h3 {
   color: var(--color-dark-l);
@@ -1014,6 +1048,7 @@ footer .wrapper {
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  margin: 60px 0;
 }
 .ourFriends-content .carousel-wrapper .button-round {
   flex-shrink: 0;
@@ -1036,10 +1071,8 @@ footer .wrapper {
   }
 }
 @media (max-width: 767px) {
-  .ourFriends-content {
-    row-gap: 42px;
-  }
   .ourFriends-content .carousel-wrapper {
+    margin: 42px 0;
     flex-wrap: wrap;
     justify-content: space-around;
     row-gap: 20px;
@@ -1068,6 +1101,7 @@ footer .wrapper {
   }
 }
 .ourFriends-content .grid-conteiner {
+  margin: 60px 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
@@ -1075,6 +1109,9 @@ footer .wrapper {
 }
 @media (max-width: 1279px) {
   .ourFriends-content .grid-conteiner {
+    margin: 30px 0 40px;
+    padding: 0 64px;
+    width: 100%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 435px);
     grid-auto-rows: 0;
@@ -1090,6 +1127,8 @@ footer .wrapper {
 }
 @media (max-width: 590px) {
   .ourFriends-content .grid-conteiner {
+    margin: 42px 0;
+    padding: 0;
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -1100,10 +1139,16 @@ footer .wrapper {
   -moz-column-gap: 20px;
        column-gap: 20px;
 }
+@media (max-width: 1279px) {
+  .ourFriends-content .pagination {
+    margin-bottom: -30px;
+  }
+}
 @media (max-width: 590px) {
   .ourFriends-content .pagination {
     -moz-column-gap: 10px;
          column-gap: 10px;
+    margin-bottom: 0;
   }
 }
 
@@ -1161,7 +1206,7 @@ footer .wrapper {
   .help-content .help-items-conteiner {
     justify-content: space-around;
     gap: 55px 60px;
-    padding: 0;
+    padding: 0 25px;
   }
   .help-content .help-items-conteiner .help-item {
     width: 170px;
@@ -1179,6 +1224,10 @@ footer .wrapper {
   .help-content .help-items-conteiner .help-item {
     width: 130px;
   }
+  .help-content .help-items-conteiner .help-item > img {
+    width: 50px;
+    height: 50px;
+  }
   .help-content .help-items-conteiner .help-item p {
     font-family: "Georgia", serif;
     font-style: normal;
@@ -1186,6 +1235,7 @@ footer .wrapper {
     font-size: 15px;
     line-height: 110%;
     letter-spacing: 0.06em;
+    margin-top: 20px;
   }
 }
 
@@ -1262,6 +1312,9 @@ footer .wrapper {
 @media (max-width: 960px) {
   .donation-content {
     flex-direction: column-reverse;
+  }
+  .donation-content .donation-text {
+    width: calc(100vw - 388px);
   }
 }
 @media (max-width: 767px) {
