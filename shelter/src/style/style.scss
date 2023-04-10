@@ -178,20 +178,49 @@
         & .button-round {
             flex-shrink:0;
         }
-        & .carousel-items-conteiner{
-            display: flex;
+        & .carousel-items-wrapper {
+            width: 100%;
             overflow: hidden;
             margin: 0 53px;
-            column-gap: 90px;
-            & .card-mini {
-                flex-shrink:0;
-            }
-            @media (max-width: $min-desktop-width) {
-                margin: 0 12px;
-                column-gap: 40px;
+            & .carousel-items-conteiner{
+                display: flex;
+                position: relative;
+                left: calc(290px - 100vw);                
+                
+                & .carousel-slide {
+                    display: flex;
+                    justify-content: space-between;
+                    width: calc(100vw - 290px);
+                    column-gap: 10px;
+                    flex-shrink:0; 
+                    transition: all 1s;
+                    
+                }
+                @media (max-width: $min-desktop-width) {
+                    left: calc(270px - 100vw);
+                    & .carousel-slide {
+                        width: calc(100vw - 270px);
+                        & .card-mini:first-child{
+                            display: none;
+                        }
+                    }
+                }
+                @media (max-width: $max-mobile-width) {
+                    left: -100%;
+                    & .carousel-slide {
+                        justify-content: center;
+                        width: 100%;
+                        & .card-mini:last-child{
+                            display: none;
+                        }
+                    }
+                }
+
             }
         }
+        
     }
+    
     @media (max-width: $max-mobile-width) {
         & .carousel-wrapper {   
             margin: 42px 0;      
@@ -203,11 +232,10 @@
                 order: 2;
 
             }
-            & .carousel-items-conteiner{
-                
+            & .carousel-items-wrapper{                
                 order: 1;
                 width: 100%;
-
+                margin: 0;
             }                
             }
     }
@@ -415,4 +443,51 @@
     }
 }
 
+@keyframes move-left-desk {
+    from {left: calc(290px - 100vw)}
+    to {left: calc((290px - 100vw) * 2)}    
+}
+@keyframes move-left-tablet {
+    from {left: calc(270px - 100vw)}
+    to {left: calc((270px - 100vw) * 2)}    
+}
+@keyframes move-left-mobile {
+    from {left: calc(26px - 100vw)}
+    to {left: calc((26px - 100vw) * 2)}    
+}
 
+
+.transition-left {
+    animation-name: move-left-desk;
+    animation-duration: 1.5s;
+    @media (max-width: $min-desktop-width) {
+        animation-name: move-left-tablet;
+    }
+    @media (max-width: $max-mobile-width) {
+        animation-name: move-left-mobile;
+    }
+}
+
+@keyframes move-right-desk {
+    from {left: calc(290px - 100vw)}
+    to {left: 0px}
+}
+@keyframes move-right-tablet {
+    from {left: calc(270px - 100vw)}
+    to {left: 0px}
+}
+@keyframes move-right-mobile {
+    from {left: calc(26px - 100vw)}
+    to {left: 0px}
+}
+
+.transition-right {
+    animation-name: move-right-desk;
+    animation-duration: 1.5s;
+    @media (max-width: $min-desktop-width) {
+        animation-name: move-right-tablet;
+    }
+    @media (max-width: $max-mobile-width) {
+        animation-name: move-right-mobile;
+    }
+}
