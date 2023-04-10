@@ -41,7 +41,7 @@
                 <div class="ourFriends-content">  
                     <h1>Our friends who<br> are looking for a house</h1>
                     <div class="grid-conteiner">
-                        <div class="card-mini">
+                        <!-- <div class="card-mini">
                             <img src="src/img/pets/katrine.png" alt="Katrine">
                             <h4>Katrine</h4>
                             <div class="button-rectangle-secondary">Learn more</div>
@@ -80,14 +80,14 @@
                             <img src="src/img/pets/freddie.png" alt="Freddie">
                             <h4>Freddie</h4>
                             <div class="button-rectangle-secondary">Learn more</div>
-                        </div> 
+                        </div>  -->
                     </div>
                     <div class="pagination">
-                        <div class="button-round button-round_inactive"><p>&#60;&#60;</p></div>
-                        <div class="button-round button-round_inactive"><p>&#60;</p></div>
-                        <div class="button-round button-round_active"><p>1</p></div>
-                        <div class="button-round"><p>&#62;</p></div>
-                        <div class="button-round"><p>&#62;&#62;</p></div>
+                        <div class="button-round button-round_inactive" id="btn-first-page"><p>&#60;&#60;</p></div>
+                        <div class="button-round button-round_inactive" id="btn-prev-page"><p>&#60;</p></div>
+                        <div class="button-round button-round_active" id="btn-cur-page"><p>1</p></div>
+                        <div class="button-round" id="btn-next-page"><p>&#62;</p></div>
+                        <div class="button-round" id="btn-last-page"><p>&#62;&#62;</p></div>
                     </div>
                 </div>
             </div>
@@ -124,5 +124,6 @@
         </div>
     </footer>
     <script src="src/JS/header.js"></script>
+    <script src="src/JS/pagination.js"></script>
 </body>
 </html>

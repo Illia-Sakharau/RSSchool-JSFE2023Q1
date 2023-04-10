@@ -109,6 +109,7 @@ const newItem = function(arr) {
 function getCardItem(i) {
     let card = document.createElement('div');
     card.className = "card-mini";
+    card.setAttribute('data-number', `${i}`);
     
     let petPhoto = document.createElement('img');
     petPhoto.src = `src/img/pets/${pets[i].name.toLowerCase()}.png`;
@@ -209,10 +210,3 @@ carouselItemsConteiner.addEventListener("animationend", (animationEvent) => {
 
 prevBtn.addEventListener('click', showPrewSlide);
 nextBtn.addEventListener('click', showNextSlide);
-
-
-// console.log(mapArray);
-// mapArray = mapArray.slice(0, -itemOnScreen);
-// mapArray.push(newItem(mapArray));
-// mapArray.push(newItem(mapArray), mapArray[0]);
-// console.log(mapArray);
