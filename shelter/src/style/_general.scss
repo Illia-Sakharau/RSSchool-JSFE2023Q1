@@ -321,6 +321,7 @@ body._lock {
 .header-main {
     width: 100%;
     position: fixed;
+    z-index: 50;
     transition: all .5s ease-out;
     & .wrapper {
         padding: 30px 40px;
