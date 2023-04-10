@@ -3,7 +3,9 @@ const headerContent = document.getElementsByClassName('header-content')[0];
 const burger = document.getElementsByClassName('header-main__menu-icon')[0];
 const navMenu = document.getElementsByClassName('nav-main')[0];
 const links = document.getElementsByClassName('link');
-
+const linksContainer = document.querySelectorAll('.nav-main > ul')[0];
+const dimmer = document.getElementsByClassName('header-main__dimmer')[0];
+const body = document.querySelectorAll('body')[0];
 
 
 window.addEventListener('scroll', function() {
@@ -33,7 +35,24 @@ if (burger) {
     burger.addEventListener('click', function() {
         burger.classList.toggle('header-main__menu-icon_active')
         navMenu.classList.toggle('nav-main_active');
-
+        dimmer.classList.toggle('header-main__dimmer_active');
+        body.classList.toggle('_lock');
+    });
+    dimmer.addEventListener('click', function() {
+        burger.classList.remove('header-main__menu-icon_active')
+        navMenu.classList.remove('nav-main_active');
+        dimmer.classList.remove('header-main__dimmer_active');
+        body.classList.remove('_lock');
     });
 
 }
+
+
+linksContainer.addEventListener('click', function() {
+    if (event.target.tagName != "UL") {
+        burger.classList.remove('header-main__menu-icon_active')
+        navMenu.classList.remove('nav-main_active');
+        dimmer.classList.remove('header-main__dimmer_active');
+        body.classList.remove('_lock');
+    }
+});

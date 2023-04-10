@@ -172,7 +172,9 @@ html {
     letter-spacing: 0.06em;
 }
 
-
+body._lock {
+    overflow: hidden;
+}
 
 
 .wrapper {
@@ -319,6 +321,7 @@ html {
 .header-main {
     width: 100%;
     position: fixed;
+    z-index: 50;
     transition: all .5s ease-out;
     & .wrapper {
         padding: 30px 40px;
@@ -361,11 +364,46 @@ html {
         display: none;
         height: 30px;
         width: 30px;
-        background: url('../img/icon/burger.svg') 50% no-repeat;
+            & span, 
+            &::before, 
+            &::after {
+                left: 0;
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background-color: var(--color-primary);
+            }
+            & span {
+                top: 13.5px;
+            }
+            &::before{
+                content: "";
+                top: 3px;
+            }
+            &::after{
+                content: "";
+                bottom: 4px;
+            }            
     }
     & .nav-main > ul {
         display: flex;
         column-gap: 35px;
+    }
+    & .header-main__dimmer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 100%;
+        bottom: 0;
+        background-color: var(--color-dark-3xl);
+        opacity: 0;
+        z-index: 90;
+        transition: opacity 1s;
+        &_active {
+            top: 0;
+            opacity: 0.6;
+        }
+    
     }
 
     &_light {
@@ -376,7 +414,11 @@ html {
             color: var(--color-dark-3xl);
         }
         & > .header-main__menu-icon {
-            background: url('../img/icon/burger-dark.svg') 50% no-repeat;
+            & span, 
+            &::before, 
+            &::after {
+                background-color: var(--color-dark-3xl);
+            }
         }
     
     }
@@ -384,10 +426,10 @@ html {
     @media (max-width: $max-mobile-width) {
         
         & .header-main__menu-icon {
-            
             transition: transform 0.5s ease-out;
             display: block;
             z-index: 101;
+            position: relative;            
             &_active {
                 transform: rotate(90deg);
             }
@@ -402,7 +444,7 @@ html {
             right: 0;
             width: 320px;
             background-color: var(--color-dark-3xl);
-            z-index: 100;            
+            z-index: 100;
             & ul {
                 height: 100%;
                 flex-direction: column;
@@ -417,7 +459,7 @@ html {
                 background-color: var(--color-light-xl);
             }
             &_active {                
-                transform: translate(0);                
+                transform: translate(0);               
             }
         }
     }
@@ -503,3 +545,4 @@ footer {
     }
     
 }
+
