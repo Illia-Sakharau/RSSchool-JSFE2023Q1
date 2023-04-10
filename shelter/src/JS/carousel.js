@@ -159,7 +159,7 @@ const showNextSlide = function() {
 };
 
 carouselItemsConteiner.addEventListener("animationend", (animationEvent) => {
-  if (animationEvent.animationName === "move-left-desk" || animationEvent.animationName === "move-left-tablet" || animationEvent.animationName === "move-left-mobile") {
+  if (animationEvent.animationName === "move-left-bigdesk" || animationEvent.animationName === "move-left-desk" || animationEvent.animationName === "move-left-tablet" || animationEvent.animationName === "move-left-mobile") {
     carouselItemsConteiner.classList.remove('transition-left'); 
 
     const leftItems = document.querySelector('#prev-slide');
