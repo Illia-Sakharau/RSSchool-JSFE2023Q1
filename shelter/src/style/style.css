@@ -1101,10 +1101,16 @@ footer .wrapper {
   position: relative;
   left: calc(290px - 100vw);
 }
+@media (min-width: 1279px) {
+  .ourFriends-content .carousel-wrapper .carousel-items-wrapper .carousel-items-conteiner {
+    left: -990px;
+  }
+}
 .ourFriends-content .carousel-wrapper .carousel-items-wrapper .carousel-items-conteiner .carousel-slide {
   display: flex;
   justify-content: space-between;
   width: calc(100vw - 290px);
+  max-width: 990px;
   -moz-column-gap: 10px;
        column-gap: 10px;
   flex-shrink: 0;
@@ -1418,6 +1424,14 @@ footer .wrapper {
   }
 }
 
+@keyframes move-left-bigdesk {
+  from {
+    left: -990px;
+  }
+  to {
+    left: -1980px;
+  }
+}
 @keyframes move-left-desk {
   from {
     left: calc(290px - 100vw);
@@ -1446,6 +1460,11 @@ footer .wrapper {
   animation-name: move-left-desk;
   animation-duration: 1.5s;
 }
+@media (min-width: 1279px) {
+  .transition-left {
+    animation-name: move-left-bigdesk;
+  }
+}
 @media (max-width: 960px) {
   .transition-left {
     animation-name: move-left-tablet;
@@ -1457,6 +1476,14 @@ footer .wrapper {
   }
 }
 
+@keyframes move-right-bigdesk {
+  from {
+    left: -990px;
+  }
+  to {
+    left: 0px;
+  }
+}
 @keyframes move-right-desk {
   from {
     left: calc(290px - 100vw);
@@ -1484,6 +1511,11 @@ footer .wrapper {
 .transition-right {
   animation-name: move-right-desk;
   animation-duration: 1.5s;
+}
+@media (min-width: 1279px) {
+  .transition-right {
+    animation-name: move-right-bigdesk;
+  }
 }
 @media (max-width: 960px) {
   .transition-right {

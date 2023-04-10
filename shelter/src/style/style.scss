@@ -185,12 +185,16 @@
             & .carousel-items-conteiner{
                 display: flex;
                 position: relative;
-                left: calc(290px - 100vw);                
+                left: calc(290px - 100vw);
+                @media (min-width: $max-tablet-width) {
+                    left: -990px;
+                }                
                 
                 & .carousel-slide {
                     display: flex;
                     justify-content: space-between;
                     width: calc(100vw - 290px);
+                    max-width: 990px;
                     column-gap: 10px;
                     flex-shrink:0; 
                     transition: all 1s;
@@ -443,6 +447,10 @@
     }
 }
 
+@keyframes move-left-bigdesk {
+    from {left: -990px}
+    to {left: -1980px}    
+}
 @keyframes move-left-desk {
     from {left: calc(290px - 100vw)}
     to {left: calc((290px - 100vw) * 2)}    
@@ -460,6 +468,9 @@
 .transition-left {
     animation-name: move-left-desk;
     animation-duration: 1.5s;
+    @media (min-width: $max-tablet-width) {
+        animation-name: move-left-bigdesk;
+    }
     @media (max-width: $min-desktop-width) {
         animation-name: move-left-tablet;
     }
@@ -468,6 +479,10 @@
     }
 }
 
+@keyframes move-right-bigdesk {
+    from {left: -990px}
+    to {left: 0px}
+}
 @keyframes move-right-desk {
     from {left: calc(290px - 100vw)}
     to {left: 0px}
@@ -484,6 +499,9 @@
 .transition-right {
     animation-name: move-right-desk;
     animation-duration: 1.5s;
+    @media (min-width: $max-tablet-width) {
+        animation-name: move-right-bigdesk;
+    }
     @media (max-width: $min-desktop-width) {
         animation-name: move-right-tablet;
     }
