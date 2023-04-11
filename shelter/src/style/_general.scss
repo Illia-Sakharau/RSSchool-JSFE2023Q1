@@ -9,8 +9,7 @@
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 700;
-    src: local('Georgia'),
-         url('../fonts/georgia/georgia-bold.ttf') format("ttf");
+    src: url('../fonts/georgia/georgia-bold.ttf') format("ttf");
 }
 @font-face {
     font-family: 'Arial';
@@ -546,3 +545,138 @@ footer {
     
 }
 
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(41, 41, 41, 0.6);
+    top: 0;
+    left: 0;
+    z-index: 120;
+    display: none;
+
+    &__wrapper {
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 69px;
+    }
+
+    &__content {
+        max-width: 900px;
+        background-color: var(--color-light-s);
+        border-radius: 9px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    &__close {
+        position: absolute;
+        top: -52px;
+        right: -42px;
+
+    }
+
+    &__photo {
+        max-width: 500px;
+        min-width: 350px;
+        object-fit: cover;
+        border-radius: 9px 0 0 9px;
+    }
+
+    &__text {
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        margin: 50px 25px;
+        flex-shrink:1;
+    }
+
+    &__pet-name {
+        @include font-h3()
+    }
+
+    &__pet-type-breed {
+        margin-top: 10px;
+        @include font-h4();
+    }
+
+    &__pet-description {
+        margin-top: 40px;
+        @include font-h5();
+    }
+
+    &__pet-other-props {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    &__pet-prop{
+        margin-left: 14px;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            top: calc(50% - 2px);
+            left: -14px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+        }
+    }
+
+    &__prop-name {
+        @include font-h5-modal-window();
+    }
+    &__prop-value {
+        @include font-h5();
+    }
+
+    @media (max-width: $min-desktop-width) {
+        &__text {
+            margin: 10px;
+        }
+        &__pet-description {
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        &__pet-other-props {
+            margin-top: 20px;
+            row-gap: 5px;
+        }
+    }
+    @media (max-width: $max-mobile-width) {
+        &__wrapper {
+            margin: 40px;
+        }
+
+        &__close {
+            right: -30px;
+        }
+        
+        &__photo {
+            display: none;
+        }
+
+        &__pet-name {
+            font-size: 35px;
+            text-align: center;
+        }
+        &__pet-type-breed {
+            text-align: center;
+        }
+        &__pet-description {
+            text-align: justify;
+        }
+        &__pet-other-props {
+            margin-top: 24px;
+        }
+    }
+
+}
