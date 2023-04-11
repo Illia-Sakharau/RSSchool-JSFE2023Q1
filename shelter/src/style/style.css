@@ -418,7 +418,7 @@ legend {
   font-family: "Georgia";
   font-style: normal;
   font-weight: 700;
-  src: local("Georgia"), url("../fonts/georgia/georgia-bold.ttf") format("ttf");
+  src: url("../fonts/georgia/georgia-bold.ttf") format("ttf");
 }
 @font-face {
   font-family: "Arial";
@@ -864,6 +864,155 @@ footer .wrapper {
   .footer-content .footer-img {
     flex-basis: 260px;
     height: 269px;
+  }
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(41, 41, 41, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 120;
+  display: none;
+}
+.popup__wrapper {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 69px;
+}
+.popup__content {
+  max-width: 900px;
+  background-color: var(--color-light-s);
+  border-radius: 9px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.popup__close {
+  position: absolute;
+  top: -52px;
+  right: -42px;
+}
+.popup__photo {
+  max-width: 500px;
+  min-width: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 9px 0 0 9px;
+}
+.popup__text {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px 25px;
+  flex-shrink: 1;
+}
+.popup__pet-name {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+}
+@media (max-width: 767px) {
+  .popup__pet-name {
+    font-size: 25px;
+  }
+}
+.popup__pet-type-breed {
+  margin-top: 10px;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+}
+.popup__pet-description {
+  margin-top: 40px;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+}
+.popup__pet-other-props {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.popup__pet-prop {
+  margin-left: 14px;
+  position: relative;
+}
+.popup__pet-prop::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  left: -14px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+.popup__prop-name {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+}
+.popup__prop-value {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+}
+@media (max-width: 960px) {
+  .popup__text {
+    margin: 10px;
+  }
+  .popup__pet-description {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  .popup__pet-other-props {
+    margin-top: 20px;
+    row-gap: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .popup__wrapper {
+    margin: 40px;
+  }
+  .popup__close {
+    right: -30px;
+  }
+  .popup__photo {
+    display: none;
+  }
+  .popup__pet-name {
+    font-size: 35px;
+    text-align: center;
+  }
+  .popup__pet-type-breed {
+    text-align: center;
+  }
+  .popup__pet-description {
+    text-align: justify;
+  }
+  .popup__pet-other-props {
+    margin-top: 24px;
   }
 }
 
