@@ -31,6 +31,10 @@ module.exports = ({develop}) => ({
         type: 'asset/resource',
       },
       {
+        test: /\.svg$/i,
+        type: 'asset/source',
+      },
+      {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
@@ -49,7 +53,7 @@ module.exports = ({develop}) => ({
       favicon: './public/fav.png'
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'styles.css',
     }),
     new CopyPlugin({
       patterns: [

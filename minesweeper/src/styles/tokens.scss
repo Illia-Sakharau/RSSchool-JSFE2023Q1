@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+// Colors
+$color-dark-10: #08005E;
+$color-dark-50: #9C0065;
+$color-dark-60: #BB026E;
+
+$color-light-20: #EB7629;
+$color-light-50: #FFD84C;
+$color-light-80: #FFF4B2;
+
+$color-surface: #4BCF9E;
+
+$color-gradient: linear-gradient(135deg, #FFD84C 0%, #F7AE2F 100%);
+
+
+// Border radius
+$br-m: 4px;
+$br-l: 8px;
+
+// Text
+@mixin text-m {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 16px;
+    weight: 700;
+  }
+}
+
+@mixin text-l {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 48px;
+    weight: 700;
+  }
+}
+
+ 

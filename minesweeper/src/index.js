@@ -1,7 +1,14 @@
-import img from './assets/image.jpg';
-import './style.scss';
+import './styles.scss';
+import menu from './components/menu/index' 
 
-console.log('jagckacbhs');
-document.body.innerHTML = `
-  <img src="${img}" alt="123">
-`;
+const body = document.querySelector('body');
+const wrapper = document.createElement('div');
+
+if (!localStorage.getItem('results')) {
+  localStorage.setItem('results', JSON.stringify([]));
+}
+
+wrapper.classList.add('wrapper');
+wrapper.appendChild(menu);
+
+body.appendChild(wrapper);

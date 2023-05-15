@@ -1,0 +1,13 @@
+@import "./styles/reset.scss";
+@import "./styles/tokens.scss";
+
+body {
+    background: $color-surface url('./assets/image.jpg') 100% 100%/auto 100% no-repeat;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(75, 207, 158, 0.5);
+}
+

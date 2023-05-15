@@ -1,0 +1,41 @@
+@import "../../styles/tokens.scss";
+
+
+.results {
+  width: 100%;
+  @include text-m;
+
+  &__title {
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+
+
+  &__row {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    margin-top: 8px;
+  }
+
+  &__pos {
+    font-size: 24px;
+    width: 36px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    svg {
+      fill: $color-dark-50;
+      width: 24px;
+      height: 24px;
+    }
+
+  }
+
+
+
+}
