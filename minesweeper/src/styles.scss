@@ -21,6 +21,23 @@ body {
 
     height: 100%;
 
+    @media (max-width: $bp-10) {
+        padding-left: 424px;
+    }
+
+    @media (max-width: $bp-20) {
+        padding: 8px;
+        row-gap: 32px;
+    }
+
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
     &__title {
         font-family: 'Roboto';
         font-weight: 700;
@@ -30,8 +47,53 @@ body {
         padding: 8px;
         color: rgba(255, 216, 76, 0.1);
         
-        background: url('./assets/Minesweeper.png') 0 0/cover  no-repeat;
+        background: url('./assets/Minesweeper.png') 0 0/contain  no-repeat;
     }
 
+    &__burger {
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        background: $color-gradient;
+
+        width: 56px;
+        height: 56px;
+        border-radius: $br-l;
+
+        svg {
+            fill: $color-light-50;
+        }
+        
+        &:hover {
+            svg {
+                fill: $color-light-20;
+            }
+        }
+
+    }
+
+
+    @media (max-width: $bp-10) {
+
+        &__title {
+            font-size: 80px;
+            line-height: 94px;
+        }
+    }
+
+    @media (max-width: $bp-20) {
+
+        &__burger {
+            display: flex;    
+        }
+    }
+    @media (max-width: $bp-30) {
+
+        &__title {
+            font-size: 40px;
+            line-height: 47px;
+        }
+    }
 }
 

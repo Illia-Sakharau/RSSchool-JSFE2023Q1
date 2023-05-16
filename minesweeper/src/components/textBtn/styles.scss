@@ -1,0 +1,14 @@
+@import "../../styles/tokens.scss";
+
+
+.text-btn {
+  padding: 16px;
+  color: $color-light-50;
+
+  @include text-l;
+
+  &:hover {
+    color: $color-light-20;
+  }
+
+}

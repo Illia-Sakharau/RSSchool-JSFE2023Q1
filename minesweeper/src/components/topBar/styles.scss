@@ -7,9 +7,23 @@
 
   &__icon {
     fill: $color-light-50;
+
+    &:hover {
+      fill: $color-light-20;
+    }
   }
 
   &__close-btn {
     display: none;
   }
+
+  @media (max-width: $bp-20) {
+    &__close-btn {
+      display: block;
+    }    
+  }
+
+
+
+
 }
