@@ -1,0 +1,32 @@
+@import "../../styles/tokens.scss";
+
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  
+  border-radius: $br-m;
+
+  &_close {
+    background: url('../../assets/cross.png') 50% 50%/cover  no-repeat, $color-gradient;
+  }
+
+
+  &_bomb {
+    background: url('../../assets/explosion.gif') 50% 50%/cover no-repeat, url('../../assets/bomb.png') 50% 50%/cover  no-repeat;
+  }
+
+  &_flag {
+    background: url('../../assets/flag.png') 50% 50%/cover  no-repeat, $color-gradient;
+  }
+
+  &_num {
+    background: none;
+    color: $color-light-20;
+    @include text-m;
+  }  
+}

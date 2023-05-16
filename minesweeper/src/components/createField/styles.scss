@@ -1,0 +1,61 @@
+@import "../../styles/tokens.scss";
+
+
+.area {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
+
+
+.stat-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: $color-dark-10;
+  border-radius: $br-l;
+
+  padding: 8px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    padding: 4px;
+    border-radius: $br-m;
+
+    background-color: $color-dark-60;
+
+  }
+
+  &__text {
+    margin: 0 8px;
+    color: $color-light-50;
+
+    @include text-m;
+  }
+
+  svg {
+    fill: $color-dark-10;
+    opacity: 0.5;
+  }
+
+
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+  
+  padding: 8px;
+
+  background-color: $color-dark-10;
+  border-radius: $br-l;
+
+  &__line {
+    display: flex;
+    column-gap: 2px;
+  }
+}
