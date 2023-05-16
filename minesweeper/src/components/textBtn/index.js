@@ -7,6 +7,8 @@ export default function createTextBtn(text) {
   textBtn.classList.add('text-btn');
   textBtn.textContent = text;
 
+  textBtn.setAttribute('id', text.toLowerCase());
+
   return textBtn;
 }
 

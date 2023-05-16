@@ -3,12 +3,42 @@ import menu from './components/menu/index';
 import createField from './components/createField/index';
 import toggleMenu from './functions/toggleMeny';
 import toggleTheme from './functions/toggleTheme';
+import selectLevel from './functions/selectLevel';
+import Maps from './functions/generateMaps';
 
 const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const iconBurger = require('./assets/icons/burger.svg');
+const maps = new Maps(3,3,3,3);
 
+maps.getBombMap();
+
+const fieldParams = {
+  width: 10,
+  height: 10,
+  bombs: 10,
+};
+
+if (localStorage.getItem('level')){
+  switch (localStorage.getItem('level')) {
+    case 'easy':
+      fieldParams.width = 10;
+      fieldParams.height = 10;
+      fieldParams.bombs = 10;
+      break;
+    case 'medium':
+      fieldParams.width = 15;
+      fieldParams.height = 15;
+      fieldParams.bombs = 25;
+      break;
+    case 'hard':
+      fieldParams.width = 20;
+      fieldParams.height = 20;
+      fieldParams.bombs = 50;
+      break;
+  }
+}
 
 if (!localStorage.getItem('results')) {
   localStorage.setItem('results', JSON.stringify([]));
@@ -24,7 +54,7 @@ playzone.innerHTML = `
     </button>
   </header>
 `;
-playzone.appendChild(createField(15,15));
+playzone.appendChild(createField(fieldParams.height, fieldParams.width));
 
 
 wrapper.classList.add('wrapper');
@@ -36,17 +66,7 @@ body.appendChild(wrapper);
 
 
 
-// delete
-const flag = document.querySelector('.cell[data-corx="5"]');
-const bomb = document.querySelector('.cell[data-corx="6"]');
-const num = document.querySelector('.cell[data-corx="7"]');
-
-flag.className = 'cell cell_flag';
-bomb.className = 'cell cell_bomb';
-num.className = 'cell cell_num';
-num.textContent = '1';
-// delete
-
 toggleMenu();
 toggleTheme();
+selectLevel();
 
