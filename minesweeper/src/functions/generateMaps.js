@@ -37,6 +37,7 @@ export default class Maps {
         }
       }
     }
+
     // generate opened cells map
     for (let i = 0; i < width; i++){
       this.openedCellsMap[i] = [];
@@ -46,10 +47,8 @@ export default class Maps {
     }  
   }
 
-  getBombMap() {
-    console.log(this.bombMap);
-    console.log(this.fieldMap);
-    console.log(this.openedCellsMap);
+  getValueFieldMap(x, y) {
+    return this.fieldMap[x][y];
   }
   
 }
