@@ -1,8 +1,16 @@
 export default class Maps {
-  constructor(){
+  constructor(width, height){
     this.bombMap = [];
     this.fieldMap = [];
     this.openedCellsMap = [];  
+
+    // generate opened cells map
+    for (let i = 0; i < width; i++){
+      this.openedCellsMap[i] = [];
+      for (let j = 0; j < height; j++){
+        this.openedCellsMap[i][j] = null;
+      }
+    }  
   }
 
 
@@ -28,7 +36,7 @@ export default class Maps {
       this.fieldMap[i] = [];
       for (let j = 0; j < height; j++){
         if (this.bombMap[i+1][j+1] === 1){
-          this.fieldMap[i][j] = 'B'
+          this.fieldMap[i][j] = 'bomb'
         } else {
           this.fieldMap[i][j] = 
             this.bombMap[i][j]   + this.bombMap[i+1][j]   + this.bombMap[i+2][j] + 
@@ -38,17 +46,25 @@ export default class Maps {
       }
     }
 
-    // generate opened cells map
-    for (let i = 0; i < width; i++){
-      this.openedCellsMap[i] = [];
-      for (let j = 0; j < height; j++){
-        this.openedCellsMap[i][j] = false;
-      }
-    }  
+    
   }
 
   getValueFieldMap(x, y) {
     return this.fieldMap[x][y];
   }
+
+  setValueOpenedCellsMap(x, y, value) {
+    this.openedCellsMap[x][y] = value;
+    return;
+  }
+
+  getValueOpenedCellsMap(x, y) {
+    return this.openedCellsMap[x][y];
+  }
+
+  getOpenedCellsMap() {
+    return this.openedCellsMap;
+  }
+
   
 }

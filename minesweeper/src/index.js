@@ -12,7 +12,7 @@ const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
 
 const iconBurger = require('./assets/icons/burger.svg');
-const MAPS = new Maps();
+
 
 const fieldParams = {
   width: 10,
@@ -41,6 +41,8 @@ if (localStorage.getItem('level')){
       break;
   }
 }
+
+const MAPS = new Maps(fieldParams.width, fieldParams.height);
 
 if (!localStorage.getItem('results')) {
   localStorage.setItem('results', JSON.stringify([]));
@@ -92,27 +94,84 @@ function openedCell(element) {
 
   element.classList.remove('cell_close');
 
-  if (cellValue === 'B') {
+  if (cellValue === 'bomb') {
     element.classList.add('cell_bomb');
   } else if (cellValue === 0) {
     element.classList.add('cell_num');
-    console.log(cellValue)
+    MAPS.setValueOpenedCellsMap(corx, cory, 0);
+    openEmptyCells(corx, cory);
   } else {
     element.classList.add('cell_num');
     element.textContent = cellValue;
+    MAPS.setValueOpenedCellsMap(corx, cory, MAPS.getValueFieldMap(corx, cory))
+  }  
+}
+
+
+function openEmptyCells(corx, cory) {
+
+  if (corx > 0 && cory > 0){
+    const cell_1 = document.querySelector(`[data-corx="${corx-1}"][data-cory="${cory-1}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx-1, cory-1) === null)){
+      openedCell(cell_1);
+    }
+  }
+  if (cory > 0){
+    const cell_2 = document.querySelector(`[data-corx="${corx}"][data-cory="${cory-1}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx, cory-1) === null)){
+      openedCell(cell_2);
+    }
+  }
+  if (corx < fieldParams.width - 1 && cory > 0){
+    const cell_3 = document.querySelector(`[data-corx="${corx+1}"][data-cory="${cory-1}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx+1, cory-1) === null)){
+      openedCell(cell_3);
+    }
+  }
+  
+  if (corx > 0){
+    const cell_4 = document.querySelector(`[data-corx="${corx-1}"][data-cory="${cory}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx-1, cory) === null)){
+      openedCell(cell_4);
+    }
+  }
+  if (corx < fieldParams.width - 1){
+    const cell_5 = document.querySelector(`[data-corx="${corx+1}"][data-cory="${cory}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx+1, cory) === null)){
+      openedCell(cell_5);
+    }
   }
 
-
-
-
-  
-
-
-
-  
+  if (corx > 0 && cory < fieldParams.height - 1){
+    const cell_6 = document.querySelector(`[data-corx="${corx-1}"][data-cory="${cory+1}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx-1, cory+1) === null)){
+      openedCell(cell_6);
+    }
+  }
+  if (cory < fieldParams.height - 1){
+    const cell_7 = document.querySelector(`[data-corx="${corx}"][data-cory="${cory+1}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx, cory+1) === null)){
+      openedCell(cell_7);
+    }
+  }
+  if (corx < fieldParams.width - 1 && cory < fieldParams.height - 1){
+    const cell_8 = document.querySelector(`[data-corx="${corx+1}"][data-cory="${cory+1}"]`);
+    if ((MAPS.getValueOpenedCellsMap(corx+1, cory+1) === null)){
+      openedCell(cell_8);
+    }
+  }
 }
 
 function flagedCell(element) {
+  const corx = Number(element.dataset.corx);
+  const cory = Number(element.dataset.cory);
+
+  if(MAPS.getValueOpenedCellsMap(corx, cory) === 'flag') {
+    MAPS.setValueOpenedCellsMap(corx, cory, null)
+  } else {
+    MAPS.setValueOpenedCellsMap(corx, cory, 'flag')
+  }
+
   element.classList.toggle('cell_close');
   element.classList.toggle('cell_flag');
 }
