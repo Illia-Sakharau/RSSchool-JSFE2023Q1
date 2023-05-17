@@ -30,7 +30,7 @@ export default function createField(x, y) {
     const fieldLine = document.createElement('div');
     fieldLine.classList.add('field__line');
     for (let j = 0; j < y; j++){
-      const newCell = new Cell(i+1, j+1);
+      const newCell = new Cell(i, j);
       const cell = newCell.getCell();
 
       fieldLine.appendChild(cell);

@@ -10,7 +10,7 @@ const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const iconBurger = require('./assets/icons/burger.svg');
-const maps = new Maps(3,3,3,3);
+const maps = new Maps(5,5,10,3,1);
 
 maps.getBombMap();
 
