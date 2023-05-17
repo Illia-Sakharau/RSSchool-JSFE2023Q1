@@ -11,6 +11,7 @@ const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
 
+
 const iconBurger = require('./assets/icons/burger.svg');
 
 
@@ -21,6 +22,7 @@ const fieldParams = {
 };
 
 let isFirstClick = true;
+let clicksCount = 0;
 
 if (localStorage.getItem('level')){
   switch (localStorage.getItem('level')) {
@@ -79,6 +81,7 @@ function openedCell(element) {
 
   const corx = Number(element.dataset.corx);
   const cory = Number(element.dataset.cory);
+  
 
   if (isFirstClick) {
     const width = fieldParams.width;
@@ -179,6 +182,9 @@ function flagedCell(element) {
 field[0].addEventListener('click', (event) => {
   event. preventDefault();
   if(!Object.values(event.target.classList).includes('cell_close')) return;  
+  const clicksText = document.querySelector('.stat-bar__text');
+  clicksCount++;
+  clicksText.textContent = clicksCount;
   openedCell(event.target);
 })
 
