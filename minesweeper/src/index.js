@@ -7,6 +7,7 @@ import selectLevel from './functions/selectLevel';
 import Maps from './functions/generateMaps';
 import winGame from './functions/winGame';
 import loseGame from './functions/loseGame';
+import changeBombCount from './functions/changeBombCount';
 
 
 const body = document.querySelector('body');
@@ -29,6 +30,7 @@ const fieldParams = {
 let isFirstClick = true;
 let clicksCount = 0;
 let flagCount = 0;
+let imagineBombCount;
 let stop = true;
 let timer;
 let timePassed = 0;
@@ -68,7 +70,7 @@ playzone.innerHTML = `
     </button>
   </header>
 `;
-playzone.appendChild(createField(fieldParams.height, fieldParams.width));
+playzone.appendChild(createField(fieldParams.height, fieldParams.width, fieldParams.bombs));
 wrapper.classList.add('wrapper');
 wrapper.appendChild(menu);
 wrapper.appendChild(playzone);
@@ -80,6 +82,8 @@ body.appendChild(wrapper);
 toggleMenu();
 toggleTheme();
 selectLevel();
+changeBombCount();
+
 
 
 
@@ -93,6 +97,7 @@ function openedCell(element) {
   
 
   if (isFirstClick) {
+    fieldParams.bombs = +document.querySelector('#bombRange').value;
     const width = fieldParams.width;
     const height = fieldParams.height;
     const bombs = fieldParams.bombs;
@@ -111,6 +116,12 @@ function openedCell(element) {
       timerText.textContent = `${min} : ${sec}`;
       timePassed++;
     },1000);
+
+    document.querySelector('#bombRange').classList.add('stat-bar__input_unvisible');
+    document.querySelector('.stat-bar__button').classList.add('stat-bar__button_visible');
+    imagineBombCount = document.querySelector('#bombRange').value - MAPS.getOpenedCellsMap().flat().reduce(
+      (accumulator, currentValue) => (currentValue === 'flag') ? accumulator + 1 : accumulator, 0);
+    document.querySelector('#bomb').textContent = imagineBombCount;
   }
 
   const cellValue = MAPS.getValueFieldMap(corx, cory);
@@ -130,6 +141,10 @@ function openedCell(element) {
     element.dataset.color = cellValue;
     MAPS.setValueOpenedCellsMap(corx, cory, MAPS.getValueFieldMap(corx, cory));
   }  
+
+  console.log(fieldParams.bombs)
+  console.log(MAPS.getOpenedCellsMap().flat().reduce(
+    (accumulator, currentValue) => (currentValue === null || currentValue === 'flag') ? accumulator + 1 : accumulator, 0))
 
   if(stop && fieldParams.bombs === MAPS.getOpenedCellsMap().flat().reduce(
     (accumulator, currentValue) => (currentValue === null || currentValue === 'flag') ? accumulator + 1 : accumulator, 0)) {
@@ -198,6 +213,7 @@ function openEmptyCells(corx, cory) {
 
 function flagedCell(element) {
   const flagText = document.querySelector('#flags');
+  const bombText = document.querySelector('#bomb');
   if (flagCount === fieldParams.bombs) {
     window.alert(`The number of flags cannot exceed the number of bombs.\nThe set number of bombs for the current game is ${fieldParams.bombs}`);
   } else {
@@ -207,9 +223,11 @@ function flagedCell(element) {
     if(MAPS.getValueOpenedCellsMap(corx, cory) === 'flag') {
       MAPS.setValueOpenedCellsMap(corx, cory, null);
       flagCount--;
+      imagineBombCount++;
     } else {
       MAPS.setValueOpenedCellsMap(corx, cory, 'flag');
       flagCount++;
+      imagineBombCount--;
     }
 
     element.classList.toggle('cell_close');
@@ -217,6 +235,11 @@ function flagedCell(element) {
 
     
     flagText.textContent = flagCount;
+    if (!isFirstClick){
+      bombText.textContent = imagineBombCount;
+    }
+    
+
   }
 
   
@@ -240,5 +263,6 @@ field[0].addEventListener('contextmenu', (event) => {
   if(!classArray.includes('cell_close') && !classArray.includes('cell_flag')) return;  
   flagedCell(event.target);
 })
+
 
 

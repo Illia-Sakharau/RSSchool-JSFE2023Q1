@@ -17,9 +17,12 @@ export default function loseGame(map) {
     bombCell.classList.add('cell_bomb');
     bombCells.shift();
     if (bombCells.length === 0) {
-      window.alert("You lose! Try again!");
       clearInterval(openBomb);
-      location.reload();
+      setTimeout(() => {
+        window.alert("You lose! Try again!");        
+        location.reload();
+      }, 500)
+      
     }
     
   }, 1000/bombCells.length);

@@ -12,14 +12,37 @@
 
 .stat-bar {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: calc(100vw - 32px) ;
-  background-color: $color-dark-10;
-  border-radius: $br-l;
-  column-gap: 8px;
 
-  padding: 8px;
+  svg {
+    fill: $color-dark-10;
+    opacity: 0.5;
+  }
+
+  &__line{
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: $color-dark-10;
+    border-radius: $br-l;
+    column-gap: 8px;
+
+    padding: 8px;
+
+    &:last-child {
+      background-color: $color-dark-10;
+      width: calc(100% - 16px);
+      margin: 0 8px;
+      border-radius: 0 0 $br-l $br-l;
+      & .stat-bar__item {
+        flex-grow: 1;
+      }
+    }
+  }
 
   &__item {
     display: flex;
@@ -38,11 +61,57 @@
 
     @include text-m;
   }
+  &__button {
+    display: none;
+    flex-grow: 1;
+    padding: 0 16px;
+    
+    border-radius: $br-m;
 
-  svg {
-    fill: $color-dark-10;
-    opacity: 0.5;
+    background: $color-gradient;
+    @include text-m;
+    color: $color-dark-10;
+
+    &_visible{
+      display: block;
+      width: calc(100% - 96px);
+    }
   }
+
+  &__input {
+    margin-right: 8px;
+    flex-grow: 1;
+    border-radius: 4px;
+    cursor: pointer;
+    
+
+    appearance: none;
+    outline: none;
+    overflow: hidden;
+    height: 8px;
+    &::-webkit-slider-runnable-track {
+      border-radius: 4px;
+      height: 8px;
+      background-color: rgba(8, 0, 94, 0.5);
+    }
+    &::-webkit-slider-thumb {
+      background: $color-light-50;
+      cursor: pointer;
+      width:15px;
+      height: 15px;
+      -webkit-appearance: none;
+      margin-top: -4px;
+      box-shadow: -200px  0 0 200px  $color-light-50;
+
+    }
+    &_unvisible{
+      display: none;
+    }
+
+  }
+
+    
+
 
 
 }
@@ -65,13 +134,15 @@
 
 .area_light {
   .stat-bar {
-    background-color: $color-light-50;
+    &__line{
+      background-color: $color-light-50;
+    }
     &__item {
       background-color: $color-light-20;  
     }
-
   }
   .field {
     background-color: $color-light-80;
   }
+  
 }

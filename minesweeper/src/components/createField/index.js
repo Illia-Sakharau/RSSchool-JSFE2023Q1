@@ -2,7 +2,7 @@ import './styles.scss';
 import Cell from '../cell/index'
 
 
-export default function createField(x, y) {
+export default function createField(x, y, bombs) {
   const area = document.createElement('div');
   const statBar = document.createElement('div');
   const field = document.createElement('div');
@@ -18,17 +18,30 @@ export default function createField(x, y) {
 
 
   statBar.innerHTML = `
-    <div class="stat-bar__item">
-      ${iconFlag}
-      <span class="stat-bar__text" id="flags">0</span>
+    <div class="stat-bar__line">
+      <div class="stat-bar__item">
+        ${iconFlag}
+        <span class="stat-bar__text" id="flags">0</span>
+      </div>
+      <div class="stat-bar__item">
+        ${iconClick}
+        <span class="stat-bar__text" id="clicks">0</span>
+      </div>
+      <div class="stat-bar__item">
+        ${iconClock}
+        <span class="stat-bar__text" id="times">00 : 00</span>
+      </div>
     </div>
-    <div class="stat-bar__item">
-      ${iconClick}
-      <span class="stat-bar__text" id="clicks">0</span>
-    </div>
-    <div class="stat-bar__item">
-      ${iconClock}
-      <span class="stat-bar__text" id="times">00 : 00</span>
+    <div class="stat-bar__line">
+      <div class="stat-bar__item">
+        ${iconBomb}
+        <span class="stat-bar__text" id="bomb">${bombs}</span>
+        <input type="range" min="10" max="99" step="1" value="${bombs}" class="stat-bar__input" id="bombRange">
+      </div>
+      
+      <button class="stat-bar__button">
+        Restart
+      </button>
     </div>
   `
 
