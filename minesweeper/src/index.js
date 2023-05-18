@@ -205,15 +205,17 @@ function flagedCell(element) {
     const cory = Number(element.dataset.cory);
 
     if(MAPS.getValueOpenedCellsMap(corx, cory) === 'flag') {
-      MAPS.setValueOpenedCellsMap(corx, cory, null)
+      MAPS.setValueOpenedCellsMap(corx, cory, null);
+      flagCount--;
     } else {
-      MAPS.setValueOpenedCellsMap(corx, cory, 'flag')
+      MAPS.setValueOpenedCellsMap(corx, cory, 'flag');
+      flagCount++;
     }
 
     element.classList.toggle('cell_close');
     element.classList.toggle('cell_flag');
 
-    flagCount++;
+    
     flagText.textContent = flagCount;
   }
 
