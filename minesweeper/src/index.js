@@ -5,6 +5,8 @@ import toggleMenu from './functions/toggleMeny';
 import toggleTheme from './functions/toggleTheme';
 import selectLevel from './functions/selectLevel';
 import Maps from './functions/generateMaps';
+import winGame from './functions/winGame';
+import loseGame from './functions/loseGame';
 
 const body = document.querySelector('body');
 const wrapper = document.createElement('div');
@@ -99,6 +101,8 @@ function openedCell(element) {
 
   if (cellValue === 'bomb') {
     element.classList.add('cell_bomb');
+    loseGame(MAPS.getFieldMap());
+
   } else if (cellValue === 0) {
     element.classList.add('cell_num');
     MAPS.setValueOpenedCellsMap(corx, cory, 0);

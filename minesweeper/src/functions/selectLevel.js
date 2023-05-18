@@ -5,14 +5,14 @@ export default function selectLevel() {
 
   easyBtn.addEventListener('click', () => {
     localStorage.setItem('level', 'easy');
-    location. reload();
+    location.reload();
   })
   mediumBtn.addEventListener('click', () => {
     localStorage.setItem('level', 'medium');
-    location. reload();
+    location.reload();
   })
   hardBtn.addEventListener('click', () => {
     localStorage.setItem('level', 'hard');
-    location. reload();
+    location.reload();
   })
 }

@@ -66,5 +66,8 @@ export default class Maps {
     return this.openedCellsMap;
   }
 
+  getFieldMap() {
+    return this.fieldMap;
+  }
   
 }
