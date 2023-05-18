@@ -30,5 +30,29 @@
     background: none;
     color: $color-light-20;
     @include text-m;
+    &[data-color='1'] {      
+      color: #BB04D9;
+    }
+    &[data-color='2'] {      
+      color: #7684EB;
+    }
+    &[data-color='3'] {      
+      color: #00C2D3;
+    }
+    &[data-color='4'] {      
+      color: #55CA09;
+    }
+    &[data-color='5'] {      
+      color: #ECC200;
+    }
+    &[data-color='6'] {      
+      color: #FF9F01;
+    }
+    &[data-color='7'] {      
+      color: #E8550A;
+    }
+    &[data-color='8'] {      
+      color: #E40048;
+    }
   }  
 }

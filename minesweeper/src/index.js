@@ -112,7 +112,8 @@ function openedCell(element) {
   } else {
     element.classList.add('cell_num');
     element.textContent = cellValue;
-    MAPS.setValueOpenedCellsMap(corx, cory, MAPS.getValueFieldMap(corx, cory))
+    element.dataset.color = cellValue;
+    MAPS.setValueOpenedCellsMap(corx, cory, MAPS.getValueFieldMap(corx, cory));
   }  
 
   if(stop && fieldParams.bombs === MAPS.getOpenedCellsMap().flat().reduce(
