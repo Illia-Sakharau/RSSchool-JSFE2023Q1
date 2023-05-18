@@ -17,9 +17,9 @@ export default function loseGame(map) {
     bombCell.classList.add('cell_bomb');
     bombCells.shift();
     if (bombCells.length === 0) {
-      // window.alert("You lose! Try again!");
+      window.alert("You lose! Try again!");
       clearInterval(openBomb);
-      // location.reload();
+      location.reload();
     }
     
   }, 1000/bombCells.length);

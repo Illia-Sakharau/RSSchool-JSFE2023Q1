@@ -8,12 +8,14 @@ import Maps from './functions/generateMaps';
 import winGame from './functions/winGame';
 import loseGame from './functions/loseGame';
 
+
 const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
-const level = localStorage.getItem('ily-level');
 
+
+const level = localStorage.getItem('ily-level');
 
 const iconBurger = require('./assets/icons/burger.svg');
 
@@ -28,6 +30,8 @@ let isFirstClick = true;
 let clicksCount = 0;
 let flagCount = 0;
 let stop = true;
+let timer;
+let timePassed = 0;
 
 if (level){
   switch (level) {
@@ -96,6 +100,17 @@ function openedCell(element) {
     const emptyY = cory + 1;    
     MAPS.generateMaps(width, height, bombs, emptyX, emptyY);
     isFirstClick = false;
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+      const timerText = document.querySelector('#times');
+      let sec = timePassed % 60;
+      let min = (timePassed - sec)/60;
+      if (sec < 10) sec = '0'+ sec;
+      if (min < 10) min = '0'+ min;
+      timerText.textContent = `${min} : ${sec}`;
+      timePassed++;
+    },1000);
   }
 
   const cellValue = MAPS.getValueFieldMap(corx, cory);
@@ -119,7 +134,10 @@ function openedCell(element) {
   if(stop && fieldParams.bombs === MAPS.getOpenedCellsMap().flat().reduce(
     (accumulator, currentValue) => (currentValue === null || currentValue === 'flag') ? accumulator + 1 : accumulator, 0)) {
       stop = false;
-      winGame(level, clicksCount, '00:15');
+      clearInterval(timer);
+      const sec = (timePassed % 60 < 10) ? '0' + timePassed % 60 : timePassed % 60;
+      const min = ((timePassed - sec)/60 < 10) ? '0' + (timePassed - sec)/60 : (timePassed - sec)/60;
+      winGame(level, clicksCount, `${min}:${sec}`);
     }
 }
 
@@ -204,6 +222,9 @@ function flagedCell(element) {
 
 field[0].addEventListener('click', (event) => {
   event. preventDefault();
+  
+  
+
   if(!Object.values(event.target.classList).includes('cell_close')) return;  
   const clicksText = document.querySelector('#clicks');
   clicksCount++;
@@ -217,3 +238,5 @@ field[0].addEventListener('contextmenu', (event) => {
   if(!classArray.includes('cell_close') && !classArray.includes('cell_flag')) return;  
   flagedCell(event.target);
 })
+
+

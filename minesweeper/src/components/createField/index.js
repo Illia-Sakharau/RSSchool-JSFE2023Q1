@@ -28,7 +28,7 @@ export default function createField(x, y) {
     </div>
     <div class="stat-bar__item">
       ${iconClock}
-      <span class="stat-bar__text" id="clicks">00 : 00</span>
+      <span class="stat-bar__text" id="times">00 : 00</span>
     </div>
   `
 
