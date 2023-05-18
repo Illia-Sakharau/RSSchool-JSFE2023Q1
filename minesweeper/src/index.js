@@ -39,12 +39,12 @@ if (level){
     case 'medium':
       fieldParams.width = 15;
       fieldParams.height = 15;
-      fieldParams.bombs = 2;
+      fieldParams.bombs = 35;
       break;
     case 'hard':
       fieldParams.width = 20;
       fieldParams.height = 20;
-      fieldParams.bombs = 50;
+      fieldParams.bombs = 80;
       break;
   }
 }

@@ -16,21 +16,29 @@ export default class Maps {
 
   generateMaps(width, height, bombs, emptyX, emptyY) {
     // generate bomb map
+    let emptyCellsArray = []
     for (let i = 0; i <= width + 1; i++) {
       this.bombMap[i] = [];
       for (let j = 0; j <= height + 1; j++){
         this.bombMap[i][j] = 0;
+        if (i !== 0 && i !== width + 1 && j !== 0 && j !== height + 1) {
+          emptyCellsArray.push([i, j]);
+        }
+        
       }
     }
+
+    // delete first klicks cell
+    emptyCellsArray.splice(emptyCellsArray.findIndex(cellNum => JSON.stringify(cellNum) === JSON.stringify([emptyX, emptyY])), 1);
+
     for (let i = 1; i <= bombs; i++){
-      let x = Math.floor(Math.random() * ((width + 1) - 1)) + 1;
-      let y = Math.floor(Math.random() * ((height + 1) - 1)) + 1;
-      if (x !== emptyX && y !== emptyY && this.bombMap[x][y] !== 1) {
-        this.bombMap[x][y] = 1;
-      } else {
-        i--;
-      }      
+      let bombCellNum = Math.floor(Math.random() * ((emptyCellsArray.length) - 0)) + 0;
+      this.bombMap[emptyCellsArray[bombCellNum][0]][emptyCellsArray[bombCellNum][1]] = 1;
+      emptyCellsArray.splice(bombCellNum, 1);
     }
+
+    
+
     // calculate field map
     for (let i = 0; i < width; i++){
       this.fieldMap[i] = [];
@@ -45,7 +53,6 @@ export default class Maps {
         }
       }
     }
-
     
   }
 
