@@ -9,6 +9,8 @@ export default function createField(x, y) {
 
   const iconClick = require('../../assets/icons/click.svg');
   const iconClock = require('../../assets/icons/clock.svg');
+  const iconBomb = require('../../assets/icons/bomb.svg');
+  const iconFlag = require('../../assets/icons/flag.svg');
 
   area.classList.add('area');
   statBar.classList.add('stat-bar');
@@ -16,6 +18,10 @@ export default function createField(x, y) {
 
 
   statBar.innerHTML = `
+    <div class="stat-bar__item">
+      ${iconFlag}
+      <span class="stat-bar__text" id="flags">0</span>
+    </div>
     <div class="stat-bar__item">
       ${iconClick}
       <span class="stat-bar__text" id="clicks">0</span>

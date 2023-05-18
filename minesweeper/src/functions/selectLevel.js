@@ -4,15 +4,15 @@ export default function selectLevel() {
   const hardBtn = document.querySelector('#hard');
 
   easyBtn.addEventListener('click', () => {
-    localStorage.setItem('level', 'easy');
+    localStorage.setItem('ily-level', 'easy');
     location.reload();
   })
   mediumBtn.addEventListener('click', () => {
-    localStorage.setItem('level', 'medium');
+    localStorage.setItem('ily-level', 'medium');
     location.reload();
   })
   hardBtn.addEventListener('click', () => {
-    localStorage.setItem('level', 'hard');
+    localStorage.setItem('ily-level', 'hard');
     location.reload();
   })
 }

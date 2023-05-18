@@ -12,7 +12,7 @@ const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
-const level = localStorage.getItem('level');
+const level = localStorage.getItem('ily-level');
 
 
 const iconBurger = require('./assets/icons/burger.svg');
@@ -26,6 +26,7 @@ const fieldParams = {
 
 let isFirstClick = true;
 let clicksCount = 0;
+let flagCount = 0;
 let stop = true;
 
 if (level){
@@ -50,8 +51,8 @@ if (level){
 
 const MAPS = new Maps(fieldParams.width, fieldParams.height);
 
-if (!localStorage.getItem('results')) {
-  localStorage.setItem('results', JSON.stringify([]));
+if (!localStorage.getItem('ily-results')) {
+  localStorage.setItem('ily-results', JSON.stringify([]));
 }
 
 playzone.classList.add('playzone');
@@ -104,7 +105,6 @@ function openedCell(element) {
   if (cellValue === 'bomb') {
     element.classList.add('cell_bomb');
     loseGame(MAPS.getFieldMap());
-
   } else if (cellValue === 0) {
     element.classList.add('cell_num');
     MAPS.setValueOpenedCellsMap(corx, cory, 0);
@@ -178,23 +178,33 @@ function openEmptyCells(corx, cory) {
 }
 
 function flagedCell(element) {
-  const corx = Number(element.dataset.corx);
-  const cory = Number(element.dataset.cory);
-
-  if(MAPS.getValueOpenedCellsMap(corx, cory) === 'flag') {
-    MAPS.setValueOpenedCellsMap(corx, cory, null)
+  const flagText = document.querySelector('#flags');
+  if (flagCount === fieldParams.bombs) {
+    window.alert(`The number of flags cannot exceed the number of bombs.\nThe set number of bombs for the current game is ${fieldParams.bombs}`);
   } else {
-    MAPS.setValueOpenedCellsMap(corx, cory, 'flag')
+    const corx = Number(element.dataset.corx);
+    const cory = Number(element.dataset.cory);
+
+    if(MAPS.getValueOpenedCellsMap(corx, cory) === 'flag') {
+      MAPS.setValueOpenedCellsMap(corx, cory, null)
+    } else {
+      MAPS.setValueOpenedCellsMap(corx, cory, 'flag')
+    }
+
+    element.classList.toggle('cell_close');
+    element.classList.toggle('cell_flag');
+
+    flagCount++;
+    flagText.textContent = flagCount;
   }
 
-  element.classList.toggle('cell_close');
-  element.classList.toggle('cell_flag');
+  
 }
 
 field[0].addEventListener('click', (event) => {
   event. preventDefault();
   if(!Object.values(event.target.classList).includes('cell_close')) return;  
-  const clicksText = document.querySelector('.stat-bar__text');
+  const clicksText = document.querySelector('#clicks');
   clicksCount++;
   clicksText.textContent = clicksCount;
   openedCell(event.target);

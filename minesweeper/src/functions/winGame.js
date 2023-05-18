@@ -1,5 +1,5 @@
 export default function winGame(level, clicks, times) {
-  const resultsList = JSON.parse(localStorage.getItem('results'));
+  const resultsList = JSON.parse(localStorage.getItem('ily-results'));
   const resultValue = {
     level: level,
     clicks: clicks,
@@ -11,7 +11,7 @@ export default function winGame(level, clicks, times) {
     resultsList.shift();
   }
 
-  localStorage.setItem('results', JSON.stringify(resultsList))
+  localStorage.setItem('ily-results', JSON.stringify(resultsList))
 
 
 

@@ -1,7 +1,7 @@
 import './styles.scss';
 
 
-const resultsValue = JSON.parse(localStorage.getItem('results'));
+const resultsValue = JSON.parse(localStorage.getItem('ily-results'));
 
 const results = document.createElement('div');
 results.classList.add('results');
