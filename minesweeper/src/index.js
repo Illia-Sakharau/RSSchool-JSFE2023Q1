@@ -12,6 +12,7 @@ const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
+const level = localStorage.getItem('level');
 
 
 const iconBurger = require('./assets/icons/burger.svg');
@@ -25,9 +26,10 @@ const fieldParams = {
 
 let isFirstClick = true;
 let clicksCount = 0;
+let stop = true;
 
-if (localStorage.getItem('level')){
-  switch (localStorage.getItem('level')) {
+if (level){
+  switch (level) {
     case 'easy':
       fieldParams.width = 10;
       fieldParams.height = 10;
@@ -36,7 +38,7 @@ if (localStorage.getItem('level')){
     case 'medium':
       fieldParams.width = 15;
       fieldParams.height = 15;
-      fieldParams.bombs = 25;
+      fieldParams.bombs = 2;
       break;
     case 'hard':
       fieldParams.width = 20;
@@ -112,6 +114,12 @@ function openedCell(element) {
     element.textContent = cellValue;
     MAPS.setValueOpenedCellsMap(corx, cory, MAPS.getValueFieldMap(corx, cory))
   }  
+
+  if(stop && fieldParams.bombs === MAPS.getOpenedCellsMap().flat().reduce(
+    (accumulator, currentValue) => (currentValue === null || currentValue === 'flag') ? accumulator + 1 : accumulator, 0)) {
+      stop = false;
+      winGame(level, clicksCount, '00:15');
+    }
 }
 
 
