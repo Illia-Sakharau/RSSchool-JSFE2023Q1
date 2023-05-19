@@ -21,7 +21,7 @@ export default function loseGame(map) {
       setTimeout(() => {
         window.alert("You lose! Try again!");        
         location.reload();
-      }, 500)
+      }, 100)
       
     }
     

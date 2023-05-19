@@ -20,7 +20,7 @@ export default function winGame(level, clicks, times) {
   setTimeout(() => {
     window.alert("You Win! Play again!");
     location.reload();
-  }, 500)
+  }, 100)
   
   
 }

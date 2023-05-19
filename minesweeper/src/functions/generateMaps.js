@@ -5,12 +5,7 @@ export default class Maps {
     this.openedCellsMap = [];  
 
     // generate opened cells map
-    for (let i = 0; i < width; i++){
-      this.openedCellsMap[i] = [];
-      for (let j = 0; j < height; j++){
-        this.openedCellsMap[i][j] = null;
-      }
-    }  
+    this.generateClearOpenedCellsMap(width, height)
   }
 
 
@@ -54,6 +49,15 @@ export default class Maps {
       }
     }
     
+  }
+
+  generateClearOpenedCellsMap(width, height) {
+    for (let i = 0; i < width; i++){
+      this.openedCellsMap[i] = [];
+      for (let j = 0; j < height; j++){
+        this.openedCellsMap[i][j] = null;
+      }
+    }
   }
 
   getValueFieldMap(x, y) {

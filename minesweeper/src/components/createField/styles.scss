@@ -88,20 +88,20 @@
     appearance: none;
     outline: none;
     overflow: hidden;
-    height: 8px;
+    height: 12px;
     &::-webkit-slider-runnable-track {
-      border-radius: 4px;
-      height: 8px;
+      border-radius: 6px;
+      height: 12px;
       background-color: rgba(8, 0, 94, 0.5);
     }
     &::-webkit-slider-thumb {
-      background: $color-light-50;
+      background: $color-light-80;
+      border-radius: 6px;
       cursor: pointer;
-      width:15px;
-      height: 15px;
+      width:12px;
+      height: 12px;
       -webkit-appearance: none;
-      margin-top: -4px;
-      box-shadow: -200px  0 0 200px  $color-light-50;
+      box-shadow: -206px  0 0 200px  $color-light-50;
 
     }
     &_unvisible{
@@ -109,10 +109,6 @@
     }
 
   }
-
-    
-
-
 
 }
 
