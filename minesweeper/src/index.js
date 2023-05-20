@@ -8,7 +8,12 @@ import Maps from './functions/generateMaps';
 import winGame from './functions/winGame';
 import loseGame from './functions/loseGame';
 import changeBombCount from './functions/changeBombCount';
-import htmlToElement from './utils/htmlToElement'
+import toggleSound from './functions/toggleSound';
+
+import audioClickResource from './assets/sounds/click1.mp3';
+import audioFlagResource from './assets/sounds/flag.wav';
+import audioBombResource from './assets/sounds/bomb1.mp3';
+import audioEmptyResource from './assets/sounds/empty.mp3';
 
 
 const body = document.querySelector('body');
@@ -17,6 +22,10 @@ const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
 const restartBtn = document.getElementsByClassName('stat-bar__button')
 
+const audioClick = new Audio(audioClickResource);
+const audioFlag = new Audio(audioFlagResource);
+const audioBomb = new Audio(audioBombResource);
+const audioEmpty = new Audio(audioEmptyResource);
 
 const level = localStorage.getItem('ily-level');
 
@@ -85,6 +94,7 @@ toggleMenu();
 toggleTheme();
 selectLevel();
 changeBombCount();
+toggleSound();
 
 
 
@@ -131,13 +141,25 @@ function openedCell(element) {
   element.classList.remove('cell_close');
 
   if (cellValue === 'bomb') {
+    if (localStorage.getItem('ily-sound') === 'on') {
+      audioBomb.currentTime = 0;
+      audioBomb.play();
+    }    
     element.classList.add('cell_bomb');
-    loseGame(MAPS.getFieldMap());
+    loseGame(MAPS.getFieldMap(), audioBomb);
   } else if (cellValue === 0) {
+    if (localStorage.getItem('ily-sound') === 'on') {
+      audioEmpty.currentTime = 0;
+      audioEmpty.play();
+    }
     element.classList.add('cell_num');
     MAPS.setValueOpenedCellsMap(corx, cory, 0);
     openEmptyCells(corx, cory);
   } else {
+    if (localStorage.getItem('ily-sound') === 'on') {
+      audioClick.currentTime = 0;
+      audioClick.play();
+    }
     element.classList.add('cell_num');
     element.textContent = cellValue;
     element.dataset.color = cellValue;
@@ -216,6 +238,10 @@ function flagedCell(element) {
   if (flagCount === fieldParams.bombs) {
     window.alert(`The number of flags cannot exceed the number of bombs.\nThe set number of bombs for the current game is ${fieldParams.bombs}`);
   } else {
+    if (localStorage.getItem('ily-sound') === 'on') {
+      audioFlag.currentTime = 0;
+      audioFlag.play();
+    }
     const corx = Number(element.dataset.corx);
     const cory = Number(element.dataset.cory);
 
@@ -262,9 +288,6 @@ field[0].addEventListener('contextmenu', (event) => {
 
 // restart without reload page
 restartBtn[0].addEventListener('click', () => {
-  
-
-
   isFirstClick = true;
   clicksCount = 0;
   flagCount = 0;
@@ -273,7 +296,6 @@ restartBtn[0].addEventListener('click', () => {
   
   clearInterval(timer);
   timePassed = 0;
-  
 
   field[0].textContent = '';
   field[0].innerHTML = createField(fieldParams.height, fieldParams.width, fieldParams.bombs).querySelector('.field').innerHTML;
@@ -286,12 +308,4 @@ restartBtn[0].addEventListener('click', () => {
   document.querySelector('#bomb').textContent = fieldParams.bombs;
   document.querySelector('#clicks').textContent = clicksCount;
   document.querySelector('#times').textContent = '00 : 00';
-
-
-  
-  console.log(MAPS.getOpenedCellsMap())
 })
-
-console.log(field)
-
-

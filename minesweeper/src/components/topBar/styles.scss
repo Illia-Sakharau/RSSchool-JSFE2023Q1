@@ -5,6 +5,11 @@
   display: flex;
   justify-content: space-between;
 
+  &__wrapper {
+    display: flex;
+    column-gap: 16px;
+  }
+
   &__icon {
     fill: $color-light-50;
 
@@ -12,6 +17,21 @@
       fill: $color-light-20;
     }
   }
+
+  &__sound-btn {
+    & .top-bar__icon:last-child {
+      display: none;
+    }
+  }
+  &__sound-btn_off {
+    & .top-bar__icon:first-child {
+      display: none;
+    }
+    & .top-bar__icon:last-child {
+      display: block;
+    }
+  }
+  
 
   &__close-btn {
     display: none;

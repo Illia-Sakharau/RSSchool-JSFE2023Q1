@@ -27,7 +27,7 @@ module.exports = ({develop}) => ({
   module: {
     rules: [
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|mp3|wav)$/i,
         type: 'asset/resource',
       },
       {
