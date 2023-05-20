@@ -1,3 +1,8 @@
+import audioWinResource from '../assets/sounds/win.wav';
+const audioWinGame = new Audio(audioWinResource);
+
+  
+
 export default function winGame(level, clicks, times) {
   const resultsList = JSON.parse(localStorage.getItem('ily-results'));
   const resultValue = {
@@ -5,6 +10,10 @@ export default function winGame(level, clicks, times) {
     clicks: clicks,
     times: times,
   };
+
+  if (localStorage.getItem('ily-sound') === 'on') {
+    audioWinGame.play();
+  }
 
   resultsList.push(resultValue);
   if (resultsList.length > 10) {
