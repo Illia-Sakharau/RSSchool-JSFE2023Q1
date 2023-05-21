@@ -2,7 +2,7 @@ import './styles.scss';
 import menu from './components/menu/index';
 import createField from './components/createField/index';
 import toggleMenu from './functions/toggleMeny';
-import toggleTheme from './functions/toggleTheme';
+import {setTheme, toggleTheme} from './functions/toggleTheme';
 import selectLevel from './functions/selectLevel';
 import Maps from './functions/generateMaps';
 import winGame from './functions/winGame';
@@ -95,6 +95,7 @@ body.appendChild(wrapper);
 
 
 toggleMenu();
+setTheme();
 toggleTheme();
 selectLevel();
 changeBombCount();

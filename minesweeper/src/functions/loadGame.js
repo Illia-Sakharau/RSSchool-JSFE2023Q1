@@ -40,7 +40,7 @@ export default function loadGame(map) {
         
       });
     });
-    
+
     return gameInfo;
   } else {
     window.alert("You don't have any saved games!");
