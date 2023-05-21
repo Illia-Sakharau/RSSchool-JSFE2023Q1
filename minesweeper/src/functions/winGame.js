@@ -1,7 +1,7 @@
+import popup from '../components/popup/index';
 import audioWinResource from '../assets/sounds/win.wav';
-const audioWinGame = new Audio(audioWinResource);
 
-  
+const audioWinGame = new Audio(audioWinResource);
 
 export default function winGame(level, clicks, times) {
   const resultsList = JSON.parse(localStorage.getItem('ily-results'));
@@ -20,18 +20,9 @@ export default function winGame(level, clicks, times) {
     resultsList.shift();
   }
 
-  localStorage.setItem('ily-results', JSON.stringify(resultsList))
+  localStorage.setItem('ily-results', JSON.stringify(resultsList));
 
-
-
-
-
-  setTimeout(() => {
-    window.alert("You Win! Play again!");
-    location.reload();
-  }, 100)
-  
-  
+  document.body.appendChild(popup(`You Win!`, false, 'Play again', () => {location.reload()}));
 }
 
 

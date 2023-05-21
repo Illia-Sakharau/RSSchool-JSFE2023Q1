@@ -1,6 +1,7 @@
 import './styles.scss';
 import menu from './components/menu/index';
 import createField from './components/createField/index';
+import popup from './components/popup/index';
 import toggleMenu from './functions/toggleMeny';
 import {setTheme, toggleTheme} from './functions/toggleTheme';
 import selectLevel from './functions/selectLevel';
@@ -100,6 +101,7 @@ toggleTheme();
 selectLevel();
 changeBombCount();
 toggleSound();
+
 
 
 
@@ -240,7 +242,7 @@ function flagedCell(element) {
   const flagText = document.querySelector('#flags');
   const bombText = document.querySelector('#bomb');
   if (flagCount === fieldParams.bombs) {
-    window.alert(`The number of flags cannot exceed the number of bombs.\nThe set number of bombs for the current game is ${fieldParams.bombs}`);
+    body.appendChild(popup(`Number of flags cannot exceed the number of bombs.`, `Set number of bombs for the current game is ${fieldParams.bombs}.`, 'Ok'));
   } else {
     if (localStorage.getItem('ily-sound') === 'on') {
       audioFlag.currentTime = 0;

@@ -8,13 +8,20 @@ results.classList.add('results');
 
 results.innerHTML = '<h3 class="results__title">Latest 10 results:</h3>';
 
-for (let i = 1; i <= 10; i++){
-  if (resultsValue[i-1]){
-    results.appendChild(createRow(i, resultsValue[i-1].level, resultsValue[i-1].clicks, resultsValue[i-1].times));
-  } else {
+if (resultsValue) {
+  for (let i = 1; i <= 10; i++){
+    if (resultsValue[i-1]){
+      results.appendChild(createRow(i, resultsValue[i-1].level, resultsValue[i-1].clicks, resultsValue[i-1].times));
+    } else {
+      results.appendChild(createRow(i, '---', '---', '---'));
+    }  
+  }
+} else {
+  for (let i = 1; i <= 10; i++){
     results.appendChild(createRow(i, '---', '---', '---'));
-  }  
+  }
 }
+
 
 function createRow(pos, level, clicks, time) {
   const iconLevel = require('../../assets/icons/level.svg');

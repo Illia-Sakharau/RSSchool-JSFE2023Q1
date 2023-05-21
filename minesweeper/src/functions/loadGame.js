@@ -1,4 +1,5 @@
 import createField from '../components/createField/index';
+import popup from '../components/popup/index';
 
 export default function loadGame(map) {
   const saveGame = localStorage.getItem('ily-save');
@@ -43,7 +44,7 @@ export default function loadGame(map) {
 
     return gameInfo;
   } else {
-    window.alert("You don't have any saved games!");
+    document.body.appendChild(popup(`You don't have any saved games!`, false, 'Ok'));
     return false;
   }
   

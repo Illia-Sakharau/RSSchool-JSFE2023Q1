@@ -1,7 +1,9 @@
+import popup from '../components/popup/index';
+
 export default function saveGame(isFirstClick,flags, clicks, time, fieldParams, bombMap, fieldMap, openedCellsMap) {
   
   if (isFirstClick) {
-    window.alert("Start the game to save!");
+    document.body.appendChild(popup(`Start the game to save!`, false, 'Ok'));
   } else {
     const gameInfo = {
       level: localStorage.getItem('ily-level'),
@@ -15,7 +17,7 @@ export default function saveGame(isFirstClick,flags, clicks, time, fieldParams, 
     }
     localStorage.setItem('ily-save', JSON.stringify(gameInfo));
 
-    window.alert("The game is saved!");
+    document.body.appendChild(popup(`The game is saved!`, false, 'Ok'));
   }
   
 }

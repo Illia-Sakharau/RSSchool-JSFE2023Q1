@@ -1,4 +1,6 @@
+import popup from '../components/popup/index';
 import audioLoseResource from '../assets/sounds/lose.mp3';
+
 const audioLoseGame = new Audio(audioLoseResource);
 
 export default function loseGame(map, bombSound) {
@@ -26,11 +28,7 @@ export default function loseGame(map, bombSound) {
     bombCells.shift();
     if (bombCells.length === 0) {
       clearInterval(openBomb);
-      setTimeout(() => {
-        window.alert("You lose! Try again!");        
-        location.reload();
-      }, 100)
-      
+      document.body.appendChild(popup(`You lose!`, false, 'Try again', () => {location.reload()}));
     }
     
   }, 1000/bombCells.length);
