@@ -1,14 +1,11 @@
 @import "../../styles/tokens.scss";
 
-
 .area {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 32px;
 }
-
-
 
 .stat-bar {
   display: flex;
@@ -120,7 +117,6 @@
 .field {
   display: flex;
   flex-direction: column;
-  row-gap: 2px;
   
   padding: 8px;
 
@@ -129,7 +125,6 @@
 
   &__line {
     display: flex;
-    column-gap: 2px;
   }
 }
 

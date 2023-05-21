@@ -1,15 +1,15 @@
 @import "../../styles/tokens.scss";
 
-
 .cell {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+  margin: 0.5px;
   
-  border-radius: $br-m;
+  border-radius: $br-s;
 
   cursor: pointer;
 
@@ -54,5 +54,19 @@
     &[data-color='8'] {      
       color: #E40048;
     }
-  }  
+  }
+
+  &_large {
+    width: 28px;
+    height: 28px;
+    margin: 1.5px;
+    border-radius: $br-m;
+  }
+  &_medium {
+    width: 22px;
+    height: 22px;
+    margin: 1px;
+    border-radius: $br-m;
+  }
+
 }

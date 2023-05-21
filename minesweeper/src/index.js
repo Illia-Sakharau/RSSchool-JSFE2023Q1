@@ -18,23 +18,18 @@ import audioFlagResource from './assets/sounds/flag.wav';
 import audioBombResource from './assets/sounds/bomb1.mp3';
 import audioEmptyResource from './assets/sounds/empty.mp3';
 
-
 const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
 const restartBtn = document.getElementsByClassName('stat-bar__button');
 
-
 const audioClick = new Audio(audioClickResource);
 const audioFlag = new Audio(audioFlagResource);
 const audioBomb = new Audio(audioBombResource);
 const audioEmpty = new Audio(audioEmptyResource);
 
-
-
 const iconBurger = require('./assets/icons/burger.svg');
-
 
 const fieldParams = {
   width: 10,
@@ -64,9 +59,9 @@ if (level){
       fieldParams.bombs = 35;
       break;
     case 'hard':
-      fieldParams.width = 20;
-      fieldParams.height = 20;
-      fieldParams.bombs = 80;
+      fieldParams.width = 25;
+      fieldParams.height = 25;
+      fieldParams.bombs = 99;
       break;
   }
 }
