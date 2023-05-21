@@ -9,6 +9,8 @@ import winGame from './functions/winGame';
 import loseGame from './functions/loseGame';
 import changeBombCount from './functions/changeBombCount';
 import toggleSound from './functions/toggleSound';
+import saveGame from './functions/saveGame';
+import loadGame from './functions/loadGame';
 
 import audioClickResource from './assets/sounds/click1.mp3';
 import audioFlagResource from './assets/sounds/flag.wav';
@@ -20,14 +22,15 @@ const body = document.querySelector('body');
 const wrapper = document.createElement('div');
 const playzone = document.createElement('div');
 const field = document.getElementsByClassName('field');
-const restartBtn = document.getElementsByClassName('stat-bar__button')
+const restartBtn = document.getElementsByClassName('stat-bar__button');
+
 
 const audioClick = new Audio(audioClickResource);
 const audioFlag = new Audio(audioFlagResource);
 const audioBomb = new Audio(audioBombResource);
 const audioEmpty = new Audio(audioEmptyResource);
 
-const level = localStorage.getItem('ily-level');
+
 
 const iconBurger = require('./assets/icons/burger.svg');
 
@@ -38,6 +41,7 @@ const fieldParams = {
   bombs: 10,
 };
 
+let level = localStorage.getItem('ily-level');
 let isFirstClick = true;
 let clicksCount = 0;
 let flagCount = 0;
@@ -98,8 +102,6 @@ toggleSound();
 
 
 
-
-
 // click to cell
 
 function openedCell(element) {
@@ -116,6 +118,7 @@ function openedCell(element) {
     const emptyX = corx + 1;
     const emptyY = cory + 1;    
     MAPS.generateMaps(width, height, bombs, emptyX, emptyY);
+
     isFirstClick = false;
 
     clearInterval(timer);
@@ -308,4 +311,48 @@ restartBtn[0].addEventListener('click', () => {
   document.querySelector('#bomb').textContent = fieldParams.bombs;
   document.querySelector('#clicks').textContent = clicksCount;
   document.querySelector('#times').textContent = '00 : 00';
+})
+
+
+// save game
+const saveBtn = document.querySelector('#save');
+saveBtn.addEventListener('click', () => {
+  saveGame(isFirstClick, flagCount, clicksCount, timePassed, fieldParams, MAPS.getBombMap(), MAPS.getFieldMap(), MAPS.getOpenedCellsMap());
+})
+
+//load game
+const loadBtn = document.querySelector('#load');
+loadBtn.addEventListener('click', () => {
+  const gameInfo = loadGame();
+  if (gameInfo) {
+    fieldParams.bombs = gameInfo.fieldParams.bombs;
+    fieldParams.width = gameInfo.fieldParams.width;
+    fieldParams.height = gameInfo.fieldParams.height;
+    
+    isFirstClick = false;
+    clicksCount = gameInfo.clicks;
+    flagCount = gameInfo.flags;
+    imagineBombCount = fieldParams.bombs - flagCount;
+    timePassed = gameInfo.time;
+    level = gameInfo.level;
+    localStorage.setItem('ily-level', gameInfo.level);
+
+    
+
+    MAPS.setBombMap(gameInfo.bombMap);
+    MAPS.setFieldMap(gameInfo.fieldMap);
+    MAPS.setOpenedCellsMap(gameInfo.openedCellsMap);
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+      const timerText = document.querySelector('#times');
+      let sec = timePassed % 60;
+      let min = (timePassed - sec)/60;
+      if (sec < 10) sec = '0'+ sec;
+      if (min < 10) min = '0'+ min;
+      timerText.textContent = `${min} : ${sec}`;
+      timePassed++;
+    },1000);
+  }
+  
 })

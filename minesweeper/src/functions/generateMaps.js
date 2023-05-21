@@ -63,22 +63,31 @@ export default class Maps {
   getValueFieldMap(x, y) {
     return this.fieldMap[x][y];
   }
+  getValueOpenedCellsMap(x, y) {
+    return this.openedCellsMap[x][y];
+  }
+  getOpenedCellsMap() {
+    return this.openedCellsMap;
+  }
+  getFieldMap() {
+    return this.fieldMap;
+  }
+  getBombMap() {
+    return this.bombMap;
+  }
 
   setValueOpenedCellsMap(x, y, value) {
     this.openedCellsMap[x][y] = value;
     return;
   }
-
-  getValueOpenedCellsMap(x, y) {
-    return this.openedCellsMap[x][y];
+  setOpenedCellsMap(map) {
+    this.openedCellsMap = map;
   }
-
-  getOpenedCellsMap() {
-    return this.openedCellsMap;
+  setFieldMap(map) {
+    this.fieldMap = map;
   }
-
-  getFieldMap() {
-    return this.fieldMap;
+  setBombMap(map) {
+    this.bombMap = map;
   }
   
 }
