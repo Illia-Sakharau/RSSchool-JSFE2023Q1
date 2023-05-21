@@ -23,10 +23,10 @@ function toggleTheme() {
     menu.classList.toggle('menu_light'); 
     area.classList.toggle('area_light');
 
-    if (localStorage.getItem('ily-theme') === 'dark') {
-      localStorage.setItem('ily-theme', 'light');
+    if (localStorage.getItem('ily-theme') === 'light') {
+      localStorage.setItem('ily-theme', 'dark');      
     } else {
-      localStorage.setItem('ily-theme', 'dark');
+      localStorage.setItem('ily-theme', 'light');
     }
   });
 }
