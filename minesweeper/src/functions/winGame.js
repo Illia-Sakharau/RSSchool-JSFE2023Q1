@@ -22,7 +22,7 @@ export default function winGame(level, clicks, times) {
 
   localStorage.setItem('ily-results', JSON.stringify(resultsList));
 
-  document.body.appendChild(popup(`You Win!`, false, 'Play again', () => {location.reload()}));
+  document.body.appendChild(popup(`Hooray!`, `You found all mines in ${times} and ${clicks} moves!`, 'Play again', () => {location.reload()}));
 }
 
 

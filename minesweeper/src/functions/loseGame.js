@@ -28,7 +28,7 @@ export default function loseGame(map, bombSound) {
     bombCells.shift();
     if (bombCells.length === 0) {
       clearInterval(openBomb);
-      document.body.appendChild(popup(`You lose!`, false, 'Try again', () => {location.reload()}));
+      document.body.appendChild(popup(`Game over!`, false, 'Try again', () => {location.reload()}));
     }
     
   }, 1000/bombCells.length);
