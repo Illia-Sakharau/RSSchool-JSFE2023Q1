@@ -6,10 +6,10 @@ export interface IRespSourses {
 export interface IRespArticles {
   status: 'ok' | IError,
   totalResults: number,
-  articles: IArticles,
+  articles: IArticles[],
 }
 
-interface ISourse {
+export interface ISourse {
   id: string,
   name: string,
   description: string,
@@ -19,7 +19,7 @@ interface ISourse {
   country: string,
 }
 
-interface IArticles {
+export interface IArticles {
   source: {id: string, name: string},
   author: string,
   title: string,
