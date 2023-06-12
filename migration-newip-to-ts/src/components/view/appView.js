@@ -10,11 +10,15 @@ export class AppView {
     drawNews(data) {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
+        // 
+        console.log(data)
     }
 
     drawSources(data) {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
+        // 
+        console.log(data)
     }
 }
 
