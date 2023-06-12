@@ -18,5 +18,18 @@ module.exports = {
     "rules": {
         "@typescript-eslint/no-explicit-any": 'error',
         "@typescript-eslint/no-inferrable-types": 'off',
+        "@typescript-eslint/explicit-member-accessibility": [
+            'error',
+            {
+                accessibility: 'explicit',
+                overrides: {
+                  accessors: 'explicit',
+                  constructors: 'off',
+                  methods: 'explicit',
+                  properties: 'explicit',
+                  parameterProperties: 'explicit',
+                },
+            }
+        ],
     }
 }
