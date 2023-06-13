@@ -1,5 +1,6 @@
 import { IArticles } from '../../types/index';
 import './news.css';
+import img from '../../../img/empty.jpg'
 
 
 class News {
@@ -28,7 +29,7 @@ class News {
                 }
                 if (newsMetaPhoto !== null) {
                     newsMetaPhoto.style.backgroundImage = `url(${
-                        item.urlToImage || 'https://pbs.twimg.com/media/DjXghcHXoAABdPe.png'
+                        item.urlToImage || img
                     })`;
                 }
                 if (newsMetaAuthor !== null) {
