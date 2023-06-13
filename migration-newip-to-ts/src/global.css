@@ -13,23 +13,73 @@ header h1 {
     font-weight: 800;
 }
 
-footer {
+.footer {
+    box-sizing: border-box;
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 16px;
 }
-footer .copyright {
+
+.footer__authors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 8px;
+    color: #555;
+}
+.footer__author {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+}
+.footer__author p{
+    margin: 0;
+}
+.footer__author svg{
+    height: 24px;
+    fill: #444;
+    transition: 0.25s;
+}
+.footer__author svg:hover{
+    fill: #3fcc59;
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    transform: translateY(-0.25em);
+}
+
+.footer__logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.footer__logo a svg{
+    fill: #555;
+    transition: 0.25s;
+}
+.footer__logo a svg:hover {
+    fill: #3fcc59;
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    transform: translateY(-0.25em);
+}
+.footer__copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.copyright {
     font-size: 14px;
     color: #333;
     text-align: center;
+    margin: 8px 0;
 }
-footer .copyright a {
+.copyright a {
     color: #444;
 }
-footer .copyright a:hover {
+.copyright a:hover {
     color: #555;
 }
-footer .copyright:before {
+.copyright:before {
     content: '©';
 }
