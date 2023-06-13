@@ -1,6 +1,15 @@
+.news {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 332px;
+    padding-right: 8px;
+}
 .news__item {
     display: flex;
     flex-direction: column;
+
+    width: 100%;
     margin: 1rem auto;
     margin-bottom: 1.6%;
     background: #fff;
@@ -119,6 +128,12 @@
 
 .news__item:hover .news__meta-details {
     left: 0%;
+}
+
+@media (max-width: 864px) {
+    .news {
+        padding-left: 8px;
+    }
 }
 
 @media (min-width: 640px) {

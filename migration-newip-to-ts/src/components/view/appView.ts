@@ -16,6 +16,11 @@ export class AppView {
         const values: ISourse[] = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
+
+    public toggleMenu(): void {
+        this.sources.toggle();
+        console.log('appView');
+    }
 }
 
 export default AppView;

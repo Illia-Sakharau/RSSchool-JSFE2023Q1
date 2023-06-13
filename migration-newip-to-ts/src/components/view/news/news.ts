@@ -5,11 +5,8 @@ import './news.css';
 class News {
     public draw(data: IArticles[]): void {
         const news: IArticles[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
-
         const fragment: DocumentFragment = document.createDocumentFragment();
-
         const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
-
         const newsElem: HTMLElement | null = document.querySelector('.news');
 
         news.forEach((item: IArticles, idx: number) => {
@@ -63,7 +60,7 @@ class News {
         });
 
         if (newsElem !== null) {
-            newsElem.innerHTML = '';
+            newsElem.innerHTML = `<h3>News by ${data[0].source.name}</h3>`;
             newsElem.appendChild(fragment);
         }
     }

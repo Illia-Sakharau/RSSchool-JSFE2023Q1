@@ -2,10 +2,13 @@ import { ISourse } from '../../types/index';
 import './sources.css';
 
 class Sources {
+    public sourceElem = document.querySelector('.sources');
+
+
     public draw(data: ISourse[]): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
-        const sourceElem = document.querySelector('.sources');
+        
 
         data.forEach((item) => {
             if (sourceItemTemp !== null) {
@@ -24,8 +27,17 @@ class Sources {
             }
         });
 
-        sourceElem?.append(fragment);
+        this.sourceElem?.append(fragment);
     }
+
+    public toggle(): void {
+        if (this.sourceElem) {
+            this.sourceElem.classList.toggle('visible');
+        }
+        
+    }
+
+
 }
 
 export default Sources;
