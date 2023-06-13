@@ -19,7 +19,6 @@ export class AppView {
 
     public toggleMenu(): void {
         this.sources.toggle();
-        console.log('appView');
     }
 }
 

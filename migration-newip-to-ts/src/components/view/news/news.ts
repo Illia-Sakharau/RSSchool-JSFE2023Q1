@@ -60,7 +60,12 @@ class News {
         });
 
         if (newsElem !== null) {
-            newsElem.innerHTML = `<h3>News by ${data[0].source.name}</h3>`;
+            if (data[0]) {
+                newsElem.innerHTML = `<h3>News by ${data[0].source.name}</h3>`;
+            } else {
+                newsElem.innerHTML = `<h3>News not found</h3>`;
+            }
+            
             newsElem.appendChild(fragment);
         }
     }
