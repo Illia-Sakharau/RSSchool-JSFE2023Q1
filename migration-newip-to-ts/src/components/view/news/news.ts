@@ -28,7 +28,7 @@ class News {
                 }
                 if (newsMetaPhoto !== null) {
                     newsMetaPhoto.style.backgroundImage = `url(${
-                        item.urlToImage || 'img/news_placeholder.jpg'
+                        item.urlToImage || 'https://pbs.twimg.com/media/DjXghcHXoAABdPe.png'
                     })`;
                 }
                 if (newsMetaAuthor !== null) {
