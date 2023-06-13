@@ -35,3 +35,5 @@ interface IError {
   code: string,
   message: string,
 }
+
+export type Callback = (data: IRespSourses | IRespArticles) => void;
