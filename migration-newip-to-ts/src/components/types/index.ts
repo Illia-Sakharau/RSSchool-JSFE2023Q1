@@ -36,4 +36,9 @@ interface IError {
   message: string,
 }
 
-export type Callback = (data: IRespSourses | IRespArticles) => void;
+export type Callback<T> = (data?: T) => void;
+
+export enum TypeData {
+  IRespSourses,
+  IRespArticles
+}
