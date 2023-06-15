@@ -6,10 +6,9 @@ export class AppView {
     public news: News = new News();
     public sources: Sources = new Sources();
 
-
     public drawNews(data: IRespArticles): void {
         const values: IArticles[] = data?.articles ? data?.articles : [];
-        this.news.draw(values);        
+        this.news.draw(values);
     }
 
     public drawSources(data: IRespSourses): void {

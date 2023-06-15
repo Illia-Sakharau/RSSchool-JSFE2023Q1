@@ -5,15 +5,19 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        'plugin:prettier/recommended'
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json",
+        "tsconfigRootDir": __dirname
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        'prettier'
     ],
     "rules": {
         "@typescript-eslint/no-explicit-any": 'error',
@@ -31,5 +35,7 @@ module.exports = {
                 },
             }
         ],
-    }
+        'prettier/prettier': 'error',
+    },
+    ignorePatterns: ['.eslintrc.js'],
 }

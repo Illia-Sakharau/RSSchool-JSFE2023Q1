@@ -1,5 +1,5 @@
 {
-    "name": "NewsJS",
+    "name": "newsjs",
     "version": "1.0.0",
     "description": "",
     "main": "webpack.base.config.js",
@@ -13,7 +13,7 @@
         "url": ""
     },
     "keywords": [],
-    "author": "Aleh Serhiyenia",
+    "author": "Illia Sakharau",
     "license": "ISC",
     "homepage": "",
     "devDependencies": {
@@ -22,13 +22,14 @@
         "clean-webpack-plugin": "^3.0.0",
         "copy-webpack-plugin": "^7.0.0",
         "css-loader": "^5.2.7",
+        "dotenv-webpack": "^8.0.1",
         "eslint": "^8.42.0",
-        "eslint-config-prettier": "^8.3.0",
+        "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-import": "^2.23.3",
-        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-prettier": "^3.4.1",
         "eslint-webpack-plugin": "^4.0.1",
         "html-webpack-plugin": "^5.2.0",
-        "prettier": "2.2.1",
+        "prettier": "^2.2.1",
         "style-loader": "^2.0.0",
         "ts-loader": "^9.4.3",
         "typescript": "^5.1.3",

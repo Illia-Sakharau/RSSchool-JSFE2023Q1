@@ -4,11 +4,9 @@ import './sources.css';
 class Sources {
     public sourceElem = document.querySelector('.sources');
 
-
     public draw(data: ISourse[]): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
-        
 
         data.forEach((item) => {
             if (sourceItemTemp !== null) {
@@ -34,10 +32,7 @@ class Sources {
         if (this.sourceElem) {
             this.sourceElem.classList.toggle('visible');
         }
-        
     }
-
-
 }
 
 export default Sources;
