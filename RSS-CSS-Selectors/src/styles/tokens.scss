@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro&display=swap');
+
+// Colors
+$color-neutral-40: #65858B;
+$color-neutral-60: #8FA8AE;
+$color-neutral-80: #BBCBCE;
+$color-neutral-100: #FFFFFF;
+
+
+$color-brown-40: #AA6355;
+$color-brown-60: #FF9580;
+$color-brown-80: #FFC5B9;
+
+
+// Border radius
+$br-m: 8px;
+$br-l: 16px;
+
+// Text
+@mixin text-general {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 16px;
+    weight: 400;
+  }
+}
+
+@mixin text-general {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 16px;
+    weight: 700;
+  }
+}
+
+@mixin text-mono {
+  font: {
+    font-family: 'Source Code Pro', monospace;
+    size: 48px;
+    weight: 400;
+  }
+}
+
+// Breakpoints
+// $bp-10: 1440px;
+$bp-20: 896px;
+// $bp-30: 590px;
