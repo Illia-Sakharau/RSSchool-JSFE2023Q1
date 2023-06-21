@@ -1,18 +1,5 @@
 @import "../../../styles/tokens.scss";
 
-// <footer>
-//         <a href="https://github.com/Illia-Sakharau" class="author">
-//           ${gitImg}
-//           <span>Illia Sakharau</span>
-//         </a>
-//         <a href="https://rs.school/js/" class="school">
-//           ${schoolLogoImg}
-//         </a>
-//         <div class="copyright">
-//           © 2023
-//         </div>
-//       </footer>
-
 footer {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,35 @@
+@import "../../../styles/tokens.scss";
+
+main {
+  display: flex;
+  column-gap: 16px;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: calc(100vh - 148px);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  height: 100%;
+  flex-grow:1;  
+}
+
+//delete after add elements own css
+.pot {
+  background-color: red;
+  height: 224px;
+}
+
+.editor {
+  background-color: red;
+  flex-grow:1;  
+}
+
+aside {
+  background-color: red;
+  width: 240px;
+  height: 100%;
+}
