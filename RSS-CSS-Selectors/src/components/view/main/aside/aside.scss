@@ -1,0 +1,93 @@
+@import "../../../../styles/tokens.scss";
+
+aside {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  background-color: $color-neutral-80;
+  width: 240px;
+  height: 100%;
+  border-radius: $br-l;
+  padding: 16px;
+}
+
+h6 {
+  width: 100%;
+  padding: 4px 8px;
+}
+
+.levels-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.level-btn {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  font-size: 24px;
+  color: $color-neutral-60;
+  padding: 4px;
+  border-radius: $br-m;
+  cursor: pointer;
+
+  &.active {
+    color: $color-neutral-100;
+    background-color: $color-neutral-60;
+  }  
+
+  &::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url('../../../../assets/mark-empty.png');
+  }
+  &.completed::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url('../../../../assets/mark-check.png');
+  }
+  &.completed_help::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url('../../../../assets/mark-help.png');
+  }
+
+  &:hover {
+    color: $color-neutral-100;
+  }
+}
+
+.button {
+  padding: 8px 16px;
+  border-radius: $br-m;
+  background-color: $color-neutral-40;
+  color: $color-neutral-80;
+
+  &:hover {
+    color: $color-neutral-100 ;
+  }
+}
+
+
+@media (max-width: $bp-20) {
+  header {
+    padding-right: 0px;
+  }
+  .level {
+    margin-top: 16px;
+    width: 100%;
+    order: 3;
+  }
+  .menu {
+    visibility: visible;
+    order: 2;
+  }
+    
+}

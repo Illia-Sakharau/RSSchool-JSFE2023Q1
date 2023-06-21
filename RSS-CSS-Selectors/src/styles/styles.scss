@@ -10,3 +10,8 @@ body {
 
   @include text-general-reg;
 }
+
+h6 {
+  @include text-general-bold;
+  color: $color-neutral-40;
+}
