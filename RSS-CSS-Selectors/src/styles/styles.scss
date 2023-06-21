@@ -7,4 +7,6 @@ body {
   row-gap: 16px;
   padding: 16px;
   background-color: $color-neutral-40;
+
+  @include text-general-reg;
 }

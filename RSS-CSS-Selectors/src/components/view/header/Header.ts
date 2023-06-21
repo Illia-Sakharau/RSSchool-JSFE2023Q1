@@ -3,7 +3,7 @@ import htmlToElement from '../../../utils/htmlToElement';
 import createElement from '../../../utils/createElement';
 import logo from '../../../assets/logo.svg';
 
-export default class News {
+export default class Header {
   public draw(level: string, description: string, foo: () => void): HTMLElement {
     const template: string = `<header>
         <div class="logo">
