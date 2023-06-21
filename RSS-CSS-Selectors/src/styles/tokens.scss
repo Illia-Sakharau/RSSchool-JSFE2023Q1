@@ -17,7 +17,7 @@ $br-m: 8px;
 $br-l: 16px;
 
 // Text
-@mixin text-general {
+@mixin text-general-reg {
   font: {
     family: 'Roboto', sans-serif;
     size: 16px;
@@ -25,7 +25,7 @@ $br-l: 16px;
   }
 }
 
-@mixin text-general {
+@mixin text-general-bold {
   font: {
     family: 'Roboto', sans-serif;
     size: 16px;
