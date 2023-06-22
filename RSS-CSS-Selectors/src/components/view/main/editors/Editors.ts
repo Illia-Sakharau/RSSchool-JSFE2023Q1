@@ -25,7 +25,7 @@ export default class Editor {
     </div>
     `;
     const titleEl: HTMLElement = htmlToElement(titleTemplate);
-    const innerEl: HTMLElement = createElement({ tag: 'div', classes: ['editor-inner'] });
+    const innerEl: HTMLElement = createElement({ tag: 'div', classes: [`editor-inner-${editorName.slice(0, 4).trim()}`] });
     innerEl.append(this.createCouterStr(), textArea);
     editorEl.append(titleEl, innerEl);
     return editorEl;
@@ -33,10 +33,24 @@ export default class Editor {
 
   private createCSStextArea(): HTMLElement {
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['css-area'] });
+    const inputEl: HTMLElement = createElement({ tag: 'input', classes: ['text-input'] });
+    const comment: string = `{<br>/* Styles would go here. */<br>}`;
+    const commentEl: HTMLElement = createElement({ tag: 'div', classes: ['comment'], content: comment });
+    const buttonsBarEl: HTMLElement = createElement({ tag: 'div', classes: ['button-bar'] });
+    const enterBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-enter'], content: 'Enter' });
+    const helpBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-help'], content: '?' });
+
+    buttonsBarEl.append(enterBtn, helpBtn);
+
+    inputEl.setAttribute('type', 'text');
+    inputEl.setAttribute('placeholder', 'Type in a CSS selector');
+
+    areaEl.append(inputEl, commentEl, buttonsBarEl);
     return areaEl;
   }
 
   private createHTMLtextArea(): HTMLElement {
+    // prepareCode get from parser
     const prepareCode: string = `
       <div class="line"><<span class="tag">div</span>></div>
       <div class="line">< /<span class="tag">div</span>></div>
@@ -48,7 +62,7 @@ export default class Editor {
   private createCouterStr(): HTMLElement {
     let strCount: string = '';
     for (let i = 0; i < this.strAmount; i += 1) {
-      strCount = strCount.concat(`${i + 1}\n`);
+      strCount = strCount.concat(`${i + 1}<br>`);
     }
     console.log(strCount);
     return createElement({ tag: 'div', classes: ['counter'], content: strCount });

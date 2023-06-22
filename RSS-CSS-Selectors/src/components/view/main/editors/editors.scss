@@ -2,7 +2,7 @@
 
 .editors {
   flex-grow: 1;
-  min-height: 320px;
+  min-height: 240px;
   padding: 16px;
   border-radius: $br-l;
   background-color: $color-neutral-80;  
@@ -16,9 +16,9 @@
 }
 
 .editor {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 
 .title {
@@ -29,15 +29,24 @@
     color: $color-neutral-60;
   }
 }
-.editor-inner {
+.editor-inner-HTML,
+.editor-inner-CSS {
+  flex-grow: 1;
   display: flex;
   overflow-y: auto;
-  // height: 100%;
+}
+.editor-inner-HTML {
+  background-color: $color-neutral-40;
+}
+.editor-inner-CSS {
   background-color: $color-neutral-100;
 }
 
+
 .counter {
-  width: 36px;
+  width: 40px;
+  min-height: 100%;
+  height: fit-content;
   padding: 8px;
 
   background-color: $color-neutral-60;
@@ -47,7 +56,53 @@
 }
 
 .css-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+.text-input {
+  width: 100%;
+  height: 20px;
+  padding: 0 8px;
+  color: $color-neutral-40;
+  animation: bg-anim 1s ease-in-out infinite alternate;
 
+  &::placeholder {
+    color: $color-neutral-60;
+  }
+  &:focus {
+    animation: none;
+  }
+}
+
+@keyframes bg-anim {
+  0%{
+    background-color: $color-neutral-80;
+  }
+  100%{
+    background-color: $color-neutral-100;
+  }
+ }
+
+.comment {
+  flex-grow: 1;
+  width: 100%;
+  padding: 0 8px;
+  color: $color-neutral-80;
+}
+
+.button-bar {
+  display: flex;
+  column-gap: 8px;
+  padding: 0 8px;
+}
+.button-enter {
+  flex-grow: 1;
+}
+.button-help {
+  color: $color-neutral-40;
+  background-color: $color-neutral-60;
 }
 
 .html-area {
@@ -56,6 +111,11 @@
 
   @include text-mono;
   color: $color-neutral-80;
+}
 
-  background-color: $color-neutral-40;
+.line {
+  //style for HTML elements
+  & .tag {
+    color: $color-brown-60;
+  }
 }
