@@ -35,8 +35,8 @@ $br-l: 16px;
 
 @mixin text-mono {
   font: {
-    font-family: 'Source Code Pro', monospace;
-    size: 48px;
+    family: 'Source Code Pro', monospace;
+    size: 16px;
     weight: 400;
   }
 }

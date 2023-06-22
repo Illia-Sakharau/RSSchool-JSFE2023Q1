@@ -19,13 +19,8 @@ main {
 
 //delete after add elements own css
 .pot {
+  flex-shrink: 0;
   background-color: red;
   height: 224px;
 }
-
-.editor {
-  background-color: red;
-  flex-grow:1;  
-}
-
 

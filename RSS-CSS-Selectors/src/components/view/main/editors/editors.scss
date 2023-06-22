@@ -1,0 +1,61 @@
+@import "../../../../styles/tokens.scss";
+
+.editors {
+  flex-grow: 1;
+  min-height: 320px;
+  padding: 16px;
+  border-radius: $br-l;
+  background-color: $color-neutral-80;  
+}
+
+.editors-wrapper {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  border-radius: $br-m;
+}
+
+.editor {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 16px 4px 8px;
+  & span {
+    color: $color-neutral-60;
+  }
+}
+.editor-inner {
+  display: flex;
+  overflow-y: auto;
+  // height: 100%;
+  background-color: $color-neutral-100;
+}
+
+.counter {
+  width: 36px;
+  padding: 8px;
+
+  background-color: $color-neutral-60;
+  color: $color-neutral-80;
+  @include text-mono;
+  text-align: right;
+}
+
+.css-area {
+
+}
+
+.html-area {
+  flex-grow: 1;
+  padding: 8px;
+
+  @include text-mono;
+  color: $color-neutral-80;
+
+  background-color: $color-neutral-40;
+}
