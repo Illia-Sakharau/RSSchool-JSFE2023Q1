@@ -9,12 +9,13 @@ aside {
   height: 100%;
   border-radius: $br-l;
   padding: 16px;
+
+  & h6 {
+    width: 100%;
+    padding: 4px 8px;
+  }  
 }
 
-h6 {
-  width: 100%;
-  padding: 4px 8px;
-}
 
 .levels-wrapper {
   flex-grow: 1;
@@ -77,17 +78,15 @@ h6 {
 
 
 @media (max-width: $bp-20) {
-  header {
-    padding-right: 0px;
-  }
-  .level {
-    margin-top: 16px;
-    width: 100%;
-    order: 3;
-  }
-  .menu {
-    visibility: visible;
-    order: 2;
-  }
-    
+  aside {
+    position: fixed;
+    visibility: hidden;
+    top: 64px;
+    height: calc(100vh - 80px);
+    width: calc(100vw - 48px);
+    z-index: 100;
+    &.visible {
+      visibility: inherit;
+    }
+  }    
 }
