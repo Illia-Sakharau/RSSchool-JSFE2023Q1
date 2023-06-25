@@ -6,7 +6,10 @@ main {
   flex-wrap: wrap;
 
   width: 100%;
+  max-width: $bp-10;
   height: calc(100vh - 148px);
+
+  margin: 0 auto ;
 }
 
 .wrapper {
@@ -23,4 +26,3 @@ main {
   background-color: red;
   height: 224px;
 }
-

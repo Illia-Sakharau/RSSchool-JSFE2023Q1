@@ -6,7 +6,7 @@ body {
   flex-direction: column;
   row-gap: 16px;
   padding: 16px;
-  background-color: $color-neutral-40;
+  background: $color-neutral-40 url('../assets/bg.png') 50% 0/cover no-repeat;
 
   @include text-general-reg;
 }
@@ -14,4 +14,10 @@ body {
 h6 {
   @include text-general-bold;
   color: $color-neutral-40;
+}
+
+@media (max-width: $bp-10) {
+  body {
+    background: $color-neutral-40;
+  }
 }
