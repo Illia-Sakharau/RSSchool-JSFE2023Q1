@@ -1,0 +1,87 @@
+@import "../../../../styles/tokens.scss";
+
+.demo {
+  flex-shrink: 0;
+
+  height: 224px;
+  padding: 32px;
+  border-radius: $br-l;
+  background: $color-neutral-80 url('../../../../assets/demo-bg.png') 50% 0/cover no-repeat;
+}
+
+.shelf {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  &__wall-left,
+  &__wall-right {
+    width: 16px;
+    background-color: $color-neutral-40;
+  }
+  &__wall-left {
+    border-radius: 0px 12px 0px 16px;
+  }
+  &__wall-right {
+    border-radius: 12px 0px 16px 0px;
+  }
+  &__base {
+    flex-shrink: 0;
+    min-height: 16px;
+    background-color: $color-neutral-40;
+  }
+  &__wrapper {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;    
+  }
+}
+
+.row-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.col-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: end;
+  align-items: center;
+
+}
+
+// own tags
+rack, 
+pot, 
+chamomile, 
+tulip {
+  position: relative;
+  display: flex;
+
+  &:hover {
+    filter: drop-shadow(0px 0px 4px $color-brown-60) drop-shadow(0px 0px 8px $color-brown-60);
+  }
+}
+
+pot.withPrint::after {
+  content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../../../../assets/print-pot.png') 50% 50%/contain no-repeat;
+}
+
+.target {
+  z-index: 5;
+  animation: target1 2s ease-in-out infinite alternate;
+}
+
+// animation from https://codepen.io/oltika/pen/WGLZyb
+@keyframes target1 {
+  30% { transform: scale(1.05); }
+  40%, 60% { transform: rotate(-5deg) scale(1.05); }
+  50% { transform: rotate(5deg) scale(1.05); }
+  70% { transform: rotate(0deg) scale(1.05); }
+  100% { transform: scale(1); }
+}

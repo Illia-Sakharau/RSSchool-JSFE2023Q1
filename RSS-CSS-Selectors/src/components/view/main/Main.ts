@@ -2,21 +2,22 @@ import './main.scss';
 import createElement from '../../../utils/createElement';
 import Aside from './aside/Aside';
 import Editors from './editors/Editors';
+import Demo from './demo/Demo';
 
 export default class Main {
   private aside: Aside = new Aside();
-  private editors: Aside = new Editors();
+  private editors: Editors = new Editors();
+  private demo: Demo = new Demo();
 
   public draw(): HTMLElement {
     const mainEl: HTMLElement = createElement({ tag: 'main' });
     const wrapperEl: HTMLElement = createElement({ tag: 'div', classes: ['wrapper'] });
     const asideEl: HTMLElement = this.aside.draw();
     const editorsEl: HTMLElement = this.editors.draw();
+    const demoEl: HTMLElement = this.demo.draw();
 
-    wrapperEl.appendChild(createElement({ tag: 'section', classes: ['pot'] }));
-    wrapperEl.appendChild(editorsEl);
-    mainEl.appendChild(wrapperEl);
-    mainEl.appendChild(asideEl);
+    wrapperEl.append(demoEl, editorsEl);
+    mainEl.append(wrapperEl, asideEl);
 
     return mainEl;
   }
