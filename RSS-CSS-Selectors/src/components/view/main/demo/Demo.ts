@@ -6,8 +6,7 @@ import rackImg from '../../../../assets/rack.svg';
 import potImg from '../../../../assets/pot.svg';
 import chamomileImg from '../../../../assets/chamomile.svg';
 import tulipImg from '../../../../assets/tulip.svg';
-import parserMapToArray from '../../../parser/parser';
-import levels from '../../../../data/levels';
+import { LEVEL_INFO } from '../../../../data/constants';
 
 export default class Editor {
   public draw(): HTMLElement {
@@ -34,15 +33,15 @@ export default class Editor {
 
   private drowInner(): HTMLElement {
     const innerEl: HTMLElement = createElement({ tag: 'div', classes: ['shelf__inner'] });
-    const elArr: ParsedElementsArray = parserMapToArray(levels[0].htmlMap);
+    const elArr: ParsedElementsArray = LEVEL_INFO.map;
+    const imgs = {
+      [Elements.rack]: rackImg,
+      [Elements.pot]: potImg,
+      [Elements.chamomile]: chamomileImg,
+      [Elements.tulip]: tulipImg,
+    };
 
     function parseArrayToElements(arr: ParsedElementsArray, isColunm: boolean = false): HTMLElement {
-      const imgs = {
-        [Elements.rack]: rackImg,
-        [Elements.pot]: potImg,
-        [Elements.chamomile]: chamomileImg,
-        [Elements.tulip]: tulipImg,
-      };
       const elClass: string = isColunm ? 'col-wrapper' : 'row-wrapper';
       const el = createElement({ tag: 'div', classes: [elClass] });
       arr.reduce((acc, obj) => {
@@ -50,11 +49,13 @@ export default class Editor {
         if (Array.isArray(obj)) {
           subEl = parseArrayToElements(obj, !isColunm);
         } else {
-          subEl = createElement({ tag: obj.tag, classes: obj.classes });
+          subEl = createElement({ tag: 'div', classes: ['col-wrapper'] });
+          const el123 = createElement({ tag: obj.tag, classes: obj.classes });
           if (obj.target) {
-            subEl.classList.add('target');
+            el123.classList.add('target');
           }
-          subEl.innerHTML = imgs[obj.tag];
+          el123.innerHTML = imgs[obj.tag];
+          subEl.append(el123);
         }
         el.append(subEl);
         return el;

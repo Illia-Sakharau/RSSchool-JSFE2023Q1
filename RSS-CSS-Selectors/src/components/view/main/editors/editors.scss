@@ -115,7 +115,25 @@
 
 .line {
   //style for HTML elements
+  &[data-padding="3"] {
+    padding-left: 16px;
+  }
+  &[data-padding="5"] {
+    padding-left: 32px;
+  }
+  &[data-padding="7"] {
+    padding-left: 48px;
+  }
+  &[data-padding="9"] {
+    padding-left: 64px;
+  }
   & .tag {
     color: $color-brown-60;
+  }
+  & .classes {
+    color: $color-brown-80;
+  }
+  &:hover * {
+    color: $color-neutral-80;
   }
 }

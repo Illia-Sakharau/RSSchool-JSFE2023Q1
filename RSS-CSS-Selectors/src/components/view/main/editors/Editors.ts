@@ -1,6 +1,8 @@
 import './editors.scss';
 import createElement from '../../../../utils/createElement';
 import htmlToElement from '../../../../utils/htmlToElement';
+import { LEVEL_INFO } from '../../../../data/constants';
+import { parserArrayToHTMLeditor } from '../../../parser/parsers';
 
 export default class Editor {
   private strAmount: number = 20;
@@ -50,11 +52,8 @@ export default class Editor {
   }
 
   private createHTMLtextArea(): HTMLElement {
-    // prepareCode get from parser
-    const prepareCode: string = `
-      <div class="line"><<span class="tag">div</span>></div>
-      <div class="line">< /<span class="tag">div</span>></div>
-    `;
+    const prepareCode: string = parserArrayToHTMLeditor(LEVEL_INFO.map);
+
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'], content: prepareCode });
     return areaEl;
   }

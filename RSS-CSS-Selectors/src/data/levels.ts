@@ -18,9 +18,17 @@ const levels: ILevels[] = [
         <pot class="withPrint" data-target="true">
           <tulip>
           </tulip>
+          <tulip>
+          </tulip>
         </pot>
-        <chamomile data-target="true">
-        </chamomile>
+        <rack>
+          <pot data-target="true">
+            <chamomile>
+            </chamomile>
+            <tulip>
+            </tulip>
+          </pot>
+        </rack>
         <tulip>
         </tulip>
       </shelf>
