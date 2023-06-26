@@ -64,7 +64,6 @@ export default class Editor {
     for (let i = 0; i < this.strAmount; i += 1) {
       strCount = strCount.concat(`${i + 1}<br>`);
     }
-    console.log(strCount);
     return createElement({ tag: 'div', classes: ['counter'], content: strCount });
   }
 }

@@ -6,6 +6,8 @@ import rackImg from '../../../../assets/rack.svg';
 import potImg from '../../../../assets/pot.svg';
 import chamomileImg from '../../../../assets/chamomile.svg';
 import tulipImg from '../../../../assets/tulip.svg';
+import parserMapToArray from '../../../parser/parser';
+import levels from '../../../../data/levels';
 
 export default class Editor {
   public draw(): HTMLElement {
@@ -32,23 +34,7 @@ export default class Editor {
 
   private drowInner(): HTMLElement {
     const innerEl: HTMLElement = createElement({ tag: 'div', classes: ['shelf__inner'] });
-    const elArr: ParsedElementsArray = [
-      [
-        { tag: Elements.rack, target: true },
-        { tag: Elements.pot, id: '123', target: true },
-        [
-          { tag: Elements.chamomile, target: true },
-          { tag: Elements.tulip, target: true },
-        ],
-      ],
-      [
-        { tag: Elements.rack, target: false },
-        { tag: Elements.chamomile, target: false },
-      ],
-      [{ tag: Elements.pot, classes: ['withPrint'], target: true }],
-      [{ tag: Elements.chamomile, target: false }],
-      [{ tag: Elements.tulip, target: false }],
-    ];
+    const elArr: ParsedElementsArray = parserMapToArray(levels[0].htmlMap);
 
     function parseArrayToElements(arr: ParsedElementsArray, isColunm: boolean = false): HTMLElement {
       const imgs = {
