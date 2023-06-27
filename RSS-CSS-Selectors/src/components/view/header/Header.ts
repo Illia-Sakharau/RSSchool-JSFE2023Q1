@@ -19,7 +19,14 @@ export default class Header {
     const headerEl: HTMLElement = htmlToElement(template);
     const menuEl: HTMLElement = createElement({ tag: 'div', classes: ['menu'] });
     menuEl.appendChild(createElement({ tag: 'div', classes: ['line'] }));
-    menuEl.addEventListener('click', foo);
+
+    // open/close aside meny
+    menuEl.addEventListener('click', () => {
+      const event = new Event('toggleMenu');
+      document.dispatchEvent(event);
+      menuEl.classList.toggle('menu_close');
+    });
+
     headerEl.appendChild(menuEl);
 
     return headerEl;

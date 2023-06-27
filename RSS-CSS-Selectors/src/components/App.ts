@@ -1,5 +1,3 @@
-import levels from '../data/levels';
-import { parserMapToArray } from './parser/parsers';
 import AppView from './view/AppView';
 
 export default class App {

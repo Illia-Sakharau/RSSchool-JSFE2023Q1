@@ -32,6 +32,12 @@ export default class Aside {
     buttonEl.addEventListener('click', () => console.log(`Reset progress`));
     asideEl.appendChild(buttonEl);
 
+    // open/close aside meny
+    document.addEventListener('toggleMenu', () => {
+      console.log(asideEl);
+      asideEl.classList.toggle('visible');
+    });
+
     return asideEl;
   }
 }
