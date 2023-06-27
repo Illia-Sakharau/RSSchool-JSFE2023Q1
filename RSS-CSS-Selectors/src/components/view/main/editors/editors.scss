@@ -133,7 +133,8 @@
   & .classes {
     color: $color-brown-80;
   }
-  &:hover * {
-    color: $color-neutral-80;
-  }
+}
+
+.block:hover * {
+  color: $color-neutral-80;
 }

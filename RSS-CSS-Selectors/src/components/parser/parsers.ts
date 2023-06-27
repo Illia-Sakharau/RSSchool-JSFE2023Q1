@@ -37,27 +37,32 @@ export function parserMapToArray(map: string): ParsedElementsArray {
 export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): string {
   type multiLvlStrArr = (string | multiLvlStrArr)[];
 
-  function createLine(isCloses: boolean, obj: IParsedElem, padding: number): string {
+  function createLine(isCloses: boolean, isBlock: boolean, obj: IParsedElem, padding: number): string {
     const { tag, classes } = obj;
     const tagStr = `${isCloses ? '/' : ''}<span class="tag">${tag}</span>`;
     const classesStr = classes?.length === 0 ? '' : `<span class="classes"> class="${classes}"</span>`;
+    const openBlock = isBlock && isCloses ? '' : '<div class="block">';
+    const closeBlock = isBlock && !isCloses ? '' : '</div>';
+    const oneTag = !isBlock && !isCloses ? ' /' : '';
     const template = `
+      ${openBlock}
       <div class="line" data-padding="${padding}">
-        &lt;${tagStr}${classesStr}&gt;
+        &lt;${tagStr}${classesStr}${oneTag}&gt;
       </div>
+      ${closeBlock}
       `;
     return template;
   }
 
   function travers(obj: ParsedElementsArray, padding: number = 0): multiLvlStrArr {
     if (!Array.isArray(obj)) {
-      return [createLine(true, obj, padding)];
+      return [createLine(false, false, obj, padding)];
     }
     if (!Array.isArray(obj[0]) && Array.isArray(obj[1])) {
       return [
-        createLine(false, obj[0], padding),
+        createLine(false, true, obj[0], padding),
         travers(obj[1] as ParsedElementsArray, padding + 1),
-        createLine(true, obj[0], padding),
+        createLine(true, true, obj[0], padding),
       ];
     }
     const accum: multiLvlStrArr = [];
