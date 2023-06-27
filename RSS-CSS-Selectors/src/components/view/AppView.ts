@@ -9,7 +9,7 @@ export default class AppView {
   private footer: Footer = new Footer();
 
   public drawHeader(): void {
-    this.body.appendChild(this.header.draw('Level 1:', 'сменить на данные data', () => console.log('menu')));
+    this.body.appendChild(this.header.draw());
   }
   public drawMain(): void {
     this.body.appendChild(this.main.draw());

@@ -4,7 +4,6 @@ header {
   display: flex;
   justify-content: space-between;
   column-gap: 16px;
-  flex-wrap: wrap;
 
   width: 100%;
   padding-right: 152px;
@@ -87,6 +86,7 @@ header {
 @media (max-width: $bp-20) {
   header {
     padding-right: 0px;
+    flex-wrap: wrap;
   }
   .level {
     margin-top: 16px;

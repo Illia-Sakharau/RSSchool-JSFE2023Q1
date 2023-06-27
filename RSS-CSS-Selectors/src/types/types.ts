@@ -2,6 +2,10 @@ export interface ILevels {
   description: string;
   htmlMap: string;
 }
+export interface ICurrentLevel extends ILevels {
+  currentLevel: number;
+  map: ParsedElementsArray;
+}
 
 export interface ICreateElementParam {
   tag: string;

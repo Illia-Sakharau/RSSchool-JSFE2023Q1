@@ -1,7 +1,7 @@
 import './editors.scss';
 import createElement from '../../../../utils/createElement';
 import htmlToElement from '../../../../utils/htmlToElement';
-import { LEVEL_INFO } from '../../../../data/constants';
+import { CURRENT_LEVEL_INFO } from '../../../../data/constants';
 import { parserArrayToHTMLeditor } from '../../../parser/parsers';
 
 export default class Editor {
@@ -52,7 +52,7 @@ export default class Editor {
   }
 
   private createHTMLtextArea(): HTMLElement {
-    const prepareCode: string = parserArrayToHTMLeditor(LEVEL_INFO.map);
+    const prepareCode: string = parserArrayToHTMLeditor(CURRENT_LEVEL_INFO.map);
 
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'], content: prepareCode });
     return areaEl;
