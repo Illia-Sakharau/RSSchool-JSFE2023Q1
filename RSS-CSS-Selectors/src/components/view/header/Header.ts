@@ -2,7 +2,7 @@ import './header.scss';
 import htmlToElement from '../../../utils/htmlToElement';
 import createElement from '../../../utils/createElement';
 import logo from '../../../assets/logo.svg';
-import { CURRENT_LEVEL_INFO } from '../../../data/constants';
+import { CURRENT_LEVEL } from '../../../data/constants';
 
 export default class Header {
   public draw(): HTMLElement {
@@ -12,8 +12,8 @@ export default class Header {
           <h1>Floral CSS</h1>
         </div>
         <div class="level">
-          <h2>Level ${CURRENT_LEVEL_INFO.currentLevel + 1}:</h2>
-          <span>${CURRENT_LEVEL_INFO.description}</span>
+          <h2>Level ${CURRENT_LEVEL.getLevel() + 1}:</h2>
+          <span>${CURRENT_LEVEL.getDescription()}</span>
         </div>
       </header>
     `;

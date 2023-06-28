@@ -1,7 +1,7 @@
 import './editors.scss';
 import createElement from '../../../../utils/createElement';
 import htmlToElement from '../../../../utils/htmlToElement';
-import { CURRENT_LEVEL_INFO } from '../../../../data/constants';
+import { CURRENT_LEVEL } from '../../../../data/constants';
 import { parserArrayToHTMLeditor } from '../../../function/parsers';
 import linkedHover from '../../../function/linkedHover';
 
@@ -53,7 +53,7 @@ export default class Editor {
   }
 
   private createHTMLtextArea(): HTMLElement {
-    const { prepareCode, elemArr } = parserArrayToHTMLeditor(CURRENT_LEVEL_INFO.map);
+    const { prepareCode, elemArr } = parserArrayToHTMLeditor(CURRENT_LEVEL.getMap());
     console.log(elemArr);
 
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'] });

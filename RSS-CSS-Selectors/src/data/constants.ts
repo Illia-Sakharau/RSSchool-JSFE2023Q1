@@ -1,9 +1,3 @@
-import { parserMapToArray } from '../components/function/parsers';
-import { ICurrentLevel } from '../types/types';
-import levels from './levels';
+import createrCurentLevel from './createrCurentLevel';
 
-export const CURRENT_LEVEL_INFO: ICurrentLevel = {
-  currentLevel: Number(localStorage.getItem('ily-currentLvl')),
-  ...levels[Number(localStorage.getItem('ily-currentLvl'))],
-  map: parserMapToArray(levels[Number(localStorage.getItem('ily-currentLvl'))].htmlMap),
-};
+export const CURRENT_LEVEL = new createrCurentLevel(Number(localStorage.getItem('ily-currentLvl')));

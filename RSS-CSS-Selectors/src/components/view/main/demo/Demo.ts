@@ -6,7 +6,7 @@ import rackImg from '../../../../assets/rack.svg';
 import potImg from '../../../../assets/pot.svg';
 import chamomileImg from '../../../../assets/chamomile.svg';
 import tulipImg from '../../../../assets/tulip.svg';
-import { CURRENT_LEVEL_INFO } from '../../../../data/constants';
+import { CURRENT_LEVEL } from '../../../../data/constants';
 import linkedHover from '../../../function/linkedHover';
 
 export default class Editor {
@@ -34,7 +34,7 @@ export default class Editor {
 
   private drowInner(): HTMLElement {
     const innerEl: HTMLElement = createElement({ tag: 'div', classes: ['shelf__inner'] });
-    const elArr: ParsedElementsArray = CURRENT_LEVEL_INFO.map;
+    const elArr: ParsedElementsArray = CURRENT_LEVEL.getMap();
     const imgs = {
       [Elements.rack]: rackImg,
       [Elements.pot]: potImg,

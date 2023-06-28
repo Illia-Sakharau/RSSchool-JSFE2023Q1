@@ -3,7 +3,7 @@ import Main from './main/Main';
 import Footer from './footer/Footer';
 
 export default class AppView {
-  private body = document.querySelector('body') as HTMLBodyElement;
+  private body = document.body;
   private header: Header = new Header();
   private main: Main = new Main();
   private footer: Footer = new Footer();
