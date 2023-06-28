@@ -8,13 +8,10 @@ export default class AppView {
   private main: Main = new Main();
   private footer: Footer = new Footer();
 
-  public drawHeader(): void {
+  public drawApp(): void {
+    this.body.innerHTML = '';
     this.body.appendChild(this.header.draw());
-  }
-  public drawMain(): void {
     this.body.appendChild(this.main.draw());
-  }
-  public drawFooter(): void {
     this.body.appendChild(this.footer.draw());
   }
 }

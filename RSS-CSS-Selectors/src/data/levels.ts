@@ -40,7 +40,7 @@ const levels: ILevels[] = [
     <shelf>
       <rack>
         <pot>
-          <chamomile>
+          <chamomile data-target="true">
           </chamomile>
         </pot>
       </rack>

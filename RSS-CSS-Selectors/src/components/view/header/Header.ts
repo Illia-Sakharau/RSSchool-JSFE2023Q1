@@ -25,6 +25,8 @@ export default class Header {
     menuEl.addEventListener('click', () => {
       const event = new Event('toggleMenu');
       document.dispatchEvent(event);
+    });
+    document.addEventListener('toggleMenu', () => {
       menuEl.classList.toggle('menu_close');
     });
 

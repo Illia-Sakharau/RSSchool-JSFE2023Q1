@@ -1,6 +1,7 @@
 import './aside.scss';
 import createElement from '../../../../utils/createElement';
 import levels from '../../../../data/levels';
+import { CURRENT_LEVEL, LEVELS_STATES } from '../../../../data/constants';
 
 export default class Aside {
   public draw(): HTMLElement {
@@ -9,23 +10,20 @@ export default class Aside {
     const levelWrapperel: HTMLElement = createElement({ tag: 'div', classes: ['levels-wrapper'] });
     const buttonEl: HTMLElement = createElement({ tag: 'button', classes: ['button'], content: 'Reset progress' });
 
-    const activeLevel = localStorage.getItem(`ily-active`) || 0;
+    const currentLevel = CURRENT_LEVEL.getLevel();
 
     asideEl.appendChild(title);
 
-    levels.forEach((lev, ind) => {
+    levels.forEach((_, ind) => {
       const classes = ['level-btn'];
-      const state = localStorage.getItem(`ily-level${ind}`);
-      if (state) {
-        classes.push(state);
-      }
-      if (+activeLevel === ind) {
-        classes.push('active');
-      }
-      const levelEl = createElement({ tag: 'button', classes: classes, content: `Level ${ind + 1}` });
-      levelWrapperel.appendChild(levelEl);
+      const state = LEVELS_STATES[ind];
 
-      levelEl.addEventListener('click', () => console.log(`Level ${ind + 1}`));
+      if (state) classes.push(state);
+      if (currentLevel === ind) classes.push('active');
+
+      const levelEl = createElement({ tag: 'button', classes: classes, content: `Level ${ind + 1}` });
+      levelEl.dataset.level = `${ind}`;
+      levelWrapperel.appendChild(levelEl);
     });
     asideEl.appendChild(levelWrapperel);
 
@@ -35,6 +33,25 @@ export default class Aside {
     // open/close aside meny
     document.addEventListener('toggleMenu', () => {
       asideEl.classList.toggle('visible');
+    });
+
+    //choose level
+    asideEl.addEventListener('click', (event: MouseEvent): void => {
+      const target = event.target;
+      if (target instanceof HTMLElement) {
+        const closest = target.closest('.level-btn');
+        if (closest instanceof HTMLElement) {
+          if (closest.dataset.level !== `${CURRENT_LEVEL.getLevel()}`) {
+            const nextLvl = Number(closest.dataset.level);
+            CURRENT_LEVEL.setCurentLvl(nextLvl);
+            localStorage.setItem('ily-currentLvl', `${nextLvl}`);
+            const levelChanget = new Event('levelChanget');
+            document.dispatchEvent(levelChanget);
+          }
+          const event = new Event('toggleMenu');
+          document.dispatchEvent(event);
+        }
+      }
     });
 
     return asideEl;
