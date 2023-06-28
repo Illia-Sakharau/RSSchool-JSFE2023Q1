@@ -52,9 +52,11 @@ export default class Editor {
   }
 
   private createHTMLtextArea(): HTMLElement {
-    const prepareCode: string = parserArrayToHTMLeditor(CURRENT_LEVEL_INFO.map);
+    const { prepareCode, elemArr } = parserArrayToHTMLeditor(CURRENT_LEVEL_INFO.map);
+    console.log(elemArr);
 
-    const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'], content: prepareCode });
+    const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'] });
+    areaEl.append(prepareCode);
     return areaEl;
   }
 

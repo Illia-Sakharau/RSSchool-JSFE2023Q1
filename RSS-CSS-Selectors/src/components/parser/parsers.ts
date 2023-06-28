@@ -1,4 +1,6 @@
 import { Elements, IParsedElem, ParsedElementsArray } from '../../types/types';
+import createElement from '../../utils/createElement';
+import htmlToElement from '../../utils/htmlToElement';
 
 export function parserMapToArray(map: string): ParsedElementsArray {
   const parser = new DOMParser();
@@ -34,44 +36,50 @@ export function parserMapToArray(map: string): ParsedElementsArray {
   return travers(xmlDoc.children[0]);
 }
 
-export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): string {
-  type multiLvlStrArr = (string | multiLvlStrArr)[];
+export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): { prepareCode: HTMLElement; elemArr: HTMLElement[] } {
+  const elemArr: HTMLElement[] = [];
+  console.error('удалить массив если он не понадабится');
+  const prepareCode: HTMLElement = travers(arrMap);
 
   function createLine(isCloses: boolean, isBlock: boolean, obj: IParsedElem, padding: number): string {
     const { tag, classes } = obj;
     const tagStr = `${isCloses ? '/' : ''}<span class="tag">${tag}</span>`;
     const classesStr = classes?.length === 0 ? '' : `<span class="classes"> class="${classes}"</span>`;
-    const openBlock = isBlock && isCloses ? '' : '<div class="block">';
-    const closeBlock = isBlock && !isCloses ? '' : '</div>';
     const oneTag = !isBlock && !isCloses ? ' /' : '';
-    const template = `
-      ${openBlock}
-      <div class="line" data-padding="${padding}">
+    const template = `<div class="line" data-padding="${padding}">
         &lt;${tagStr}${classesStr}${oneTag}&gt;
       </div>
-      ${closeBlock}
       `;
     return template;
   }
 
-  function travers(obj: ParsedElementsArray, padding: number = 0): multiLvlStrArr {
+  function travers(obj: ParsedElementsArray, padding: number = 0): HTMLElement {
+    const res: HTMLElement = createElement({ tag: 'div' });
     if (!Array.isArray(obj)) {
-      return [createLine(false, false, obj, padding)];
+      const { tag } = obj;
+      const elem = htmlToElement(createLine(false, false, obj, padding));
+      res.append(elem);
+      res.dataset.tagName = `${tag}`;
+      res.dataset.colNum = `${padding}`;
+      return res;
     }
     if (!Array.isArray(obj[0]) && Array.isArray(obj[1])) {
-      return [
-        createLine(false, true, obj[0], padding),
-        travers(obj[1] as ParsedElementsArray, padding + 1),
-        createLine(true, true, obj[0], padding),
-      ];
+      const { tag } = obj[0];
+      const first = htmlToElement(createLine(false, true, obj[0], padding));
+      const last = htmlToElement(createLine(true, true, obj[0], padding));
+      const inner = travers(obj[1] as ParsedElementsArray, padding + 1);
+      res.append(first, inner, last);
+      res.dataset.tagName = `${tag}`;
+      res.dataset.colNum = `${padding}`;
+      return res;
     }
-    const accum: multiLvlStrArr = [];
-    const result = obj.reduce((acc, el, i) => {
-      acc.splice(i, 0, travers(el as ParsedElementsArray, padding + 1));
-      return acc;
-    }, accum) as multiLvlStrArr;
-    return result;
+    obj.forEach((el, i) => {
+      const elem = travers(el as ParsedElementsArray, padding + 1);
+      elem.dataset.rowNum = `${i}`;
+      elemArr.push(elem);
+      res.append(elem);
+    });
+    return res;
   }
-
-  return travers(arrMap).flat(20).join('');
+  return { prepareCode, elemArr };
 }

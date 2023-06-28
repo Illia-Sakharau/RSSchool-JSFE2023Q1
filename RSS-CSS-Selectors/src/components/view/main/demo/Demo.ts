@@ -1,7 +1,7 @@
 import './demo.scss';
 import createElement from '../../../../utils/createElement';
 import htmlToElement from '../../../../utils/htmlToElement';
-import { Elements, ParsedElementsArray } from '../../../../types/types';
+import { Elements, IParsedElem, ParsedElementsArray } from '../../../../types/types';
 import rackImg from '../../../../assets/rack.svg';
 import potImg from '../../../../assets/pot.svg';
 import chamomileImg from '../../../../assets/chamomile.svg';
@@ -21,13 +21,13 @@ export default class Editor {
     const shelfTemplate: string = `<div class="shelf">
         <div class="shelf__wall-left"></div>
         <div class="shelf__wrapper">
-          ${this.drowInner().innerHTML}
           <div class="shelf__base"></div>
         </div>
         <div class="shelf__wall-right"></div>
       </div>
     `;
     const shelfEl: HTMLElement = htmlToElement(shelfTemplate);
+    shelfEl.querySelector('.shelf__wrapper')?.prepend(this.drowInner());
     return shelfEl;
   }
 
@@ -41,29 +41,50 @@ export default class Editor {
       [Elements.tulip]: tulipImg,
     };
 
-    function parseArrayToElements(arr: ParsedElementsArray, isColunm: boolean = false): HTMLElement {
+    const elemArr: HTMLElement[] = [];
+    console.error('удалить массив если он не понадабится');
+
+    function parseArrayToElements(obj: ParsedElementsArray, isColunm: boolean = false, colNum: number = 0): HTMLElement {
       const elClass: string = isColunm ? 'col-wrapper' : 'row-wrapper';
-      const el = createElement({ tag: 'div', classes: [elClass] });
-      arr.reduce((acc, obj) => {
-        let subEl: HTMLElement;
-        if (Array.isArray(obj)) {
-          subEl = parseArrayToElements(obj, !isColunm);
-        } else {
-          subEl = createElement({ tag: 'div', classes: ['col-wrapper'] });
-          const el123 = createElement({ tag: obj.tag, classes: obj.classes });
-          if (obj.target) {
-            el123.classList.add('target');
-          }
-          el123.innerHTML = imgs[obj.tag];
-          subEl.append(el123);
+      const res: HTMLElement = createElement({ tag: 'div', classes: [elClass] });
+      if (!Array.isArray(obj)) {
+        const { tag, classes, target } = obj as IParsedElem;
+        const elem = createElement({ tag: tag, classes: classes });
+        if (target) {
+          elem.classList.add('target');
         }
-        el.append(subEl);
-        return el;
-      }, el);
-      return el;
+        elem.innerHTML = imgs[tag];
+        elem.dataset.tagName = `${tag}`;
+        elem.dataset.colNum = `${colNum}`;
+        res.append(elem);
+        return res;
+      }
+      if (!Array.isArray(obj[0]) && Array.isArray(obj[1])) {
+        const { tag, classes, target } = obj[0] as IParsedElem;
+        const elem = createElement({ tag: tag, classes: classes });
+        const inner = parseArrayToElements(obj[1] as ParsedElementsArray, !isColunm, colNum + 1);
+        if (target) {
+          elem.classList.add('target');
+        }
+        elem.innerHTML = imgs[tag];
+        elem.dataset.tagName = `${tag}`;
+        elem.dataset.colNum = `${colNum}`;
+        res.append(elem, inner);
+        return res;
+      }
+      obj.forEach((el, i) => {
+        const elem = parseArrayToElements(el as ParsedElementsArray, !isColunm, colNum + 1);
+        if (elem.firstChild instanceof HTMLElement) {
+          elem.firstChild.dataset.rowNum = `${i}`;
+          elemArr.push(elem.firstChild);
+        }
+        res.append(elem);
+      });
+      return res;
     }
 
     innerEl.append(parseArrayToElements(elArr));
+    console.log(elemArr);
 
     return innerEl;
   }

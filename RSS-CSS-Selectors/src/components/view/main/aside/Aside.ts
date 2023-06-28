@@ -34,7 +34,6 @@ export default class Aside {
 
     // open/close aside meny
     document.addEventListener('toggleMenu', () => {
-      console.log(asideEl);
       asideEl.classList.toggle('visible');
     });
 

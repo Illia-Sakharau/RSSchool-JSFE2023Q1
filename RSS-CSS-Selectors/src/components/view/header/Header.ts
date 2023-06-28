@@ -29,7 +29,6 @@ export default class Header {
     });
 
     headerEl.appendChild(menuEl);
-    console.log(CURRENT_LEVEL_INFO);
 
     return headerEl;
   }

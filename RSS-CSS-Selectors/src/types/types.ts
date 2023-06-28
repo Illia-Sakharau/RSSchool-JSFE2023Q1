@@ -19,7 +19,7 @@ export interface IParsedElem extends ICreateElementParam {
   target: boolean;
 }
 
-export type ParsedElementsArray = Array<IParsedElem | ParsedElementsArray>;
+export type ParsedElementsArray = (IParsedElem | ParsedElementsArray)[];
 
 export enum Elements {
   rack = 'rack',
