@@ -53,29 +53,29 @@ export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): { prepareC
     return template;
   }
 
-  function travers(obj: ParsedElementsArray, padding: number = 0): HTMLElement {
+  function travers(obj: ParsedElementsArray, padding: number = 0, num: number = 0): HTMLElement {
     const res: HTMLElement = createElement({ tag: 'div' });
     if (!Array.isArray(obj)) {
-      const { tag } = obj;
       const elem = htmlToElement(createLine(false, false, obj, padding));
       res.append(elem);
-      res.dataset.tagName = `${tag}`;
-      res.dataset.colNum = `${padding}`;
+      res.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
+      res.dataset.num = `${num}`;
       return res;
     }
     if (!Array.isArray(obj[0]) && Array.isArray(obj[1])) {
-      const { tag } = obj[0];
       const first = htmlToElement(createLine(false, true, obj[0], padding));
       const last = htmlToElement(createLine(true, true, obj[0], padding));
-      const inner = travers(obj[1] as ParsedElementsArray, padding + 1);
+      const inner = travers(obj[1] as ParsedElementsArray, padding + 1, num);
       res.append(first, inner, last);
-      res.dataset.tagName = `${tag}`;
-      res.dataset.colNum = `${padding}`;
+      res.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
+      res.dataset.num = `${num}`;
       return res;
     }
     obj.forEach((el, i) => {
-      const elem = travers(el as ParsedElementsArray, padding + 1);
-      elem.dataset.rowNum = `${i}`;
+      const numEl = num || i;
+      const elem = travers(el as ParsedElementsArray, padding + 1, numEl);
+      elem.dataset.num = `${numEl}`;
+      elem.dataset.num1 = `${i}`;
       elemArr.push(elem);
       res.append(elem);
     });

@@ -7,6 +7,7 @@ import potImg from '../../../../assets/pot.svg';
 import chamomileImg from '../../../../assets/chamomile.svg';
 import tulipImg from '../../../../assets/tulip.svg';
 import { CURRENT_LEVEL_INFO } from '../../../../data/constants';
+import linkedHover from '../../../function/linkedHover';
 
 export default class Editor {
   public draw(): HTMLElement {
@@ -44,7 +45,7 @@ export default class Editor {
     const elemArr: HTMLElement[] = [];
     console.error('удалить массив если он не понадабится');
 
-    function parseArrayToElements(obj: ParsedElementsArray, isColunm: boolean = false, colNum: number = 0): HTMLElement {
+    function parseArrayToElements(obj: ParsedElementsArray, isColunm: boolean = false, num: number = 0): HTMLElement {
       const elClass: string = isColunm ? 'col-wrapper' : 'row-wrapper';
       const res: HTMLElement = createElement({ tag: 'div', classes: [elClass] });
       if (!Array.isArray(obj)) {
@@ -54,28 +55,30 @@ export default class Editor {
           elem.classList.add('target');
         }
         elem.innerHTML = imgs[tag];
-        elem.dataset.tagName = `${tag}`;
-        elem.dataset.colNum = `${colNum}`;
+        elem.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
+        elem.dataset.num = `${num}`;
         res.append(elem);
         return res;
       }
       if (!Array.isArray(obj[0]) && Array.isArray(obj[1])) {
         const { tag, classes, target } = obj[0] as IParsedElem;
         const elem = createElement({ tag: tag, classes: classes });
-        const inner = parseArrayToElements(obj[1] as ParsedElementsArray, !isColunm, colNum + 1);
+        const inner = parseArrayToElements(obj[1] as ParsedElementsArray, !isColunm, num);
         if (target) {
           elem.classList.add('target');
         }
         elem.innerHTML = imgs[tag];
-        elem.dataset.tagName = `${tag}`;
-        elem.dataset.colNum = `${colNum}`;
+        elem.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
+        elem.dataset.num = `${num}`;
         res.append(elem, inner);
         return res;
       }
       obj.forEach((el, i) => {
-        const elem = parseArrayToElements(el as ParsedElementsArray, !isColunm, colNum + 1);
+        const numEl = num || i;
+        const elem = parseArrayToElements(el as ParsedElementsArray, !isColunm, numEl);
         if (elem.firstChild instanceof HTMLElement) {
-          elem.firstChild.dataset.rowNum = `${i}`;
+          elem.firstChild.dataset.num = `${numEl}`;
+          elem.firstChild.dataset.num1 = `${i}`;
           elemArr.push(elem.firstChild);
         }
         res.append(elem);
@@ -84,6 +87,11 @@ export default class Editor {
     }
 
     innerEl.append(parseArrayToElements(elArr));
+
+    // linked hover
+    innerEl.addEventListener('mouseover', linkedHover);
+    innerEl.addEventListener('mouseout', linkedHover);
+
     console.log(elemArr);
 
     return innerEl;

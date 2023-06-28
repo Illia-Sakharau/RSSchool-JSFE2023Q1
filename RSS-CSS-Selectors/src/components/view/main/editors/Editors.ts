@@ -2,7 +2,8 @@ import './editors.scss';
 import createElement from '../../../../utils/createElement';
 import htmlToElement from '../../../../utils/htmlToElement';
 import { CURRENT_LEVEL_INFO } from '../../../../data/constants';
-import { parserArrayToHTMLeditor } from '../../../parser/parsers';
+import { parserArrayToHTMLeditor } from '../../../function/parsers';
+import linkedHover from '../../../function/linkedHover';
 
 export default class Editor {
   private strAmount: number = 20;
@@ -57,6 +58,11 @@ export default class Editor {
 
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'] });
     areaEl.append(prepareCode);
+
+    // linked hover
+    areaEl.addEventListener('mouseover', linkedHover);
+    areaEl.addEventListener('mouseout', linkedHover);
+
     return areaEl;
   }
 

@@ -135,6 +135,6 @@
   }
 }
 
-.block:hover * {
-  color: $color-neutral-80;
+.hovered * {
+  color: $color-neutral-80 !important;
 }

@@ -1,4 +1,4 @@
-import { parserMapToArray } from '../components/parser/parsers';
+import { parserMapToArray } from '../components/function/parsers';
 import { ICurrentLevel } from '../types/types';
 import levels from './levels';
 
