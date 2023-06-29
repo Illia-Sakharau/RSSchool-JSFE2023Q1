@@ -57,6 +57,7 @@ export default class Editor {
         elem.innerHTML = imgs[tag];
         elem.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
         elem.dataset.num = `${num}`;
+        elem.dataset.tag = `<${tag} />`;
         res.append(elem);
         return res;
       }
@@ -70,6 +71,7 @@ export default class Editor {
         elem.innerHTML = imgs[tag];
         elem.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
         elem.dataset.num = `${num}`;
+        elem.dataset.tag = `<${tag}> ... </${tag}>`;
         res.append(elem, inner);
         return res;
       }
