@@ -72,8 +72,7 @@ export default class Editor {
   }
 
   private createHTMLtextArea(): HTMLElement {
-    const { prepareCode, elemArr } = parserArrayToHTMLeditor(CURRENT_LEVEL.getMap());
-    console.log(elemArr);
+    const prepareCode = parserArrayToHTMLeditor(CURRENT_LEVEL.getMap());
 
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['html-area'] });
     areaEl.append(prepareCode);

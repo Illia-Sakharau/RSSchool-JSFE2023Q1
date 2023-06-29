@@ -36,9 +36,7 @@ export function parserMapToArray(map: string): ParsedElementsArray {
   return travers(xmlDoc.children[0]);
 }
 
-export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): { prepareCode: HTMLElement; elemArr: HTMLElement[] } {
-  const elemArr: HTMLElement[] = [];
-  console.error('удалить массив если он не понадабится');
+export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): HTMLElement {
   const prepareCode: HTMLElement = travers(arrMap);
 
   function createLine(isCloses: boolean, isBlock: boolean, obj: IParsedElem, padding: number): string {
@@ -76,10 +74,11 @@ export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): { prepareC
       const elem = travers(el as ParsedElementsArray, padding + 1, numEl);
       elem.dataset.num = `${numEl}`;
       elem.dataset.num1 = `${i}`;
-      elemArr.push(elem);
       res.append(elem);
     });
     return res;
   }
-  return { prepareCode, elemArr };
+  prepareCode.prepend(htmlToElement(`<div class="line">&lt;shelf&gt</div>`));
+  prepareCode.append(htmlToElement(`<div class="line">&lt;/shelf&gt</div>`));
+  return prepareCode;
 }

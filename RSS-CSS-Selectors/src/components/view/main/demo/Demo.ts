@@ -42,9 +42,6 @@ export default class Editor {
       [Elements.tulip]: tulipImg,
     };
 
-    const elemArr: HTMLElement[] = [];
-    console.error('удалить массив если он не понадабится');
-
     function parseArrayToElements(obj: ParsedElementsArray, isColunm: boolean = false, num: number = 0): HTMLElement {
       const elClass: string = isColunm ? 'col-wrapper' : 'row-wrapper';
       const res: HTMLElement = createElement({ tag: 'div', classes: [elClass] });
@@ -81,7 +78,6 @@ export default class Editor {
         if (elem.firstChild instanceof HTMLElement) {
           elem.firstChild.dataset.num = `${numEl}`;
           elem.firstChild.dataset.num1 = `${i}`;
-          elemArr.push(elem.firstChild);
         }
         res.append(elem);
       });
@@ -93,8 +89,6 @@ export default class Editor {
     // linked hover
     innerEl.addEventListener('mouseover', linkedHover);
     innerEl.addEventListener('mouseout', linkedHover);
-
-    console.log(elemArr);
 
     return innerEl;
   }

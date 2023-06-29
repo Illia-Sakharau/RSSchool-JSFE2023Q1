@@ -115,17 +115,21 @@
 
 .line {
   //style for HTML elements
+  $tab: 16px;
+  &[data-padding="1"] {
+    padding-left: $tab * 1;
+  }
   &[data-padding="3"] {
-    padding-left: 16px;
+    padding-left: $tab * 2;
   }
   &[data-padding="5"] {
-    padding-left: 32px;
+    padding-left: $tab * 3;
   }
   &[data-padding="7"] {
-    padding-left: 48px;
+    padding-left: $tab * 4;
   }
   &[data-padding="9"] {
-    padding-left: 64px;
+    padding-left: $tab * 5;
   }
   & .tag {
     color: $color-brown-60;
