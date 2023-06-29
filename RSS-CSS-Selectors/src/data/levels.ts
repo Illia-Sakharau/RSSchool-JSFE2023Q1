@@ -47,6 +47,25 @@ const levels: ILevels[] = [
     </shelf>
     `,
   },
+  {
+    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
+    htmlMap: `
+    <shelf>
+      <rack data-target="true">
+        <pot>
+          <chamomile>
+          </chamomile>
+        </pot>
+      </rack>
+      <rack>
+        <pot>
+          <chamomile>
+          </chamomile>
+        </pot>
+      </rack>
+    </shelf>
+    `,
+  },
 ];
 
 export default levels;

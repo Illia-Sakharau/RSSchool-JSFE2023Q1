@@ -4,6 +4,9 @@ import htmlToElement from '../../../../utils/htmlToElement';
 import { CURRENT_LEVEL } from '../../../../data/constants';
 import { parserArrayToHTMLeditor } from '../../../function/parsers';
 import linkedHover from '../../../function/linkedHover';
+import checkSelectors from '../../../function/checkSelectors';
+import win from '../../../function/win';
+import lose from '../../../function/lose';
 
 export default class Editor {
   private strAmount: number = 20;
@@ -42,6 +45,22 @@ export default class Editor {
     const buttonsBarEl: HTMLElement = createElement({ tag: 'div', classes: ['button-bar'] });
     const enterBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-enter'], content: 'Enter' });
     const helpBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-help'], content: '?' });
+
+    // checking answer
+    function handler() {
+      if (inputEl instanceof HTMLInputElement) {
+        const result: boolean = checkSelectors(CURRENT_LEVEL.getHtmlMap(), inputEl.value);
+        if (result) {
+          win();
+        } else {
+          lose();
+        }
+      }
+    }
+    enterBtn.addEventListener('click', handler);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') handler();
+    });
 
     buttonsBarEl.append(enterBtn, helpBtn);
 
