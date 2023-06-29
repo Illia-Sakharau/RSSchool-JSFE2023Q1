@@ -1,5 +1,6 @@
 export interface ILevels {
   description: string;
+  answer: string;
   htmlMap: string;
 }
 export interface ICurrentLevel extends ILevels {

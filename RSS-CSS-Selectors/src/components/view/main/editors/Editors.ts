@@ -1,7 +1,7 @@
 import './editors.scss';
 import createElement from '../../../../utils/createElement';
 import htmlToElement from '../../../../utils/htmlToElement';
-import { CURRENT_LEVEL } from '../../../../data/constants';
+import { CURRENT_LEVEL, LEVELS_STATES } from '../../../../data/constants';
 import { parserArrayToHTMLeditor } from '../../../function/parsers';
 import linkedHover from '../../../function/linkedHover';
 import checkSelectors from '../../../function/checkSelectors';
@@ -13,6 +13,7 @@ export default class Editor {
   private editorsEl: HTMLElement = createElement({ tag: 'section', classes: ['editors'] });
   private inputEl: HTMLElement = createElement({ tag: 'input', classes: ['text-input'] });
   private enterBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-enter'], content: 'Enter' });
+  private helpBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-help'], content: '?' });
 
   constructor() {
     // checking answer
@@ -33,6 +34,39 @@ export default class Editor {
     document.addEventListener('wrongAnswer', () => {
       this.editorsEl.classList.add('wrong');
       this.editorsEl.addEventListener('animationend', () => this.editorsEl.classList.remove('wrong'));
+    });
+
+    //help typing
+    this.helpBtn.addEventListener('click', () => {
+      if (this.inputEl instanceof HTMLInputElement) {
+        const currentLevel = CURRENT_LEVEL.getLevel();
+        const answer = CURRENT_LEVEL.getAnswer();
+        const inputEl = this.inputEl;
+        const speed = 800 / answer.length;
+        let count = 0;
+
+        LEVELS_STATES[currentLevel] = 'completed_help';
+        localStorage.setItem(`ily-level${currentLevel}`, 'completed_help');
+
+        inputEl.value = '';
+        inputEl.focus();
+
+        let typeChar = setTimeout(function type() {
+          if (count < answer.length) {
+            inputEl.value += answer[count];
+            count++;
+            typeChar = setTimeout(type, speed);
+          } else {
+            clearTimeout(typeChar);
+          }
+        }, speed);
+      }
+    });
+
+    document.addEventListener('levelChanget', () => {
+      if (this.inputEl instanceof HTMLInputElement) {
+        this.inputEl.value = '';
+      }
     });
   }
 
@@ -70,7 +104,7 @@ export default class Editor {
     const commentEl: HTMLElement = createElement({ tag: 'div', classes: ['comment'], content: comment });
     const buttonsBarEl: HTMLElement = createElement({ tag: 'div', classes: ['button-bar'] });
     const enterBtn: HTMLElement = this.enterBtn;
-    const helpBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-help'], content: '?' });
+    const helpBtn: HTMLElement = this.helpBtn;
 
     buttonsBarEl.append(enterBtn, helpBtn);
 

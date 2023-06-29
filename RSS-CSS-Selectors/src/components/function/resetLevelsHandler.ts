@@ -5,5 +5,4 @@ export default () => {
   LEVELS_STATES.fill(null);
   const levelChanget = new Event('levelChanget');
   document.dispatchEvent(levelChanget);
-  console.log('reset');
 };

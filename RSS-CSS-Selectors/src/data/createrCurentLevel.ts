@@ -7,6 +7,7 @@ export default class {
     currentLevel: 0,
     map: [],
     description: '',
+    answer: '',
     htmlMap: '',
   };
   constructor(private currentLvl: number) {
@@ -20,6 +21,7 @@ export default class {
     this.curentLvlInfo.currentLevel = currentLvl;
     this.curentLvlInfo.map = parserMapToArray(levels[currentLvl].htmlMap);
     this.curentLvlInfo.description = levels[currentLvl].description;
+    this.curentLvlInfo.answer = levels[currentLvl].answer;
     this.curentLvlInfo.htmlMap = levels[currentLvl].htmlMap;
   }
   public getAllInfo() {
@@ -36,5 +38,8 @@ export default class {
   }
   public getHtmlMap() {
     return this.curentLvlInfo.htmlMap;
+  }
+  public getAnswer() {
+    return this.curentLvlInfo.answer;
   }
 }
