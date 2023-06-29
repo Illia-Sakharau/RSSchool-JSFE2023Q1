@@ -2,13 +2,14 @@ import './aside.scss';
 import createElement from '../../../../utils/createElement';
 import levels from '../../../../data/levels';
 import { CURRENT_LEVEL, LEVELS_STATES } from '../../../../data/constants';
+import resetLevelsHandler from '../../../function/resetLevelsHandler';
 
 export default class Aside {
   public draw(): HTMLElement {
     const asideEl: HTMLElement = createElement({ tag: 'aside' });
     const title: HTMLElement = createElement({ tag: 'h6', content: 'Levels' });
     const levelWrapperel: HTMLElement = createElement({ tag: 'div', classes: ['levels-wrapper'] });
-    const buttonEl: HTMLElement = createElement({ tag: 'button', classes: ['button'], content: 'Reset progress' });
+    const resetButtonEl: HTMLElement = createElement({ tag: 'button', classes: ['button'], content: 'Reset progress' });
 
     const currentLevel = CURRENT_LEVEL.getLevel();
 
@@ -27,8 +28,8 @@ export default class Aside {
     });
     asideEl.appendChild(levelWrapperel);
 
-    buttonEl.addEventListener('click', () => console.log(`Reset progress`));
-    asideEl.appendChild(buttonEl);
+    resetButtonEl.addEventListener('click', resetLevelsHandler);
+    asideEl.appendChild(resetButtonEl);
 
     // open/close aside meny
     document.addEventListener('toggleMenu', () => {
