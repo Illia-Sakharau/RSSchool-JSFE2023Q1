@@ -29,6 +29,9 @@ export default class Header {
     document.addEventListener('toggleMenu', () => {
       menuEl.classList.toggle('menu_close');
     });
+    document.addEventListener('closeMenu', () => {
+      menuEl.classList.remove('menu_close');
+    });
 
     headerEl.appendChild(menuEl);
 

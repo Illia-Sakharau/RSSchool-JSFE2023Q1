@@ -107,14 +107,40 @@ pot.withPrint::after {
 
 .target {
   z-index: 5;
-  animation: target1 2s ease-in-out infinite alternate;
+  animation: target 2s ease-in-out infinite alternate;
+}
+.correctAnswer {
+  animation: flip 2s ease;
 }
 
 // animation from https://codepen.io/oltika/pen/WGLZyb
-@keyframes target1 {
+@keyframes target {
   30% { transform: scale(1.05); }
   40%, 60% { transform: rotate(-5deg) scale(1.05); }
   50% { transform: rotate(5deg) scale(1.05); }
   70% { transform: rotate(0deg) scale(1.05); }
   100% { transform: scale(1); }
+}
+
+@keyframes flip {
+	0% {
+		transform: perspective(400px) rotateY(0);
+		animation-timing-function: ease-out;
+	}
+	40% {
+		transform: perspective(400px) translateZ(150px) rotateY(170deg);
+		animation-timing-function: ease-out;
+	}
+	50% {
+		transform: perspective(400px) translateZ(150px) rotateY(190deg) scale(1);
+		animation-timing-function: ease-in;
+	}
+	80% {
+		transform: perspective(400px) rotateY(360deg) scale(.95);
+		animation-timing-function: ease-in;
+	}
+	100% {
+		transform: perspective(400px) scale(1);
+		animation-timing-function: ease-in;
+	}
 }

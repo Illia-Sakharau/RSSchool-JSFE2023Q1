@@ -8,8 +8,8 @@ export default class App {
 
     document.addEventListener('levelChanget', () => {
       this.view.drawApp();
-      const event = new Event('toggleMenu');
-      document.dispatchEvent(event);
+      const closeMenu = new Event('closeMenu');
+      document.dispatchEvent(closeMenu);
     });
   }
 }

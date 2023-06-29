@@ -5,18 +5,44 @@ import { CURRENT_LEVEL } from '../../../../data/constants';
 import { parserArrayToHTMLeditor } from '../../../function/parsers';
 import linkedHover from '../../../function/linkedHover';
 import checkSelectors from '../../../function/checkSelectors';
-import win from '../../../function/win';
-import lose from '../../../function/lose';
+import correctAnswerHandler from '../../../function/correctAnswerHandler';
+import wrongAnswerHandler from '../../../function/wrongAnswerHandler';
 
 export default class Editor {
   private strAmount: number = 20;
+  private editorsEl: HTMLElement = createElement({ tag: 'section', classes: ['editors'] });
+  private inputEl: HTMLElement = createElement({ tag: 'input', classes: ['text-input'] });
+  private enterBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-enter'], content: 'Enter' });
+
+  constructor() {
+    // checking answer
+    const handler = () => {
+      if (this.inputEl instanceof HTMLInputElement) {
+        if (checkSelectors(CURRENT_LEVEL.getHtmlMap(), this.inputEl.value.toString())) {
+          this.inputEl.value = '';
+          correctAnswerHandler();
+        } else {
+          wrongAnswerHandler();
+        }
+      }
+    };
+    this.enterBtn.addEventListener('click', handler);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') handler();
+    });
+    document.addEventListener('wrongAnswer', () => {
+      this.editorsEl.classList.add('wrong');
+      this.editorsEl.addEventListener('animationend', () => this.editorsEl.classList.remove('wrong'));
+    });
+  }
 
   public draw(): HTMLElement {
-    const editorsEl: HTMLElement = createElement({ tag: 'section', classes: ['editors'] });
+    const editorsEl: HTMLElement = this.editorsEl;
     const editorsWrapperEl: HTMLElement = createElement({ tag: 'div', classes: ['editors-wrapper'] });
     const cssEditorEl: HTMLElement = this.createEditor('CSS Editor', 'style.css', this.createCSStextArea());
     const htmlEditorEl: HTMLElement = this.createEditor('HTML Viewer', 'index.html', this.createHTMLtextArea());
 
+    editorsEl.innerHTML = '';
     editorsWrapperEl.append(cssEditorEl, htmlEditorEl);
     editorsEl.append(editorsWrapperEl);
 
@@ -39,28 +65,12 @@ export default class Editor {
 
   private createCSStextArea(): HTMLElement {
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['css-area'] });
-    const inputEl: HTMLElement = createElement({ tag: 'input', classes: ['text-input'] });
+    const inputEl: HTMLElement = this.inputEl;
     const comment: string = `{<br>/* Styles would go here. */<br>}`;
     const commentEl: HTMLElement = createElement({ tag: 'div', classes: ['comment'], content: comment });
     const buttonsBarEl: HTMLElement = createElement({ tag: 'div', classes: ['button-bar'] });
-    const enterBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-enter'], content: 'Enter' });
+    const enterBtn: HTMLElement = this.enterBtn;
     const helpBtn: HTMLElement = createElement({ tag: 'button', classes: ['button', 'button-help'], content: '?' });
-
-    // checking answer
-    function handler() {
-      if (inputEl instanceof HTMLInputElement) {
-        const result: boolean = checkSelectors(CURRENT_LEVEL.getHtmlMap(), inputEl.value);
-        if (result) {
-          win();
-        } else {
-          lose();
-        }
-      }
-    }
-    enterBtn.addEventListener('click', handler);
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') handler();
-    });
 
     buttonsBarEl.append(enterBtn, helpBtn);
 

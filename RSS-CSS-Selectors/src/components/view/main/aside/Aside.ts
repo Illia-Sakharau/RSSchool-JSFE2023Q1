@@ -34,6 +34,9 @@ export default class Aside {
     document.addEventListener('toggleMenu', () => {
       asideEl.classList.toggle('visible');
     });
+    document.addEventListener('closeMenu', () => {
+      asideEl.classList.remove('visible');
+    });
 
     //choose level
     asideEl.addEventListener('click', (event: MouseEvent): void => {
@@ -48,8 +51,8 @@ export default class Aside {
             const levelChanget = new Event('levelChanget');
             document.dispatchEvent(levelChanget);
           }
-          const event = new Event('toggleMenu');
-          document.dispatchEvent(event);
+          const toggleMenu = new Event('closeMenu');
+          document.dispatchEvent(toggleMenu);
         }
       }
     });
