@@ -6,10 +6,10 @@ export default function (html: string, checkedSelectors: string | null): boolean
     if (!checkedSelectors) {
       return false;
     }
-    // if (checkedSelectors === '[data-target="true"]') {
-    //   alert(`Don't cheat, please!`);
-    //   return false;
-    // }
+    if (checkedSelectors === '[data-target="true"]') {
+      alert(`Don't cheat, please!`);
+      return false;
+    }
     const enteredAnswer = xmlDoc.querySelectorAll(checkedSelectors);
 
     if (JSON.stringify(correctAnswer) !== JSON.stringify(enteredAnswer)) {
