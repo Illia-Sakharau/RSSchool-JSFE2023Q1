@@ -5,12 +5,15 @@ export default () => {
   const targetsElems = document.querySelectorAll('.target');
   const currentLevel = CURRENT_LEVEL.getLevel();
   let nextLvl = currentLevel < LEVELS_STATES.length - 1 ? currentLevel + 1 : 0;
+  let isWin = false;
 
-  LEVELS_STATES[currentLevel] = 'completed';
-  localStorage.setItem(`ily-level${currentLevel}`, 'completed');
+  if (!LEVELS_STATES[currentLevel]) {
+    LEVELS_STATES[currentLevel] = 'completed';
+    localStorage.setItem(`ily-level${currentLevel}`, 'completed');
+  }
 
   if (LEVELS_STATES.every((lvl) => !!lvl)) {
-    winHandler();
+    isWin = true;
   } else {
     while (LEVELS_STATES[nextLvl] !== null) {
       nextLvl = nextLvl < LEVELS_STATES.length - 1 ? nextLvl + 1 : 0;
@@ -24,11 +27,11 @@ export default () => {
   targetsElems[0].addEventListener(
     'animationend',
     () => {
+      if (isWin) winHandler();
       const levelChanget = new Event('levelChanget');
       document.dispatchEvent(levelChanget);
       return;
     },
     false,
   );
-  return;
 };

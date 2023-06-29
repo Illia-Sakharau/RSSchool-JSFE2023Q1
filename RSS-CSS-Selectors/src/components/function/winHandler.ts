@@ -1,3 +1,3 @@
 export default () => {
-  console.log('win');
+  alert(`Congratulations!!! You completed all levels!`);
 };
