@@ -70,9 +70,10 @@ export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): HTMLElemen
       return res;
     }
     obj.forEach((el, i) => {
-      const numEl = num || i;
+      const someBigNum = 1994;
+      const numEl = num + someBigNum + i;
       const elem = travers(el as ParsedElementsArray, padding + 1, numEl);
-      elem.dataset.num = `${numEl}`;
+      // elem.dataset.num = `${numEl}`;
       elem.dataset.num1 = `${i}`;
       res.append(elem);
     });

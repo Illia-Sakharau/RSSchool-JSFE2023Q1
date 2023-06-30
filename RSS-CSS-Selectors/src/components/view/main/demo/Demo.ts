@@ -73,10 +73,11 @@ export default class Editor {
         return res;
       }
       obj.forEach((el, i) => {
-        const numEl = num || i;
+        const someBigNum = 1994;
+        const numEl = num + someBigNum + i;
         const elem = parseArrayToElements(el as ParsedElementsArray, !isColunm, numEl);
         if (elem.firstChild instanceof HTMLElement) {
-          elem.firstChild.dataset.num = `${numEl}`;
+          // elem.firstChild.dataset.num = `${numEl}`;
           elem.firstChild.dataset.num1 = `${i}`;
         }
         res.append(elem);
