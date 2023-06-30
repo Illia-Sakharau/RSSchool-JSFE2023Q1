@@ -13,7 +13,7 @@ export default class Header {
         </div>
         <div class="level">
           <h2>Level ${CURRENT_LEVEL.getLevel() + 1}:</h2>
-          <span>${CURRENT_LEVEL.getDescription()}</span>
+          <span>${CURRENT_LEVEL.getTitle()}</span>
         </div>
       </header>
     `;

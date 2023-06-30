@@ -2,42 +2,36 @@ import { ILevels } from '../types/types';
 
 const levels: ILevels[] = [
   {
-    description: 'Lorem ipsum dolor sit ametsed do eiusmod tempor incididunt',
-    answer: '.withPrint',
+    title: 'Choose all objects',
+    answer: '*',
+    selector: 'Universal selectors',
+    linkToInfo: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors',
     htmlMap: `
       <shelf>
-        <rack>
-          <pot>
-            <chamomile>
-            </chamomile>
-            <tulip>
-            </tulip>
+        <rack data-target="true">
+          <pot data-target="true">
+            <chamomile data-target="true"></chamomile>
+            <tulip data-target="true"></tulip>
           </pot>
         </rack>
-        <rack>
-        </rack>
+        <rack data-target="true"></rack>
         <pot class="withPrint" data-target="true">
-          <tulip>
-          </tulip>
-          <tulip>
-          </tulip>
+          <tulip data-target="true"></tulip>
+          <tulip data-target="true"></tulip>
         </pot>
-        <rack>
-          <pot>
-            <chamomile>
-            </chamomile>
-            <tulip>
-            </tulip>
-          </pot>
+        <rack data-target="true">
+          <chamomile data-target="true"></chamomile>
+          <tulip data-target="true"></tulip>
+          <chamomile data-target="true"></chamomile>
         </rack>
-        <tulip>
-        </tulip>
       </shelf>
     `,
   },
   {
-    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
+    title: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
     answer: 'chamomile',
+    selector: '123',
+    linkToInfo: '123',
     htmlMap: `
     <shelf>
       <rack>
@@ -50,8 +44,10 @@ const levels: ILevels[] = [
     `,
   },
   {
-    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
+    title: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
     answer: 'rack',
+    selector: '123',
+    linkToInfo: '123',
     htmlMap: `
     <shelf>
       <rack data-target="true">

@@ -1,7 +1,9 @@
 export interface ILevels {
-  description: string;
+  title: string;
   answer: string;
   htmlMap: string;
+  selector: string;
+  linkToInfo: string;
 }
 export interface ICurrentLevel extends ILevels {
   currentLevel: number;

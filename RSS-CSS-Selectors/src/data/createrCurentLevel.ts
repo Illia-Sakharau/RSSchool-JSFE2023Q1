@@ -6,9 +6,11 @@ export default class {
   private curentLvlInfo: ICurrentLevel = {
     currentLevel: 0,
     map: [],
-    description: '',
+    title: '',
     answer: '',
     htmlMap: '',
+    selector: '',
+    linkToInfo: '',
   };
   constructor(private currentLvl: number) {
     this.setCurentLvl(currentLvl);
@@ -20,9 +22,11 @@ export default class {
   private setCurrentLvlInfo(currentLvl: number) {
     this.curentLvlInfo.currentLevel = currentLvl;
     this.curentLvlInfo.map = parserMapToArray(levels[currentLvl].htmlMap);
-    this.curentLvlInfo.description = levels[currentLvl].description;
+    this.curentLvlInfo.title = levels[currentLvl].title;
     this.curentLvlInfo.answer = levels[currentLvl].answer;
     this.curentLvlInfo.htmlMap = levels[currentLvl].htmlMap;
+    this.curentLvlInfo.selector = levels[currentLvl].selector;
+    this.curentLvlInfo.linkToInfo = levels[currentLvl].linkToInfo;
   }
   public getAllInfo() {
     return this.curentLvlInfo;
@@ -33,8 +37,8 @@ export default class {
   public getMap() {
     return this.curentLvlInfo.map;
   }
-  public getDescription() {
-    return this.curentLvlInfo.description;
+  public getTitle() {
+    return this.curentLvlInfo.title;
   }
   public getHtmlMap() {
     return this.curentLvlInfo.htmlMap;
