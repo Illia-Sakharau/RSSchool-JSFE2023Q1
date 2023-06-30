@@ -100,7 +100,11 @@ export default class Editor {
   private createCSStextArea(): HTMLElement {
     const areaEl: HTMLElement = createElement({ tag: 'div', classes: ['css-area'] });
     const inputEl: HTMLElement = this.inputEl;
-    const comment: string = `{<br>/* Styles would go here. */<br>}`;
+    const comment: string = `{<br>/* Styles would go here. */<br>}
+    <br><br>
+    <br>/* Is recommended to use 
+    <br><a href="${CURRENT_LEVEL.getLinkToInfo()}" target="_blank">${CURRENT_LEVEL.getSelector()}</a> 
+    <br>to complete the level */`;
     const commentEl: HTMLElement = createElement({ tag: 'div', classes: ['comment'], content: comment });
     const buttonsBarEl: HTMLElement = createElement({ tag: 'div', classes: ['button-bar'] });
     const enterBtn: HTMLElement = this.enterBtn;

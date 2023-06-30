@@ -74,7 +74,7 @@
   padding: 0 8px;
   color: $color-neutral-40;
   animation: bg-anim 1s ease-in-out infinite alternate;
-
+  @include text-mono;
   &::placeholder {
     color: $color-neutral-60;
   }
@@ -92,11 +92,17 @@
   }
  }
 
-.comment {
+.comment {  
   flex-grow: 1;
   width: 100%;
   padding: 0 8px;
   color: $color-neutral-80;
+
+  @include text-mono;
+  & a {
+    color: $color-brown-80;
+    text-decoration-line: underline;
+  }
 }
 
 .button-bar {

@@ -46,4 +46,10 @@ export default class {
   public getAnswer() {
     return this.curentLvlInfo.answer;
   }
+  public getSelector() {
+    return this.curentLvlInfo.selector;
+  }
+  public getLinkToInfo() {
+    return this.curentLvlInfo.linkToInfo;
+  }
 }
