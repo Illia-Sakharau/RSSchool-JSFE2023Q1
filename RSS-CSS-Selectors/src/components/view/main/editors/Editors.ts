@@ -42,7 +42,7 @@ export default class Editor {
         const currentLevel = CURRENT_LEVEL.getLevel();
         const answer = CURRENT_LEVEL.getAnswer();
         const inputEl = this.inputEl;
-        const speed = 800 / answer.length;
+        const speed = 30;
         let count = 0;
 
         LEVELS_STATES[currentLevel] = 'completed_help';
