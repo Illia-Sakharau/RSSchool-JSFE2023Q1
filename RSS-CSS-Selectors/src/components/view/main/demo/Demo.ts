@@ -42,33 +42,32 @@ export default class Editor {
       [Elements.tulip]: tulipImg,
     };
 
+    function createDemoElem(isBlock: boolean, obj: IParsedElem, num: number): HTMLElement {
+      const { tag, classes, target, id } = obj as IParsedElem;
+      const elem = createElement({ tag: tag, classes: classes });
+      const classStr = classes?.length === 0 ? '' : ` class="${classes}"`;
+      const idStr = !id ? '' : ` id="${id}"`;
+      if (target) elem.classList.add('target');
+      if (id) elem.classList.add(`${id}`);
+      elem.innerHTML = imgs[tag];
+      elem.dataset.num = `${num}`;
+      elem.dataset.tag = isBlock ? `<${tag}${idStr}${classStr}> ... </${tag}>` : `<${tag}${idStr}${classStr} />`;
+      return elem;
+    }
+
     function parseArrayToElements(obj: ParsedElementsArray, isColunm: boolean = false, num: number = 0): HTMLElement {
       const elClass: string = isColunm ? 'col-wrapper' : 'row-wrapper';
       const res: HTMLElement = createElement({ tag: 'div', classes: [elClass] });
       if (!Array.isArray(obj)) {
-        const { tag, classes, target } = obj as IParsedElem;
-        const elem = createElement({ tag: tag, classes: classes });
-        if (target) {
-          elem.classList.add('target');
-        }
-        elem.innerHTML = imgs[tag];
+        const elem = createDemoElem(false, obj, num);
         elem.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
-        elem.dataset.num = `${num}`;
-        elem.dataset.tag = `<${tag} />`;
         res.append(elem);
         return res;
       }
       if (!Array.isArray(obj[0]) && Array.isArray(obj[1])) {
-        const { tag, classes, target } = obj[0] as IParsedElem;
-        const elem = createElement({ tag: tag, classes: classes });
+        const elem = createDemoElem(true, obj[0], num);
         const inner = parseArrayToElements(obj[1] as ParsedElementsArray, !isColunm, num);
-        if (target) {
-          elem.classList.add('target');
-        }
-        elem.innerHTML = imgs[tag];
         elem.dataset.object = `${JSON.stringify(obj).split('"').join('')}`;
-        elem.dataset.num = `${num}`;
-        elem.dataset.tag = `<${tag}> ... </${tag}>`;
         res.append(elem, inner);
         return res;
       }

@@ -77,14 +77,14 @@ tulip {
       content: attr(data-tag);
       position: absolute;
       top: -40px;
-      left: calc(50% - 72px);
+      left: calc(50% - 80px);
       z-index: 10;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 144px;
+      width: 160px;
       padding: 4px 8px;
       border-radius: $br-m;
   

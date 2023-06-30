@@ -10,9 +10,10 @@ export function parserMapToArray(map: string): ParsedElementsArray {
     if (child.children.length === 0) {
       const tag = child.tagName as Elements;
       const classes = [...child.classList];
+      const id = child.id;
       const target = child.attributes.getNamedItem('data-target') ? true : false;
 
-      return [{ tag: tag, classes: classes, target: target }];
+      return [{ tag: tag, classes: classes, target: target, id: id }];
     }
     const arr: ParsedElementsArray = [];
     for (let i = 0; i < child.children.length; i++) {
@@ -21,9 +22,10 @@ export function parserMapToArray(map: string): ParsedElementsArray {
 
         const tag = child.children[i].tagName as Elements;
         const classes = [...child.children[i].classList];
+        const id = child.children[i].id;
         const target = child.children[i].attributes.getNamedItem('data-target') ? true : false;
 
-        subArr.push({ tag: tag, classes: classes, target: target });
+        subArr.push({ tag: tag, classes: classes, target: target, id: id });
         subArr.push(travers(child.children[i]));
         arr.push(subArr);
       } else {
@@ -40,12 +42,13 @@ export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): HTMLElemen
   const prepareCode: HTMLElement = travers(arrMap);
 
   function createLine(isCloses: boolean, isBlock: boolean, obj: IParsedElem, padding: number): string {
-    const { tag, classes } = obj;
+    const { tag, classes, id } = obj;
     const tagStr = `${isCloses ? '/' : ''}<span class="tag">${tag}</span>`;
     const classesStr = classes?.length !== 0 && !isCloses ? `<span class="classes"> class="${classes}"</span>` : '';
+    const idStr = id && !isCloses ? `<span class="id"> id="${id}"</span>` : '';
     const oneTag = !isBlock && !isCloses ? ' /' : '';
     const template = `<div class="line" data-padding="${padding}">
-        &lt;${tagStr}${classesStr}${oneTag}&gt;
+        &lt;${tagStr}${classesStr}${idStr}${oneTag}&gt;
       </div>
       `;
     return template;
