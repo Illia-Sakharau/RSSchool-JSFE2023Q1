@@ -102,9 +102,8 @@ export default class Editor {
     const inputEl: HTMLElement = this.inputEl;
     const comment: string = `{<br>/* Styles would go here. */<br>}
     <br><br>
-    <br>/* Is recommended to use 
-    <br><a href="${CURRENT_LEVEL.getLinkToInfo()}" target="_blank">${CURRENT_LEVEL.getSelector()}</a> 
-    <br>to complete the level */`;
+    /* <a href="${CURRENT_LEVEL.getLinkToInfo()}" target="_blank">${CURRENT_LEVEL.getSelector()}</a> 
+    is recommended to use to complete the level. */`;
     const commentEl: HTMLElement = createElement({ tag: 'div', classes: ['comment'], content: comment });
     const buttonsBarEl: HTMLElement = createElement({ tag: 'div', classes: ['button-bar'] });
     const enterBtn: HTMLElement = this.enterBtn;
