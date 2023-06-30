@@ -42,7 +42,7 @@ export function parserArrayToHTMLeditor(arrMap: ParsedElementsArray): HTMLElemen
   function createLine(isCloses: boolean, isBlock: boolean, obj: IParsedElem, padding: number): string {
     const { tag, classes } = obj;
     const tagStr = `${isCloses ? '/' : ''}<span class="tag">${tag}</span>`;
-    const classesStr = classes?.length === 0 ? '' : `<span class="classes"> class="${classes}"</span>`;
+    const classesStr = classes?.length !== 0 && !isCloses ? `<span class="classes"> class="${classes}"</span>` : '';
     const oneTag = !isBlock && !isCloses ? ' /' : '';
     const template = `<div class="line" data-padding="${padding}">
         &lt;${tagStr}${classesStr}${oneTag}&gt;
