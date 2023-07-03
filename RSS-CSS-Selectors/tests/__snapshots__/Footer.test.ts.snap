@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test drow footer should return footer 1`] = `
+<footer>
+  
+        
+  <a
+    class="author"
+    href="https://github.com/Illia-Sakharau"
+    target="_blank"
+  >
+    
+          github.svg
+          
+    <span>
+      Illia Sakharau
+    </span>
+    
+        
+  </a>
+  
+        
+  <a
+    class="school"
+    href="https://rs.school/js/"
+    target="_blank"
+  >
+    
+          rsslogo.svg
+        
+  </a>
+  
+        
+  <div
+    class="copyright"
+  >
+    
+          © 2023
+        
+  </div>
+  
+      
+</footer>
+`;
