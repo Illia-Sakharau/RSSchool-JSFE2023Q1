@@ -1,6 +1,5 @@
 import createrCurentLevel from '../src/data/createrCurentLevel';
-import { ILevels } from '../src/types/types';
-import { currentLevel, levels } from './_test-data';
+import { currentLevel } from './_test-data';
 
 jest.mock('../src/data/levels', () => [
   {
@@ -19,7 +18,9 @@ jest.mock('../src/data/levels', () => [
   },
 ]);
 const createdLevel = new createrCurentLevel(currentLevel.currentLevel);
-
+afterAll(() => {
+  jest.restoreAllMocks();
+});
 describe('Test create current level', () => {
   test('should be defined', () => {
     expect(createdLevel).toBeDefined();
