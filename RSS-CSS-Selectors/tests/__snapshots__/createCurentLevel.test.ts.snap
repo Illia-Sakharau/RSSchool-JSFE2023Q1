@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test create current level should return correct answer 1`] = `
+"
+        <shelf>
+          <rack></rack>
+          <pot data-target="true"></pot>
+          <chamomile></chamomile>
+          <tulip></tulip>
+        </shelf>
+      "
+`;
+
+exports[`Test create current level should return correct answer 2`] = `
+{
+  "answer": "pot",
+  "currentLevel": 0,
+  "htmlMap": "
+        <shelf>
+          <rack></rack>
+          <pot data-target="true"></pot>
+          <chamomile></chamomile>
+          <tulip></tulip>
+        </shelf>
+      ",
+  "linkToInfo": "#",
+  "map": [
+    {
+      "classes": [],
+      "id": "",
+      "tag": "rack",
+      "target": false,
+    },
+    {
+      "classes": [],
+      "id": "",
+      "tag": "pot",
+      "target": true,
+    },
+    {
+      "classes": [],
+      "id": "",
+      "tag": "chamomile",
+      "target": false,
+    },
+    {
+      "classes": [],
+      "id": "",
+      "tag": "tulip",
+      "target": false,
+    },
+  ],
+  "selector": "test",
+  "title": "Test title",
+}
+`;
