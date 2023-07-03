@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test parser array map to html element viewer HTML code should return correct answer 1`] = `
+<div>
+  <div
+    class="line"
+  >
+    &lt;shelf&gt;
+  </div>
+  <div
+    data-num="1994"
+    data-num1="0"
+    data-object="{tag:rack,classes:[],target:false,id:}"
+  >
+    <div
+      class="line"
+      data-padding="1"
+    >
+      
+        &lt;
+      <span
+        class="tag"
+      >
+        rack
+      </span>
+       /&gt;
+      
+    </div>
+  </div>
+  <div
+    data-num="1995"
+    data-num1="1"
+    data-object="{tag:pot,classes:[],target:true,id:}"
+  >
+    <div
+      class="line"
+      data-padding="1"
+    >
+      
+        &lt;
+      <span
+        class="tag"
+      >
+        pot
+      </span>
+       /&gt;
+      
+    </div>
+  </div>
+  <div
+    data-num="1996"
+    data-num1="2"
+    data-object="{tag:chamomile,classes:[],target:false,id:}"
+  >
+    <div
+      class="line"
+      data-padding="1"
+    >
+      
+        &lt;
+      <span
+        class="tag"
+      >
+        chamomile
+      </span>
+       /&gt;
+      
+    </div>
+  </div>
+  <div
+    data-num="1997"
+    data-num1="3"
+    data-object="{tag:tulip,classes:[],target:false,id:}"
+  >
+    <div
+      class="line"
+      data-padding="1"
+    >
+      
+        &lt;
+      <span
+        class="tag"
+      >
+        tulip
+      </span>
+       /&gt;
+      
+    </div>
+  </div>
+  <div
+    class="line"
+  >
+    &lt;/shelf&gt;
+  </div>
+</div>
+`;
