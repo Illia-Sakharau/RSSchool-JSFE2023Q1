@@ -37,5 +37,5 @@ module.exports = {
         ],
         'prettier/prettier': 'error',
     },
-    ignorePatterns: ['.eslintrc.js', 'webpack.config.js'],
+    ignorePatterns: ['.eslintrc.js', 'webpack.config.js', 'jest.config.js'],
 }
