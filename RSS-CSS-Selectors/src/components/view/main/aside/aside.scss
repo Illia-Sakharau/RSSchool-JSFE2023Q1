@@ -10,6 +10,7 @@ aside {
   height: 100%;
   border-radius: $br-l;
   padding: 16px;
+  padding-right: 12px;
 
   & h6 {
     width: 100%;
@@ -23,6 +24,8 @@ aside {
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: auto;
+  padding-right: 4px;
 }
 .level-btn {
   display: flex;

@@ -1,8 +1,19 @@
+@import "./tokens.scss";
+
 /* Reset and base styles  */
 * {
 	padding: 0px;
 	margin: 0px;
 	border: none;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+      
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: $color-neutral-60;
+    }
 }
 
 *,

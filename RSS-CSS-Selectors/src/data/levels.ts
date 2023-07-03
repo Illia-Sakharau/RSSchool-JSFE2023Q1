@@ -51,7 +51,7 @@ const levels: ILevels[] = [
     `,
   },
   {
-    title: 'Select pot with print',
+    title: 'Select pots with print',
     answer: '.withPrint',
     selector: 'Class selector',
     linkToInfo: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors',
@@ -225,7 +225,7 @@ const levels: ILevels[] = [
     `,
   },
   {
-    title: 'Select first tulip in any container',
+    title: `Select the first flower in each container if it's tulip`,
     answer: 'tulip:first-child',
     selector: ':first-child',
     linkToInfo: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child',
