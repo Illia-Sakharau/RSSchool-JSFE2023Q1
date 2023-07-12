@@ -67,7 +67,6 @@ module.exports = ({develop}) => ({
             ]
         }),
         ...eslintPlugin(develop),
-        
     ],
     ...devServer(develop),
 });

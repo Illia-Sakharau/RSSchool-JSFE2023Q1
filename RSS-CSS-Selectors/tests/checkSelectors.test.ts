@@ -1,12 +1,12 @@
-import checkSelectors from '../src/components/function/checkSelectors';
+import isCorrectSelector from '../src/components/function/isCorrectSelector';
 import { currentLevel } from './_test-data';
 
 describe('Test check selectors function - correct/uncorrect selectors', () => {
   let correctSelectors: boolean;
   let uncorrectSelectors: boolean;
   beforeEach(() => {
-    correctSelectors = checkSelectors(currentLevel.htmlMap, currentLevel.answer);
-    uncorrectSelectors = checkSelectors(currentLevel.htmlMap, 'bla');
+    correctSelectors = isCorrectSelector(currentLevel.htmlMap, currentLevel.answer);
+    uncorrectSelectors = isCorrectSelector(currentLevel.htmlMap, 'bla');
   });
   test('should be defined', () => {
     expect(correctSelectors).toBeDefined();
@@ -25,7 +25,7 @@ describe('Test check selectors function - check cheating', () => {
   let cheatSelectors: boolean;
   beforeEach(() => {
     alertSpy = jest.spyOn(window, 'alert').mockImplementation((str) => str);
-    cheatSelectors = checkSelectors(currentLevel.htmlMap, '[data-target="true"]');
+    cheatSelectors = isCorrectSelector(currentLevel.htmlMap, '[data-target="true"]');
   });
   afterEach(() => {
     alertSpy.mockRestore();

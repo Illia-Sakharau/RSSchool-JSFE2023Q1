@@ -4,7 +4,7 @@ import htmlToElement from '../../../../utils/htmlToElement';
 import { CURRENT_LEVEL, LEVELS_STATES } from '../../../../data/constants';
 import { parserArrayToHTMLeditor } from '../../../function/parsers';
 import linkedHover from '../../../function/linkedHover';
-import checkSelectors from '../../../function/checkSelectors';
+import isCorrectSelector from '../../../function/isCorrectSelector';
 import correctAnswerHandler from '../../../function/correctAnswerHandler';
 import wrongAnswerHandler from '../../../function/wrongAnswerHandler';
 
@@ -19,7 +19,7 @@ export default class Editor {
     // checking answer
     const handler = () => {
       if (this.inputEl instanceof HTMLInputElement) {
-        if (checkSelectors(CURRENT_LEVEL.getHtmlMap(), this.inputEl.value.toString())) {
+        if (isCorrectSelector(CURRENT_LEVEL.getHtmlMap(), this.inputEl.value.toString())) {
           this.inputEl.value = '';
           correctAnswerHandler();
         } else {
@@ -63,7 +63,7 @@ export default class Editor {
       }
     });
 
-    document.addEventListener('levelChanget', () => {
+    document.addEventListener('levelChanged', () => {
       if (this.inputEl instanceof HTMLInputElement) {
         this.inputEl.value = '';
       }

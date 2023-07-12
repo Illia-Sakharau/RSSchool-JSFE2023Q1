@@ -28,8 +28,8 @@ export default () => {
     'animationend',
     () => {
       if (isWin) winHandler();
-      const levelChanget = new Event('levelChanget');
-      document.dispatchEvent(levelChanget);
+      const levelChanged = new Event('levelChanged');
+      document.dispatchEvent(levelChanged);
       return;
     },
     false,

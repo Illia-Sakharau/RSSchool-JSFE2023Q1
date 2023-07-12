@@ -5,59 +5,67 @@ import { CURRENT_LEVEL, LEVELS_STATES } from '../../../../data/constants';
 import resetLevelsHandler from '../../../function/resetLevelsHandler';
 
 export default class Aside {
+  private asideEl: HTMLElement = createElement({ tag: 'aside' });
+
+  constructor() {
+    // open/close aside meny
+    document.addEventListener('toggleMenu', () => {
+      this.asideEl.classList.toggle('visible');
+    });
+    document.addEventListener('closeMenu', () => {
+      this.asideEl.classList.remove('visible');
+    });
+
+    //choose level
+    this.asideEl.addEventListener('click', this.chooseLevelHandler);
+  }
+
   public draw(): HTMLElement {
-    const asideEl: HTMLElement = createElement({ tag: 'aside' });
+    const asideEl = this.asideEl;
     const title: HTMLElement = createElement({ tag: 'h6', content: 'Levels' });
-    const levelWrapperel: HTMLElement = createElement({ tag: 'div', classes: ['levels-wrapper'] });
+    const levelWrapperel: HTMLElement = this.createLevelsList();
     const resetButtonEl: HTMLElement = createElement({ tag: 'button', classes: ['button'], content: 'Reset progress' });
 
-    const currentLevel = CURRENT_LEVEL.getLevel();
+    asideEl.innerHTML = '';
+    resetButtonEl.addEventListener('click', resetLevelsHandler);
+    asideEl.append(title, levelWrapperel, resetButtonEl);
 
-    asideEl.appendChild(title);
+    return asideEl;
+  }
+
+  private createLevelsList(): HTMLElement {
+    const levelWrapperel: HTMLElement = createElement({ tag: 'div', classes: ['levels-wrapper'] });
+    const currentLevel = CURRENT_LEVEL.getLevel();
 
     levels.forEach((_, ind) => {
       const classes = ['level-btn'];
       const state = LEVELS_STATES[ind];
-
-      if (state) classes.push(state);
-      if (currentLevel === ind) classes.push('active');
-
+      if (state) {
+        classes.push(state);
+      }
+      if (currentLevel === ind) {
+        classes.push('active');
+      }
       const levelEl = createElement({ tag: 'button', classes: classes, content: `Level ${ind + 1}` });
       levelEl.dataset.level = `${ind}`;
       levelWrapperel.appendChild(levelEl);
     });
-    asideEl.appendChild(levelWrapperel);
+    return levelWrapperel;
+  }
 
-    resetButtonEl.addEventListener('click', resetLevelsHandler);
-    asideEl.appendChild(resetButtonEl);
-
-    // open/close aside meny
-    document.addEventListener('toggleMenu', () => {
-      asideEl.classList.toggle('visible');
-    });
-    document.addEventListener('closeMenu', () => {
-      asideEl.classList.remove('visible');
-    });
-
-    //choose level
-    asideEl.addEventListener('click', (event: MouseEvent): void => {
-      const target = event.target;
-      if (target instanceof HTMLElement) {
-        const closest = target.closest('.level-btn');
-        if (closest instanceof HTMLElement) {
-          if (closest.dataset.level !== `${CURRENT_LEVEL.getLevel()}`) {
-            const nextLvl = Number(closest.dataset.level);
-            CURRENT_LEVEL.setCurentLvl(nextLvl);
-            localStorage.setItem('ily-currentLvl', `${nextLvl}`);
-            const levelChanget = new Event('levelChanget');
-            document.dispatchEvent(levelChanget);
-          }
-          const toggleMenu = new Event('closeMenu');
-          document.dispatchEvent(toggleMenu);
-        }
+  private chooseLevelHandler(event: MouseEvent): void {
+    const target = event.target;
+    const closeMenu = new Event('closeMenu');
+    const levelChanged = new Event('levelChanged');
+    if (target instanceof HTMLElement) {
+      const closest = target.closest('.level-btn');
+      if (closest instanceof HTMLElement && closest.dataset.level !== `${CURRENT_LEVEL.getLevel()}`) {
+        const nextLvl = Number(closest.dataset.level);
+        CURRENT_LEVEL.setCurentLvl(nextLvl);
+        localStorage.setItem('ily-currentLvl', `${nextLvl}`);
+        document.dispatchEvent(levelChanged);
       }
-    });
-
-    return asideEl;
+      document.dispatchEvent(closeMenu);
+    }
   }
 }

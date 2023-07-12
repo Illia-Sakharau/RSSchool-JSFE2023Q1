@@ -6,7 +6,7 @@ export default class App {
   public start(): void {
     this.view.drawApp();
 
-    document.addEventListener('levelChanget', () => {
+    document.addEventListener('levelChanged', () => {
       this.view.drawApp();
       const closeMenu = new Event('closeMenu');
       document.dispatchEvent(closeMenu);

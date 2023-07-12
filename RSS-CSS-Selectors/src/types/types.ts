@@ -19,7 +19,7 @@ export interface ICreateElementParam {
 
 export interface IParsedElem extends ICreateElementParam {
   tag: Elements;
-  target: boolean;
+  isTarget: boolean;
 }
 
 export type ParsedElementsArray = Array<IParsedElem | ParsedElementsArray>;
@@ -29,4 +29,11 @@ export enum Elements {
   pot = 'pot',
   chamomile = 'chamomile',
   tulip = 'tulip',
+}
+
+export interface IlineParams {
+  isClosed: boolean;
+  isBlock: boolean;
+  obj: IParsedElem;
+  padding: number;
 }
