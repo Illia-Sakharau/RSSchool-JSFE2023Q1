@@ -4,11 +4,10 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+        "airbnb-typescript/base",
         "eslint:recommended",
-        'airbnb',
-        'airbnb-typescript/base',
         "plugin:@typescript-eslint/recommended",
-        'plugin:prettier/recommended'
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -18,8 +17,9 @@ module.exports = {
         "tsconfigRootDir": __dirname
     },
     "plugins": [
+        "import",
         "@typescript-eslint",
-        'prettier'
+        "prettier"
     ],
     "rules": {
         "@typescript-eslint/no-explicit-any": 'error',
