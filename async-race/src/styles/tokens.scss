@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Zen+Dots&display=swap');
+
+// Colors
+$color-neutral-0: #1C212B;
+$color-neutral-80: #293949;
+$color-neutral-100: #FFFFFF;
+$grad-neutral-linar-1: linear-gradient(180deg, #515D69 0%, #293949 100%);
+$grad-neutral-linar-2: linear-gradient(214deg, #222A37 0%, #334352 100%);
+
+$color-primary: #FB8C06;
+$grad-primary-linar: linear-gradient(180deg, #FB8C06 0%, #FEB902 100%);
+
+$color-secondary: #1CF3CA;
+$grad-secondary-linar: linear-gradient(51deg, #1CF3CA 0%, #1C72F3 100%);
+$grad-secondary-radial: radial-gradient(50% 50.00% at 50% 50.00%, #1CF3CA 0%, rgba(28, 114, 243, 0.00) 100%);
+
+$color-disable: rgba(255, 255, 255, 0.50);
+$color-positive: #85DA19;
+$color-negative: #FF4D00;
+
+// Border radius
+$br-s: 8px;
+$br-m: 16px;
+$br-l: 32px;
+
+// Text
+@mixin text-general-reg {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 16px;
+    weight: 500;
+  }
+}
+
+@mixin text-h3 {
+  font: {
+    family: 'Zen Dots', cursive;
+    size: 24px;
+    height: 32px;
+  }
+}
+
+@mixin text-h6 {
+  font: {
+    family: 'Zen Dots', cursive;
+    size: 16px;
+  }
+}
+
+
+// Breakpoints
+// $bp-10: 1440px;
+// $bp-20: 896px;
+// $bp-30: 590px;
