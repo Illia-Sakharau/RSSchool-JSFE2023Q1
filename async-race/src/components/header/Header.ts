@@ -4,7 +4,7 @@ import createElement from '../../utils/createElement';
 import logoImg from '../../assets/logo.svg';
 import gitImg from '../../assets/github.svg';
 import schoolLogoImg from '../../assets/rsslogo.svg';
-import { ROUTES } from '../../data/constants';
+import { PAGES } from '../../data/constants';
 // import { router } from '../../router/router';
 
 function createLogo(): HTMLElement {
@@ -20,7 +20,7 @@ function createLogo(): HTMLElement {
 
 function createMenu(activeLinkText: string): HTMLElement {
   const menuEl: HTMLElement = createElement({ tag: 'nav', classes: ['menu'] });
-  ROUTES.forEach((route) => {
+  PAGES.forEach((route) => {
     const classes = activeLinkText === route.text ? ['menu__link', 'menu__link_active'] : ['menu__link'];
     const linkEl: HTMLElement = createElement({ tag: 'a', classes, content: route.text });
     linkEl.setAttribute('href', route.path);
