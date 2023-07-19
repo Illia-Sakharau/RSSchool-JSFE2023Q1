@@ -1,0 +1,128 @@
+@import "../../styles/tokens.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 16px;
+  flex-wrap: wrap;
+  
+  padding: 16px 32px;
+
+  background: $grad-neutral-linar-2;
+
+  &__menu {
+    flex-grow: 1;
+  }
+  &__info {
+    opacity: 0.4; 
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & svg {
+    width: 112px;
+  }
+  & h1 {
+    color: #FAE8B6;
+    @include text-h6;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  column-gap: 64px;
+
+  @include text-h3;
+  font-size: 48px;
+
+  &__link {
+    color: $color-disable;
+
+    &:hover {
+      color: $color-neutral-100;
+    }
+  }
+  &__link_active {
+    position: relative;
+    color: $color-neutral-100;
+    &::before {
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+
+      content: "";
+      width: 100%;
+      height: 8px;
+
+      background: $grad-secondary-radial;
+
+    }
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+
+  & svg {
+    fill: $color-disable;
+    &:hover {
+      fill: $color-neutral-100;
+    }
+  }
+
+  @include text-general-reg;
+  
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    row-gap: 4px;
+  }
+  &__author {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    color: $color-disable;
+    &:hover {
+      color: $color-neutral-100;
+      & svg {
+        fill: $color-neutral-100;
+      }
+    }
+  }
+  &__copyright {
+    color: $color-disable;
+  }
+}
+
+@media (max-width: $bp-10) {
+  .header {
+    row-gap: 16px;
+    &__menu {
+      order: 3;
+      width: 100%;
+    }
+  }
+  .logo {
+    & svg {
+      width: 80px;
+    }
+    & h1 {
+      font-size: 12px;
+    }
+  }
+  .menu {
+    justify-content: space-around;
+    column-gap: 32px;
+    font-size: 32px;
+  }
+    
+}

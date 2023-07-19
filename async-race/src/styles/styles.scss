@@ -1,23 +1,7 @@
 @import "./reset.scss";
 @import "./tokens.scss";
 
-// body {
-//   display: flex;
-//   flex-direction: column;
-//   row-gap: 16px;
-//   padding: 16px;
-//   background: $color-neutral-40;
-
-//   @include text-general-reg;
-// }
-
-// h6 {
-//   @include text-general-bold;
-//   color: $color-neutral-40;
-// }
-
-// @media (max-width: $bp-10) {
-//   body {
-//     background: $color-neutral-40;
-//   }
-// }
+body {
+  background: $color-neutral-0;
+  @include text-general-reg;
+}
