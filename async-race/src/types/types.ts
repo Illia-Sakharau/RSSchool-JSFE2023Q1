@@ -32,3 +32,9 @@ export interface IPaginationParams {
   prevBtnHandler: () => void;
   nextBtnHandler: () => void;
 }
+
+export interface ICar {
+  name: string;
+  color: string;
+  id: number;
+}

@@ -1,0 +1,41 @@
+@import "../../styles/tokens.scss";
+
+.car-card {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 16px;
+  border-radius: $br-m;
+  background: $grad-neutral-linar-1;
+  &_active {
+    background: linear-gradient(162deg, rgba(28, 243, 202, 0.80) 0%, rgba(28, 199, 216, 0.53) 34.38%, rgba(28, 156, 230, 0.26) 67.19%, rgba(28, 114, 243, 0.00) 100%), linear-gradient(180deg, #515D69 0%, #293949 100%), $grad-neutral-linar-1;
+  }
+
+
+  &__name {
+    color: $color-neutral-100;
+    @include text-h6;
+    text-align: center;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+  &__engine-btn-bar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+  }
+
+
+  &__car-btn-bar {
+    display: flex;
+    justify-content: space-between;
+    & * {
+      width: calc(50% - 8px);
+    }
+  }
+}
