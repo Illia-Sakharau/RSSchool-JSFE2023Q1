@@ -1,101 +1,85 @@
 @import "../../styles/tokens.scss";
 
-// header {
-//   display: flex;
-//   justify-content: space-between;
-//   column-gap: 16px;
+.garage {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
 
-//   width: 100%;
-//   padding-right: 152px;
-// }
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    min-height: calc(100vh - 150px);
+  }
+  &__wrapper {
+    flex-grow: 1;
+    display: flex;
+    column-gap: 32px;
+    padding: 0 32px;
 
-// .logo {
-//   display: flex;
-//   align-items: center;
-//   column-gap: 8px;
+  }
 
-//   min-width: 152px;
+  //delete
+  &__cars,
+  &__track {
+    min-height: 100px;
+    min-width: calc(50vw - 48px);
+    border: solid 2px black;
+    background-color: aquamarine;
+  }
 
-//   @include text-general-bold;
-//   font-size: 24px;
-//   color: $color-neutral-80;
-// }
+}
 
-// .level {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   column-gap: 8px;
+.car {
+  display: flex;
+  flex-direction: column;
+  width: calc(50vw - 48px);
+  background: $grad-neutral-linar-1;
+  border-radius: $br-l;
+  overflow: hidden;
 
-//   @include text-general-reg;
-//   font-size: 24px;
-//   color: $color-neutral-100;
+  &__wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  &__create,
+  &__modify {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 32px;
+  }
+  &__create {
+    border-bottom: dashed 2px $color-disable;
+  }
+  &__podium {
+    flex-grow: 1;
+    display: flex;
+    align-items: end;
+    background: url('../../assets/ground.jpg') 0 100%/100% auto no-repeat, $grad-secondary-radial;
+  }
 
-//   & h2 {
-//     flex-shrink: 0;
-//     @include text-general-bold;
-//     font-size: 24px;
-//   }
-// }
+}
 
-// .menu {
-//   flex-shrink: 0;
-//   display: flex;
-//   visibility: hidden;
-//   align-items: center;
-//   height: 32px;
-//   width: 32px;
-//   cursor: pointer;
-
-//   & .line {
-//     position: relative;
-//     width: 100%;
-//     height: 2.5px;
-//     background-color: $color-neutral-80;
-//     border-radius: 2px;
-//     &::before,
-//     &::after {
-//       content: "";
-//       position: absolute;
-//       width: 100%;
-//       height: 3px;    
-//       background-color: $color-neutral-80;
-//       border-radius: 2px;
-//     }
-//     &::before{
-//       top: -10px;
-//     }
-//     &::after{
-//       top: 10px;
-//     }
-//   }
-
-//   &_close .line {
-//     background-color: $color-neutral-40;
-//     &::before{
-//       top: 0px;
-//       transform: rotate(45deg);
-//     }
-//     &::after{
-//       top: 0px;
-//       transform: rotate(-45deg);
-//     }
-//   }
-// }
-
-// @media (max-width: $bp-20) {
-//   header {
-//     padding-right: 0px;
-//     flex-wrap: wrap;
-//   }
-//   .level {
-//     margin-top: 16px;
-//     width: 100%;
-//     order: 3;
-//   }
-//   .menu {
-//     visibility: visible;
-//     order: 2;
-//   }
-    
-// }
+@media (max-width: $bp-10) {
+  .garage {
+    row-gap: 24px;
+  
+    &__inner {
+      row-gap: 24px;
+    }
+    &__wrapper {
+      flex-grow: 1;
+      flex-direction: column;
+      row-gap: 24px;
+      padding: 0 16px;  
+    }
+  }
+  .car {
+    flex-grow: 1;
+    width: 100%;
+    background: $grad-neutral-linar-1;
+    border-radius: $br-l;
+  }  
+}
