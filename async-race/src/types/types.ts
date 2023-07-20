@@ -18,3 +18,10 @@ export interface IButtonParams {
   icon?: string;
   handler: () => void;
 }
+
+export interface ICarPropsInputParams {
+  inputText: string;
+  color: string;
+  btnText: string;
+  btnHandler: () => void;
+}

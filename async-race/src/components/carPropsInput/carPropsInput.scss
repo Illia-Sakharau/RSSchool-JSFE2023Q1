@@ -1,0 +1,24 @@
+@import "../../styles/tokens.scss";
+
+.propsInput {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  &__text,
+  &__color {
+    height: 32px;
+    padding: 0 8px;
+    border-radius: $br-s;
+  }
+  &__text {
+    flex-grow: 1;
+    color: $color-neutral-0;
+    background: $color-neutral-100;
+  }
+  &__color {
+    border: solid 2px $color-primary;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
