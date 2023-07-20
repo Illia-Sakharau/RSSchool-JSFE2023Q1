@@ -1,0 +1,11 @@
+@import "../../styles/tokens.scss";
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__text{
+    color: $color-disable;
+    @include text-h3;
+  }
+}
