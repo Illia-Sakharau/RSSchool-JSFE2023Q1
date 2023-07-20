@@ -50,6 +50,9 @@
     row-gap: 16px;
     padding: 32px;
   }
+  &__modify {
+    flex-grow: 1;
+  }
   &__create {
     border-bottom: dashed 2px $color-disable;
   }
@@ -60,6 +63,19 @@
     background: url('../../assets/ground.jpg') 0 100%/100% auto no-repeat, $grad-secondary-radial;
   }
 
+}
+.cars {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  width: calc(50vw - 48px);
+  &__list {
+    display: flex;
+    row-gap: 16px;
+    column-gap: 16px;
+    align-self: stretch;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: $bp-10) {
@@ -76,10 +92,9 @@
       padding: 0 16px;  
     }
   }
-  .car {
+  .car,
+  .cars {
     flex-grow: 1;
     width: 100%;
-    background: $grad-neutral-linar-1;
-    border-radius: $br-l;
   }  
 }

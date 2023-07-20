@@ -5,11 +5,52 @@ import createTitle from '../../components/title/title';
 import createButton from '../../components/button/button';
 import carPropsInput from '../../components/carPropsInput/carPropsInput';
 import createCarView34 from '../../components/carView34/carView34';
-
-// import gitImg from '../../assets/arraw-left.svg';
+import createPagination from '../../components/pagination/pagination';
+import createCarCard from '../../components/carCard/carCard';
+import { ICar } from '../../types/types';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
+
+  private activeCar: number = 0;
+
+  private carsOnPage: ICar[] = [
+    {
+      name: 'Tesla',
+      color: '#e6e6fa',
+      id: 1,
+    },
+    {
+      name: 'BMW',
+      color: '#fede00',
+      id: 2,
+    },
+    {
+      name: 'Mersedes',
+      color: '#6c779f',
+      id: 3,
+    },
+    {
+      name: 'Ford',
+      color: '#ef3c40',
+      id: 4,
+    },
+    {
+      name: 'Tesla',
+      color: '#e6e6fa',
+      id: 5,
+    },
+    {
+      name: 'BMW',
+      color: '#fede00',
+      id: 6,
+    },
+    {
+      name: 'Mersedes',
+      color: '#6c779f',
+      id: 7,
+    },
+  ];
 
   constructor() {
     this.draw('#FF0000');
@@ -21,7 +62,7 @@ export default class Garage {
     const garageInner: HTMLElement = createElement({ tag: 'div', classes: ['garage__inner'] });
     const wrapper: HTMLElement = createElement({ tag: 'div', classes: ['garage__wrapper'] });
     const carSection: HTMLElement = this.createCarSection(selectedCarColor);
-    const carsSection: HTMLElement = createElement({ tag: 'section', classes: ['garage__cars'], content: 'CARS' });
+    const carsSection: HTMLElement = this.createCarsSection();
     const trackSection: HTMLElement = createElement({ tag: 'section', classes: ['garage__track'], content: 'TRACK' });
 
     wrapper.append(carSection, carsSection);
@@ -79,6 +120,30 @@ export default class Garage {
     wrapper.append(modifyCarSubsection, podiumSubsection);
 
     return wrapper;
+  }
+
+  private createCarsSection(): HTMLElement {
+    const carsSection: HTMLElement = createElement({ tag: 'section', classes: ['cars'] });
+    const pagination: HTMLElement = createPagination({
+      currentPage: 1,
+      pagesAmount: 29,
+      prevBtnHandler: () => {
+        console.log('prevBtnHandler');
+      },
+      nextBtnHandler: () => {
+        console.log('nextBtnHandler');
+      },
+    });
+    const titleEl: HTMLElement = createTitle(`Garage (203)`, pagination);
+    const carsListEl: HTMLElement = createElement({ tag: 'div', classes: ['cars__list'] });
+
+    this.carsOnPage.forEach((car, ind) => {
+      const isActive: boolean = this.activeCar === ind ? true : false;
+      carsListEl.append(createCarCard(car, isActive));
+    });
+
+    carsSection.append(titleEl, carsListEl);
+    return carsSection;
   }
 
   public getGarageView(): HTMLElement {
