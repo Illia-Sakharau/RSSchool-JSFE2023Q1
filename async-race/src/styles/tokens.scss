@@ -12,7 +12,7 @@ $grad-primary-linar: linear-gradient(180deg, #FB8C06 0%, #FEB902 100%);
 
 $color-secondary: #1CF3CA;
 $grad-secondary-linar: linear-gradient(51deg, #1CF3CA 0%, #1C72F3 100%);
-$grad-secondary-radial: radial-gradient(50% 50.00% at 50% 50.00%, #1CF3CA 0%, rgba(28, 114, 243, 0.00) 100%);
+$grad-secondary-radial: radial-gradient(50% 50.00% at 50% 50.00%, #1CF3CA 0%, rgba(28, 205, 214, 0.70) 30%, rgba(28, 174, 224, 0.35) 65%, rgba(28, 114, 243, 0) 100%);
 
 $color-disable: rgba(255, 255, 255, 0.50);
 $color-positive: #85DA19;
@@ -49,4 +49,4 @@ $br-l: 32px;
 
 
 // Breakpoints
-$bp-10: 1120px;
+$bp-10: 992px;

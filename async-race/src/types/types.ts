@@ -25,3 +25,10 @@ export interface ICarPropsInputParams {
   btnText: string;
   btnHandler: () => void;
 }
+
+export interface IPaginationParams {
+  currentPage: number;
+  pagesAmount: number;
+  prevBtnHandler: () => void;
+  nextBtnHandler: () => void;
+}
