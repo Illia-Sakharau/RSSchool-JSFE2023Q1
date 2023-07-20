@@ -1,0 +1,22 @@
+@import "../../styles/tokens.scss";
+
+.car-view-front {
+  position: relative;
+  transform-style: preserve-3d;
+  margin-bottom: 32px;
+  &__grey{
+    background: url('../../assets/carFrontGrey.png') 0 100%/contain no-repeat;    
+  }
+  &::before {
+    content: "";
+    transform: translateZ(-1px);
+    position: absolute;
+    left: -16px;
+    bottom: -28px;
+
+    width: calc(100% + 32px);
+    height: 80px;
+    background: radial-gradient(50% 50.00% at 50% 50.00%, #0E0E22 0%, rgba(14, 14, 34, 0.00) 100%);
+    ;
+  }
+}
