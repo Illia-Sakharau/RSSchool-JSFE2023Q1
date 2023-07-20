@@ -1,0 +1,92 @@
+@import "../../styles/tokens.scss";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: $br-s;
+  @include text-general-reg;
+  line-height: 16px;
+  height: 32px;
+
+  &__filled-primary {
+    color: $color-neutral-0;
+    background: $grad-primary-linar;
+    &:hover {
+      box-shadow: 0px 0px 8px 0px $color-primary;
+    }
+    &:disabled {
+      color: $color-neutral-100;
+      background: $color-disable;
+      &:hover {
+        cursor: inherit;
+        box-shadow: none;
+      }
+      
+    }
+  }
+  &__filled-secondary {
+    color: $color-neutral-100;
+    background: $grad-secondary-linar;
+    &:hover {
+      box-shadow: 0px 0px 8px 0px $color-secondary;
+    }
+    &:disabled {
+      color: $color-neutral-100;
+      background: $color-disable;
+      &:hover {
+        cursor: inherit;
+        box-shadow: none;
+      }
+    }
+  }
+  &__bordered-negative {
+    color: $color-negative;
+    border: 2px solid $color-negative;
+    &:hover {
+      box-shadow: 0px 0px 8px 0px $color-negative;
+    }
+    &:disabled {
+      color: $color-disable;
+      border: 2px solid $color-disable;
+      &:hover {
+        cursor: inherit;
+        box-shadow: none;
+      }
+    }
+  }
+  &__bordered-positive {
+    color: $color-positive;
+    border: 2px solid $color-positive;
+    &:hover {
+      box-shadow: 0px 0px 8px 0px $color-positive;
+    }
+    &:disabled {
+      color: $color-disable;
+      border: 2px solid $color-disable;
+      &:hover {
+        cursor: inherit;
+        box-shadow: none;
+      }
+    }
+  }
+  &__icon-secondary {
+    & svg {
+      fill: url(#secondary_grad);
+    }
+    &:hover {
+      filter: drop-shadow(0px 0px 8px $color-secondary);
+    }
+    &:disabled {
+      & svg {
+        fill: $color-neutral-100;
+        fill-opacity: 0.5;
+      }
+      &:hover {
+        cursor: inherit;
+        filter: none;
+      }
+    }
+  }
+}

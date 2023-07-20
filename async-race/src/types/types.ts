@@ -10,3 +10,11 @@ export interface IRoute {
   text: string;
   view: () => void;
 }
+
+export interface IButtonParams {
+  priority: 'primary' | 'secondary' | 'negative' | 'positive';
+  type: 'filled' | 'bordered' | 'icon';
+  text?: string;
+  icon?: string;
+  handler: () => void;
+}
