@@ -12,8 +12,6 @@ import { ICar } from '../../types/types';
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
 
-  private activeCar: number = 0;
-
   private carsOnPage: ICar[] = [
     {
       name: 'Tesla',
@@ -52,28 +50,31 @@ export default class Garage {
     },
   ];
 
+  private activeCar: ICar = this.carsOnPage[0];
+
   constructor() {
-    this.draw('#FF0000');
+    this.draw();
   }
 
-  private draw(selectedCarColor: string): void {
+  private draw(): void {
     const headerEl = Header('Garage');
 
     const garageInner: HTMLElement = createElement({ tag: 'div', classes: ['garage__inner'] });
     const wrapper: HTMLElement = createElement({ tag: 'div', classes: ['garage__wrapper'] });
-    const carSection: HTMLElement = this.createCarSection(selectedCarColor);
+    const carSection: HTMLElement = this.createCarSection();
     const carsSection: HTMLElement = this.createCarsSection();
     const trackSection: HTMLElement = createElement({ tag: 'section', classes: ['garage__track'], content: 'TRACK' });
 
+    this.garageView.innerHTML = '';
     wrapper.append(carSection, carsSection);
     garageInner.append(wrapper, trackSection);
     this.garageView.append(headerEl, garageInner);
   }
 
-  private createCarSection(selectedCarColor: string): HTMLElement {
+  private createCarSection(): HTMLElement {
     const carSection: HTMLElement = createElement({ tag: 'section', classes: ['car'] });
     const createCarSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__create'] });
-    const modifyCarSubsection: HTMLElement = this.createMoifySubSection(selectedCarColor);
+    const modifyCarSubsection: HTMLElement = this.createMoifySubSection();
 
     const btnGeneratecars: HTMLElement = createButton({
       priority: 'secondary',
@@ -100,23 +101,23 @@ export default class Garage {
     return carSection;
   }
 
-  private createMoifySubSection(carColor: string): HTMLElement {
+  private createMoifySubSection(): HTMLElement {
     const wrapper: HTMLElement = createElement({ tag: 'div', classes: ['car__wrapper'] });
     const modifyCarSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__modify'] });
     const podiumSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__podium'] });
 
     const modifyCarTitle: HTMLElement = createTitle('Modify selected car');
     const modifyCarField: HTMLElement = carPropsInput({
-      inputText: 'Dodge Charger',
-      color: carColor,
+      inputText: this.activeCar.name,
+      color: this.activeCar.color,
       btnText: 'Save',
       btnHandler: () => {
-        console.log('Save');
+        console.log(`Save ${this.activeCar.id}`);
       },
     });
 
     modifyCarSubsection.append(modifyCarTitle, modifyCarField);
-    podiumSubsection.append(createCarView34(carColor));
+    podiumSubsection.append(createCarView34(this.activeCar.color));
     wrapper.append(modifyCarSubsection, podiumSubsection);
 
     return wrapper;
@@ -137,9 +138,17 @@ export default class Garage {
     const titleEl: HTMLElement = createTitle(`Garage (203)`, pagination);
     const carsListEl: HTMLElement = createElement({ tag: 'div', classes: ['cars__list'] });
 
-    this.carsOnPage.forEach((car, ind) => {
-      const isActive: boolean = this.activeCar === ind ? true : false;
+    this.carsOnPage.forEach((car) => {
+      const isActive: boolean = this.activeCar.id === car.id ? true : false;
       carsListEl.append(createCarCard(car, isActive));
+    });
+
+    carsListEl.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target instanceof HTMLButtonElement && target.id) {
+        this.activeCar = this.carsOnPage.find((car) => Number(target.id) === car.id) || this.carsOnPage[0];
+        this.draw();
+      }
     });
 
     carsSection.append(titleEl, carsListEl);

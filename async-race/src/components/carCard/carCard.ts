@@ -5,7 +5,7 @@ import createButton from '../button/button';
 import createCarViewFront from '../carViewFront/carViewFront';
 
 export default function createCarCard(params: ICar, isActice: boolean): HTMLElement {
-  const { name, color } = params;
+  const { name, color, id } = params;
   const carCard: HTMLElement = createElement({ tag: 'div', classes: ['car-card'] });
   const nameEl: HTMLElement = createElement({ tag: 'h6', classes: ['car-card__name'], content: name });
   const innerEl: HTMLElement = createElement({ tag: 'div', classes: ['car-card__inner'] });
@@ -40,10 +40,10 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
     priority: 'primary',
     type: 'filled',
     text: 'Select',
-    handler: () => {
-      console.log('Select car');
-    },
+    handler: () => {},
   });
+
+  selectBtnEl.id = `${id}`;
 
   stopBtnEl.disabled = true;
   engineBtnBarEl.append(startBtnEl, stopBtnEl);

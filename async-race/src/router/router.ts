@@ -3,28 +3,30 @@ import Winners from '../pages/winners/Winners';
 import { IRoute } from '../types/types';
 
 const body = document.body;
+const pagesInstance = {
+  garage: new Garage(),
+  winners: new Winners(),
+};
 const routes: IRoute[] = [
   {
     path: '#garage',
     text: 'Garage',
     view: () => {
-      const garage = new Garage();
       body.innerHTML = '';
-      body.append(garage.getGarageView());
+      body.append(pagesInstance.garage.getGarageView());
     },
   },
   {
     path: '#winners',
     text: 'Winners',
     view: () => {
-      const winners = new Winners();
       body.innerHTML = '';
-      body.append(winners.getWinnersView());
+      body.append(pagesInstance.winners.getWinnersView());
     },
   },
 ];
 
-const router = async () => {
+const router = () => {
   const match = routes.find((potentialMatch) => potentialMatch.path === location.hash) || routes[0];
   return match.view();
 };
