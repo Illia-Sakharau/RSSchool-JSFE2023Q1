@@ -9,6 +9,7 @@ import createPagination from '../../components/pagination/pagination';
 import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
+import { getGarageInfo } from '../../api/api';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -101,11 +102,13 @@ export default class Garage {
     const pagination: HTMLElement = createPagination({
       currentPage: GARAGE_PAGES_INFO.current,
       pagesAmount: GARAGE_PAGES_INFO.page_amount,
-      prevBtnHandler: () => {
-        console.log('prevBtnHandler');
+      prevBtnHandler: async () => {
+        await getGarageInfo(GARAGE_PAGES_INFO.current - 1);
+        this.draw();
       },
-      nextBtnHandler: () => {
-        console.log('nextBtnHandler');
+      nextBtnHandler: async () => {
+        await getGarageInfo(GARAGE_PAGES_INFO.current + 1);
+        this.draw();
       },
     });
     const titleEl: HTMLElement = createTitle(`Garage (${GARAGE_PAGES_INFO.car_amount})`, pagination);

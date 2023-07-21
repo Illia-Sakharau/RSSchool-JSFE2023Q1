@@ -10,6 +10,7 @@ export const getGarageInfo = async (page: number) => {
   const response = await fetch(`${baseUrl}${path.cars}?_page=${page}&_limit=${carsOnPageAmount}`);
   const data = await response.json();
 
+  CARS_ON_PAGE.length = 0;
   CARS_ON_PAGE.push(...data);
   GARAGE_PAGES_INFO.current = page;
   GARAGE_PAGES_INFO.car_amount = Number(response.headers.get('X-Total-Count'));
