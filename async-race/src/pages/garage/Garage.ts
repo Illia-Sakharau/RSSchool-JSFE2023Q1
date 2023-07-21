@@ -22,6 +22,8 @@ export default class Garage {
     id: NaN,
   };
 
+  private isFirst = true;
+
   private draw(): void {
     const headerEl = Header('Garage');
 
@@ -132,7 +134,11 @@ export default class Garage {
   }
 
   public getGarageView(): HTMLElement {
-    this.draw();
+    if (this.isFirst) {
+      this.draw();
+    }
+    this.isFirst = false;
+
     return this.garageView;
   }
 }
