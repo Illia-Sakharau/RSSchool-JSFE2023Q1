@@ -5,6 +5,7 @@
   transform-style: preserve-3d;
   margin-bottom: 32px;
   &__grey{
+    display: flex;
     background: url('../../assets/carFrontGrey.png') 0 100%/contain no-repeat;    
   }
   &::before {
