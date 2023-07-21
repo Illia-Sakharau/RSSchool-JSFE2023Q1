@@ -26,7 +26,7 @@ const routes: IRoute[] = [
   },
 ];
 
-const router = () => {
+const router = async () => {
   const match = routes.find((potentialMatch) => potentialMatch.path === location.hash) || routes[0];
   return match.view();
 };

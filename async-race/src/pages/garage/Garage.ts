@@ -8,53 +8,18 @@ import createCarView34 from '../../components/carView34/carView34';
 import createPagination from '../../components/pagination/pagination';
 import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
+import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
 
-  private carsOnPage: ICar[] = [
-    {
-      name: 'Tesla',
-      color: '#e6e6fa',
-      id: 1,
-    },
-    {
-      name: 'BMW',
-      color: '#fede00',
-      id: 2,
-    },
-    {
-      name: 'Mersedes',
-      color: '#6c779f',
-      id: 3,
-    },
-    {
-      name: 'Ford',
-      color: '#ef3c40',
-      id: 4,
-    },
-    {
-      name: 'Tesla',
-      color: '#e6e6fa',
-      id: 5,
-    },
-    {
-      name: 'BMW',
-      color: '#fede00',
-      id: 6,
-    },
-    {
-      name: 'Mersedes',
-      color: '#6c779f',
-      id: 7,
-    },
-  ];
+  private carsOnPage: ICar[] = CARS_ON_PAGE;
 
-  private activeCar: ICar = this.carsOnPage[0];
-
-  constructor() {
-    this.draw();
-  }
+  private activeCar: ICar = {
+    name: 'Select Car',
+    color: '#FFFFFF',
+    id: NaN,
+  };
 
   private draw(): void {
     const headerEl = Header('Garage');
@@ -74,7 +39,7 @@ export default class Garage {
   private createCarSection(): HTMLElement {
     const carSection: HTMLElement = createElement({ tag: 'section', classes: ['car'] });
     const createCarSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__create'] });
-    const modifyCarSubsection: HTMLElement = this.createMoifySubSection();
+    const modifyCarSubsection: HTMLElement = this.createModifySubSection();
 
     const btnGeneratecars: HTMLElement = createButton({
       priority: 'secondary',
@@ -101,7 +66,7 @@ export default class Garage {
     return carSection;
   }
 
-  private createMoifySubSection(): HTMLElement {
+  private createModifySubSection(): HTMLElement {
     const wrapper: HTMLElement = createElement({ tag: 'div', classes: ['car__wrapper'] });
     const modifyCarSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__modify'] });
     const podiumSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__podium'] });
@@ -117,8 +82,16 @@ export default class Garage {
     });
 
     modifyCarSubsection.append(modifyCarTitle, modifyCarField);
-    podiumSubsection.append(createCarView34(this.activeCar.color));
-    wrapper.append(modifyCarSubsection, podiumSubsection);
+    if (Number.isNaN(this.activeCar.id)) {
+      const elems = [];
+      elems.push(...modifyCarField.querySelectorAll('input'));
+      elems.push(...modifyCarField.querySelectorAll('button'));
+      elems.forEach((el) => (el.disabled = true));
+      wrapper.append(modifyCarSubsection);
+    } else {
+      podiumSubsection.append(createCarView34(this.activeCar.color));
+      wrapper.append(modifyCarSubsection, podiumSubsection);
+    }
 
     return wrapper;
   }
@@ -126,8 +99,8 @@ export default class Garage {
   private createCarsSection(): HTMLElement {
     const carsSection: HTMLElement = createElement({ tag: 'section', classes: ['cars'] });
     const pagination: HTMLElement = createPagination({
-      currentPage: 1,
-      pagesAmount: 29,
+      currentPage: GARAGE_PAGES_INFO.current,
+      pagesAmount: GARAGE_PAGES_INFO.amount,
       prevBtnHandler: () => {
         console.log('prevBtnHandler');
       },
@@ -156,6 +129,7 @@ export default class Garage {
   }
 
   public getGarageView(): HTMLElement {
+    this.draw();
     return this.garageView;
   }
 }
