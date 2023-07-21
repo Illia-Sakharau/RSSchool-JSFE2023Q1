@@ -1,0 +1,35 @@
+@import "../../styles/tokens.scss";
+
+.winners__line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  border-radius: $br-m;
+  background: $grad-neutral-linar-1;
+  & > .td {
+    padding: 16px 16px;
+    color: $color-neutral-100;
+    @include text-h3;
+    &_number {
+      width: 112px;
+      text-align: center;
+    }
+    &_car {
+      display: flex;
+      align-items: center;
+      width: 144px;
+      height: 32px;
+    }
+    &_name {
+      min-width: 180px;
+      flex-grow: 1;
+    }
+    &_wins {
+      width: 96px;
+    }
+    &_time {
+      width: 128px;
+    }
+  }
+}
