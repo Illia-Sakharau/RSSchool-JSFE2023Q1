@@ -1,1 +1,45 @@
 @import "../../styles/tokens.scss";
+
+.winners {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 32px;
+  }
+  &__list-header {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 16px;
+    & > .th {
+      padding: 8px 16px;
+      color: $color-disable;
+      @include text-h6;
+      &_number {
+        width: 112px;
+        text-align: center;
+      }
+      &_car {
+        width: 144px;
+        text-align: center;
+      }
+      &_name {
+        min-width: 180px;
+        flex-grow: 1;
+      }
+      &_wins {
+        width: 96px;
+      }
+      &_best-time {
+        width: 128px;
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
+
+

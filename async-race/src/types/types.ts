@@ -38,3 +38,8 @@ export interface ICar {
   color: string;
   id: number;
 }
+export interface IWinners {
+  wins: number;
+  time: number;
+  id: number;
+}
