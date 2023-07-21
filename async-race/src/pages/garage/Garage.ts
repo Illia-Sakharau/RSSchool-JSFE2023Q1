@@ -100,7 +100,7 @@ export default class Garage {
     const carsSection: HTMLElement = createElement({ tag: 'section', classes: ['cars'] });
     const pagination: HTMLElement = createPagination({
       currentPage: GARAGE_PAGES_INFO.current,
-      pagesAmount: GARAGE_PAGES_INFO.amount,
+      pagesAmount: GARAGE_PAGES_INFO.page_amount,
       prevBtnHandler: () => {
         console.log('prevBtnHandler');
       },
@@ -108,7 +108,7 @@ export default class Garage {
         console.log('nextBtnHandler');
       },
     });
-    const titleEl: HTMLElement = createTitle(`Garage (203)`, pagination);
+    const titleEl: HTMLElement = createTitle(`Garage (${GARAGE_PAGES_INFO.car_amount})`, pagination);
     const carsListEl: HTMLElement = createElement({ tag: 'div', classes: ['cars__list'] });
 
     this.carsOnPage.forEach((car) => {
