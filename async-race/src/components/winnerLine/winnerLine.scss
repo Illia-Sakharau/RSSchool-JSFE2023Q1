@@ -23,6 +23,7 @@
     }
     &_name {
       min-width: 180px;
+      max-width: calc(100% - 480px);
       flex-grow: 1;
     }
     &_wins {
