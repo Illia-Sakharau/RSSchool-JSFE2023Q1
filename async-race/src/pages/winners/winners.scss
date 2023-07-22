@@ -29,11 +29,31 @@
         flex-grow: 1;
       }
       &_wins {
-        text-align: start;
         width: 96px;
+        margin-right: 16px;
       }
       &_best-time {
         width: 128px;
+      }
+      &_wins,
+      &_best-time {
+        position: relative;
+        &::before, 
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          margin-left: 8px;
+          border-radius: 16px;
+        }
+        &::before {
+          bottom: 3px;
+          border: 6px solid transparent; border-top: 6px solid $color-disable;
+        }
+        &::after {
+          top: 3px;
+          border: 6px solid transparent; border-bottom: 6px solid $color-disable;
+        }
       }
     }
   }
@@ -41,23 +61,15 @@
   .ASC {
     position: relative;
     color: $color-neutral-100;
-    &::after {
-      content: "";
-      position: absolute;
-      margin-left: 8px;
-      border-radius: 16px;
-    }
-  }
-  .DESC {
-    &::after {
-      top: 12px;
-      border: 8px solid transparent; border-top: 8px solid $color-neutral-100;
-    }
   }
   .ASC {
     &::after {
-      bottom: 12px;
-      border: 8px solid transparent; border-bottom: 8px solid $color-neutral-100;
+      border: 6px solid transparent; border-bottom: 6px solid $color-neutral-100;
+    }
+  }
+  .DESC {
+    &::before {
+      border: 6px solid transparent; border-top: 6px solid $color-neutral-100;
     }
   }
   &__list {
