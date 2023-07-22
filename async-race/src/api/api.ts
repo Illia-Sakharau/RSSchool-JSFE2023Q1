@@ -1,5 +1,6 @@
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../data/garageInfo';
 import { WINNERS_CARS_INFO, WINNERS_ON_PAGE, WINNERS_PAGES_INFO } from '../data/winnersInfo';
+import { ICar } from '../types/types';
 
 const baseUrl = 'http://127.0.0.1:3000';
 const path = {
@@ -43,4 +44,15 @@ export const getWinnersInfo = async (page: number) => {
     const carInfo = await getCarInfo(winnerInfo.id);
     WINNERS_CARS_INFO.push(carInfo);
   }
+};
+
+export const createNewCar = async (carInfo: ICar) => {
+  await fetch(`${baseUrl}${path.cars}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(carInfo),
+  });
+  await getGarageInfo(GARAGE_PAGES_INFO.current);
 };

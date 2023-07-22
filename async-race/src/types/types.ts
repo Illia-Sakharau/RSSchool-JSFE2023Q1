@@ -23,7 +23,7 @@ export interface ICarPropsInputParams {
   inputText: string;
   color: string;
   btnText: string;
-  btnHandler: () => void;
+  btnHandler(props: ICar): void;
 }
 
 export interface IPaginationParams {
@@ -36,7 +36,7 @@ export interface IPaginationParams {
 export interface ICar {
   name: string;
   color: string;
-  id: number;
+  id?: number;
 }
 export interface IWinners {
   wins: number;

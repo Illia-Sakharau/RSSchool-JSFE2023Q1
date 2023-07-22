@@ -9,7 +9,7 @@ import createPagination from '../../components/pagination/pagination';
 import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
-import { getGarageInfo } from '../../api/api';
+import { createNewCar, getGarageInfo } from '../../api/api';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -57,8 +57,11 @@ export default class Garage {
       inputText: '',
       color: '#000000',
       btnText: 'Create',
-      btnHandler: () => {
-        console.log('Create');
+      btnHandler: async (carInfo: ICar) => {
+        await createNewCar(carInfo);
+        this.draw();
+        const { name, color } = carInfo;
+        console.log(name, color);
       },
     });
 
