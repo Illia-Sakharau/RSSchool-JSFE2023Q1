@@ -48,4 +48,6 @@ export const WINNERS_PAGES_INFO = {
   current: 1,
   page_amount: 1,
   winner_amount: 4,
+  sort: 'id',
+  order: 'ASC',
 };

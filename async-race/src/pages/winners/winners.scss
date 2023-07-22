@@ -15,6 +15,7 @@
       padding: 8px 16px;
       color: $color-disable;
       @include text-h6;
+      line-height: 16px;
       &_number {
         width: 112px;
         text-align: center;
@@ -28,11 +29,35 @@
         flex-grow: 1;
       }
       &_wins {
+        text-align: start;
         width: 96px;
       }
       &_best-time {
         width: 128px;
       }
+    }
+  }
+  .DESC,
+  .ASC {
+    position: relative;
+    color: $color-neutral-100;
+    &::after {
+      content: "";
+      position: absolute;
+      margin-left: 8px;
+      border-radius: 16px;
+    }
+  }
+  .DESC {
+    &::after {
+      top: 12px;
+      border: 8px solid transparent; border-top: 8px solid $color-neutral-100;
+    }
+  }
+  .ASC {
+    &::after {
+      bottom: 12px;
+      border: 8px solid transparent; border-bottom: 8px solid $color-neutral-100;
     }
   }
   &__list {

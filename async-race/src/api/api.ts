@@ -27,9 +27,11 @@ const getCarInfo = async (id: number) => {
   return data;
 };
 
-export const getWinnersInfo = async (page: number) => {
+export const getWinnersInfo = async (page: number, sort: string = 'id', order: string = 'ASC') => {
   const winnersOnPageAmount = 10;
-  const response = await fetch(`${baseUrl}${path.winners}?_page=${page}&_limit=${winnersOnPageAmount}`);
+  const response = await fetch(
+    `${baseUrl}${path.winners}?_page=${page}&_limit=${winnersOnPageAmount}&_sort=${sort}&_order=${order}`,
+  );
   const data = await response.json();
 
   WINNERS_ON_PAGE.length = 0;
@@ -69,7 +71,7 @@ export const deleteCar = async (id: number) => {
     method: 'DELETE',
   });
   await deleteWinner(id);
-  await getWinnersInfo(WINNERS_PAGES_INFO.current);
+  await getWinnersInfo(1, WINNERS_PAGES_INFO.sort, WINNERS_PAGES_INFO.order);
   await getGarageInfo(GARAGE_PAGES_INFO.current);
 };
 
@@ -82,5 +84,5 @@ export const updateCar = async (carInfo: ICar, id: number) => {
     body: JSON.stringify(carInfo),
   });
   await getGarageInfo(GARAGE_PAGES_INFO.current);
-  await getWinnersInfo(WINNERS_PAGES_INFO.current);
+  await getWinnersInfo(1, WINNERS_PAGES_INFO.sort, WINNERS_PAGES_INFO.order);
 };
