@@ -24,7 +24,7 @@ export const WINNERS_ON_PAGE: IWinners[] = [
 ];
 export const WINNERS_CARS_INFO: ICar[] = [
   {
-    name: 'Tesla',
+    name: '123',
     color: '#e6e6fa',
     id: 1,
   },
