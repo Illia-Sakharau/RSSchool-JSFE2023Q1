@@ -38,7 +38,7 @@ export default class Winners {
     const winnersListEl: HTMLElement = createElement({ tag: 'div', classes: ['winners__list'] });
 
     winners.forEach((winner, ind) => {
-      const number = WINNERS_PAGES_INFO.current * (ind + 1);
+      const number = (WINNERS_PAGES_INFO.current - 1) * 10 + (ind + 1);
       const carInfo = WINNERS_CARS_INFO.find((car) => car.id === winner.id);
       if (carInfo) {
         const winnerLine = createWinnerLine(carInfo, winner, number);
