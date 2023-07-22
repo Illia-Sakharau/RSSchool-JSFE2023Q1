@@ -72,3 +72,15 @@ export const deleteCar = async (id: number) => {
   await getWinnersInfo(WINNERS_PAGES_INFO.current);
   await getGarageInfo(GARAGE_PAGES_INFO.current);
 };
+
+export const updateCar = async (carInfo: ICar, id: number) => {
+  await fetch(`${baseUrl}${path.cars}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(carInfo),
+  });
+  await getGarageInfo(GARAGE_PAGES_INFO.current);
+  await getWinnersInfo(WINNERS_PAGES_INFO.current);
+};

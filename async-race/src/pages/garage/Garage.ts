@@ -9,7 +9,7 @@ import createPagination from '../../components/pagination/pagination';
 import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
-import { createNewCar, deleteCar, getGarageInfo } from '../../api/api';
+import { createNewCar, deleteCar, getGarageInfo, updateCar } from '../../api/api';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -80,8 +80,11 @@ export default class Garage {
       inputText: this.activeCar.name,
       color: this.activeCar.color,
       btnText: 'Save',
-      btnHandler: () => {
-        console.log(`Save ${this.activeCar.id}`);
+      btnHandler: async (carInfo: ICar) => {
+        this.activeCar.name = carInfo.name;
+        this.activeCar.color = carInfo.color;
+        await updateCar(carInfo, Number(this.activeCar.id));
+        this.draw();
       },
     });
 
@@ -95,6 +98,15 @@ export default class Garage {
     } else {
       podiumSubsection.append(createCarView34(this.activeCar.color));
       wrapper.append(modifyCarSubsection, podiumSubsection);
+    }
+
+    const colorPicker = modifyCarField.querySelector('.propsInput__color');
+    const filter = podiumSubsection.querySelector('svg');
+    if (colorPicker instanceof HTMLInputElement && filter) {
+      colorPicker.addEventListener('input', () => {
+        filter.style.fill = colorPicker.value;
+        console.log('jh lasj hk');
+      });
     }
 
     return wrapper;
@@ -126,7 +138,6 @@ export default class Garage {
       const target = event.target;
       if (target instanceof HTMLButtonElement) {
         const carID = Number(target.closest('.car-card')?.id);
-
         //select car
         if (target.innerText === 'Select') {
           this.activeCar = this.carsOnPage.find((car) => carID === car.id) || this.carsOnPage[0];
