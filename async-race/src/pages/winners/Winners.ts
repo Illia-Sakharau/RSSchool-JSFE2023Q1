@@ -3,7 +3,7 @@ import createElement from '../../utils/createElement';
 import Header from '../../components/header/Header';
 import createPagination from '../../components/pagination/pagination';
 import { WINNERS_CARS_INFO, WINNERS_ON_PAGE, WINNERS_PAGES_INFO } from '../../data/winnersInfo';
-import { getGarageInfo } from '../../api/api';
+import { getWinnersInfo } from '../../api/api';
 import createTitle from '../../components/title/title';
 import createWinnerLine from '../../components/winnerLine/winnerLine';
 
@@ -25,11 +25,11 @@ export default class Winners {
       currentPage: WINNERS_PAGES_INFO.current,
       pagesAmount: WINNERS_PAGES_INFO.page_amount,
       prevBtnHandler: async () => {
-        await getGarageInfo(WINNERS_PAGES_INFO.current - 1);
+        await getWinnersInfo(WINNERS_PAGES_INFO.current - 1);
         this.draw();
       },
       nextBtnHandler: async () => {
-        await getGarageInfo(WINNERS_PAGES_INFO.current + 1);
+        await getWinnersInfo(WINNERS_PAGES_INFO.current + 1);
         this.draw();
       },
     });
