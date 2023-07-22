@@ -17,7 +17,7 @@ export const getGarageInfo = async (page: number) => {
   CARS_ON_PAGE.push(...data);
   GARAGE_PAGES_INFO.current = page;
   GARAGE_PAGES_INFO.car_amount = Number(response.headers.get('X-Total-Count'));
-  GARAGE_PAGES_INFO.page_amount = Math.ceil(Number(response.headers.get('X-Total-Count')) / carsOnPageAmount);
+  GARAGE_PAGES_INFO.page_amount = Math.ceil(Number(response.headers.get('X-Total-Count')) / carsOnPageAmount) || 1;
 };
 
 const getCarInfo = async (id: number) => {
@@ -36,7 +36,7 @@ export const getWinnersInfo = async (page: number) => {
   WINNERS_ON_PAGE.push(...data);
   WINNERS_PAGES_INFO.current = page;
   WINNERS_PAGES_INFO.winner_amount = Number(response.headers.get('X-Total-Count'));
-  WINNERS_PAGES_INFO.page_amount = Math.ceil(Number(response.headers.get('X-Total-Count')) / winnersOnPageAmount);
+  WINNERS_PAGES_INFO.page_amount = Math.ceil(Number(response.headers.get('X-Total-Count')) / winnersOnPageAmount) || 1;
 
   WINNERS_CARS_INFO.length = 0;
   for (let i = 0; i < WINNERS_ON_PAGE.length; i++) {

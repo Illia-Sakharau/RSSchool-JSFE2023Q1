@@ -10,6 +10,7 @@ import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
 import { createNewCar, deleteCar, getGarageInfo, updateCar } from '../../api/api';
+import generateCars from '../../functions/generateCars';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -48,8 +49,9 @@ export default class Garage {
       priority: 'secondary',
       type: 'filled',
       text: 'Generate cars',
-      handler: () => {
-        console.log('Generate cars');
+      handler: async () => {
+        await generateCars();
+        this.draw();
       },
     });
     const createCarTitle: HTMLElement = createTitle('Create new car', btnGeneratecars);
