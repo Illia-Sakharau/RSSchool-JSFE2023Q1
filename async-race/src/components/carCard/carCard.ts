@@ -32,9 +32,7 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
     priority: 'negative',
     type: 'bordered',
     text: 'Remove',
-    handler: () => {
-      console.log('Remove car');
-    },
+    handler: () => {},
   });
   const selectBtnEl: HTMLButtonElement = createButton({
     priority: 'primary',
@@ -43,7 +41,7 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
     handler: () => {},
   });
 
-  selectBtnEl.id = `${id}`;
+  carCard.id = `${id}`;
 
   stopBtnEl.disabled = true;
   engineBtnBarEl.append(startBtnEl, stopBtnEl);

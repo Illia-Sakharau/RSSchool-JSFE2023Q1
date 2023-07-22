@@ -9,7 +9,7 @@ import createPagination from '../../components/pagination/pagination';
 import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
-import { createNewCar, getGarageInfo } from '../../api/api';
+import { createNewCar, deleteCar, getGarageInfo } from '../../api/api';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -60,8 +60,6 @@ export default class Garage {
       btnHandler: async (carInfo: ICar) => {
         await createNewCar(carInfo);
         this.draw();
-        const { name, color } = carInfo;
-        console.log(name, color);
       },
     });
 
@@ -124,10 +122,26 @@ export default class Garage {
       carsListEl.append(createCarCard(car, isActive));
     });
 
-    carsListEl.addEventListener('click', (event) => {
+    carsListEl.addEventListener('click', async (event) => {
       const target = event.target;
-      if (target instanceof HTMLButtonElement && target.id) {
-        this.activeCar = this.carsOnPage.find((car) => Number(target.id) === car.id) || this.carsOnPage[0];
+      if (target instanceof HTMLButtonElement) {
+        const carID = Number(target.closest('.car-card')?.id);
+
+        //select car
+        if (target.innerText === 'Select') {
+          this.activeCar = this.carsOnPage.find((car) => carID === car.id) || this.carsOnPage[0];
+        }
+        //remove car
+        if (target.innerText === 'Remove') {
+          if (this.activeCar.id === carID) {
+            this.activeCar = {
+              name: 'Select Car',
+              color: '#FFFFFF',
+              id: NaN,
+            };
+          }
+          await deleteCar(carID);
+        }
         this.draw();
       }
     });

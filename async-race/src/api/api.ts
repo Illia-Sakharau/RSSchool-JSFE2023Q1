@@ -56,3 +56,19 @@ export const createNewCar = async (carInfo: ICar) => {
   });
   await getGarageInfo(GARAGE_PAGES_INFO.current);
 };
+
+const deleteWinner = async (id: number) => {
+  await fetch(`${baseUrl}${path.winners}/${id}`, {
+    method: 'DELETE',
+  });
+  await getGarageInfo(GARAGE_PAGES_INFO.current);
+};
+
+export const deleteCar = async (id: number) => {
+  await fetch(`${baseUrl}${path.cars}/${id}`, {
+    method: 'DELETE',
+  });
+  await deleteWinner(id);
+  await getWinnersInfo(WINNERS_PAGES_INFO.current);
+  await getGarageInfo(GARAGE_PAGES_INFO.current);
+};
