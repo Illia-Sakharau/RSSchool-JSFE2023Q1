@@ -4,12 +4,13 @@
   display: flex;
   flex-direction: column;
   row-gap: 32px;
+  min-height: 100vh;
 
   &__inner {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     row-gap: 32px;
-    min-height: calc(100vh - 150px);
   }
   &__wrapper {
     flex-grow: 1;
@@ -18,16 +19,6 @@
     padding: 0 32px;
 
   }
-
-  //delete
-  &__cars,
-  &__track {
-    min-height: 100px;
-    min-width: calc(50vw - 48px);
-    border: solid 2px black;
-    background-color: aquamarine;
-  }
-
 }
 
 .car {
@@ -64,6 +55,7 @@
   }
 
 }
+
 .cars {
   display: flex;
   flex-direction: column;
@@ -75,6 +67,37 @@
     column-gap: 16px;
     align-self: stretch;
     flex-wrap: wrap;
+  }
+}
+.garage__track .title {
+  // justify-content: start;
+  padding: 0 32px 16px;
+    &__btn-wrapper {
+    display: flex;
+    gap: 16px;
+    margin-left: 32px;    
+  }
+}
+.track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: url('../../assets/roadCover.png'), $color-neutral-0;
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 8px;
+    left: 92px;
+    background: $color-neutral-100;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 40px;
+    right: 128px;
+    background: url('../../assets/finishLine.jpg') round;
   }
 }
 

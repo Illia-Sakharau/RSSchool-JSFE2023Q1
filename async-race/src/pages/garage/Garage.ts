@@ -11,6 +11,7 @@ import { ICar } from '../../types/types';
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
 import { createNewCar, deleteCar, getGarageInfo, updateCar } from '../../api/api';
 import generateCars from '../../functions/generateCars';
+import createTrackLine from '../../components/trackLine/trackLine';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -32,7 +33,7 @@ export default class Garage {
     const wrapper: HTMLElement = createElement({ tag: 'div', classes: ['garage__wrapper'] });
     const carSection: HTMLElement = this.createCarSection();
     const carsSection: HTMLElement = this.createCarsSection();
-    const trackSection: HTMLElement = createElement({ tag: 'section', classes: ['garage__track'], content: 'TRACK' });
+    const trackSection: HTMLElement = this.createTrackSection();
 
     this.garageView.innerHTML = '';
     wrapper.append(carSection, carsSection);
@@ -161,6 +162,38 @@ export default class Garage {
 
     carsSection.append(titleEl, carsListEl);
     return carsSection;
+  }
+
+  private createTrackSection(): HTMLElement {
+    const trackSection: HTMLElement = createElement({ tag: 'section', classes: ['garage__track'] });
+    const trackEl: HTMLElement = createElement({ tag: 'div', classes: ['track'] });
+    const buttonsWrapper: HTMLElement = createElement({ tag: 'div', classes: ['title__btn-wrapper'] });
+    const trackTitle: HTMLElement = createTitle('Track', buttonsWrapper);
+    const btnRace = createButton({
+      priority: 'secondary',
+      type: 'filled',
+      text: 'Race',
+      handler: async () => {
+        console.log('Start race');
+      },
+    });
+    const btnReset = createButton({
+      priority: 'secondary',
+      type: 'filled',
+      text: 'Reset',
+      handler: async () => {
+        console.log('Reset');
+      },
+    });
+    btnReset.disabled = true;
+    buttonsWrapper.append(btnRace, btnReset);
+    CARS_ON_PAGE.forEach((carInfo) => {
+      const trackLine = createTrackLine(carInfo);
+      trackEl.append(trackLine);
+    });
+
+    trackSection.append(trackTitle, trackEl);
+    return trackSection;
   }
 
   public getGarageView(): HTMLElement {
