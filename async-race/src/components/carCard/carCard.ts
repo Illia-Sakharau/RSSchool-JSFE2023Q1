@@ -37,7 +37,6 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
     type: 'bordered',
     text: 'B',
     handler: async () => {
-      console.log('Stop car');
       startBtnEl.disabled = false;
       stopBtnEl.disabled = true;
       await carController.stopCars();

@@ -1,5 +1,6 @@
 import { driveEngine, startEngine, stopEngine } from '../api/api';
 import { IEngine } from '../types/types';
+import { updateWinners } from './updateWinners';
 
 export class CarsControls {
   private startPoint = 8;
@@ -26,6 +27,7 @@ export class CarsControls {
       const { velocity, distance } = engines[ind];
       const frequency = 20;
       const carEl = document.querySelector(`[data-car="${id}"]`);
+      const time = (distance / velocity / 1000).toFixed(2);
       const deltaPX = (velocity * roadLenght * frequency) / distance;
       const timer = setInterval(() => {
         if (roadLenght < compleateDistance) {
@@ -41,10 +43,9 @@ export class CarsControls {
       driveEngine(id, this.controller)
         .then(() => {
           if (this.isWinner) {
-            console.log('WINNER');
+            updateWinners(id, Number(time));
             this.isWinner = false;
           }
-          console.log('finish - ', id);
         })
         .catch((err) => {
           carEl?.classList.remove('drive');

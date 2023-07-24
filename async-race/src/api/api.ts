@@ -1,6 +1,6 @@
 import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../data/garageInfo';
 import { WINNERS_CARS_INFO, WINNERS_ON_PAGE, WINNERS_PAGES_INFO } from '../data/winnersInfo';
-import { ICar } from '../types/types';
+import { ICar, IWinners } from '../types/types';
 
 const baseUrl = 'http://127.0.0.1:3000';
 const path = {
@@ -109,4 +109,32 @@ export const stopEngine = async (id: number) => {
   await fetch(`${baseUrl}${path.engine}?id=${id}&status=stopped`, {
     method: 'PATCH',
   });
+};
+
+export const getWinnerInfo = async (id: number) => {
+  return fetch(`${baseUrl}${path.winners}/${id}`);
+};
+
+export const createNewWinner = async (winnerInfo: IWinners) => {
+  const { current, sort, order } = WINNERS_PAGES_INFO;
+  await fetch(`${baseUrl}${path.winners}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(winnerInfo),
+  });
+  await getWinnersInfo(current, sort, order);
+};
+
+export const updateWinner = async (winnerInfo: IWinners) => {
+  const { current, sort, order } = WINNERS_PAGES_INFO;
+  await fetch(`${baseUrl}${path.winners}/${winnerInfo.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(winnerInfo),
+  });
+  await getWinnersInfo(current, sort, order);
 };
