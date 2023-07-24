@@ -5,7 +5,6 @@ import logoImg from '../../assets/logo.svg';
 import gitImg from '../../assets/github.svg';
 import schoolLogoImg from '../../assets/rsslogo.svg';
 import { PAGES } from '../../data/constants';
-// import { router } from '../../router/router';
 
 function createLogo(): HTMLElement {
   const template: string = `<div class="logo">
@@ -26,15 +25,6 @@ function createMenu(activeLinkText: string): HTMLElement {
     linkEl.setAttribute('href', route.path);
     menuEl.append(linkEl);
   });
-
-  // menuEl.addEventListener('click', (event) => {
-  //   const target = event.target;
-  //   if (target instanceof HTMLAnchorElement && target.className === 'menu__link') {
-  //     event.preventDefault();
-  //     history.pushState(null, '', target.href);
-  //     router();
-  //   }
-  // });
 
   return menuEl;
 }
