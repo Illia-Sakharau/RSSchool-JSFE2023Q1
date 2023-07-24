@@ -1,5 +1,7 @@
 import { driveEngine, startEngine, stopEngine } from '../api/api';
-import { IEngine } from '../types/types';
+import winnerPopup from '../components/winnerPopup/winnerPopup';
+import { CARS_ON_PAGE } from '../data/garageInfo';
+import { ICar, IEngine } from '../types/types';
 import { updateWinners } from './updateWinners';
 
 export class CarsControls {
@@ -43,6 +45,8 @@ export class CarsControls {
       driveEngine(id, this.controller)
         .then(() => {
           if (this.isWinner) {
+            const carInfo = CARS_ON_PAGE.find((car) => car.id === id) as ICar;
+            document.querySelector('.garage')?.append(winnerPopup(carInfo, Number(time)));
             updateWinners(id, Number(time));
             this.isWinner = false;
           }
