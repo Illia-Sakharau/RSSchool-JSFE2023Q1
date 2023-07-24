@@ -12,6 +12,7 @@ import { CARS_ON_PAGE, GARAGE_PAGES_INFO } from '../../data/garageInfo';
 import { createNewCar, deleteCar, getGarageInfo, updateCar } from '../../api/api';
 import generateCars from '../../functions/generateCars';
 import createTrackLine from '../../components/trackLine/trackLine';
+import { CarsControls } from '../../functions/carsControls';
 
 export default class Garage {
   private garageView: HTMLElement = createElement({ tag: 'div', classes: ['garage'] });
@@ -26,7 +27,9 @@ export default class Garage {
 
   private isFirst = true;
 
-  private draw(): void {
+  private carsController = new CarsControls(CARS_ON_PAGE.map((car) => Number(car.id)));
+
+  private async draw() {
     const headerEl = Header('Garage');
 
     const garageInner: HTMLElement = createElement({ tag: 'div', classes: ['garage__inner'] });
@@ -35,6 +38,9 @@ export default class Garage {
     const carsSection: HTMLElement = this.createCarsSection();
     const trackSection: HTMLElement = this.createTrackSection();
 
+    this.carsController = new CarsControls(CARS_ON_PAGE.map((car) => Number(car.id)));
+
+    this.carsController.stopCars();
     this.garageView.innerHTML = '';
     wrapper.append(carSection, carsSection);
     garageInner.append(wrapper, trackSection);
@@ -108,7 +114,6 @@ export default class Garage {
     if (colorPicker instanceof HTMLInputElement && filter) {
       colorPicker.addEventListener('input', () => {
         filter.style.fill = colorPicker.value;
-        console.log('jh lasj hk');
       });
     }
 
@@ -144,6 +149,7 @@ export default class Garage {
         //select car
         if (target.innerText === 'Select') {
           this.activeCar = this.carsOnPage.find((car) => carID === car.id) || this.carsOnPage[0];
+          this.draw();
         }
         //remove car
         if (target.innerText === 'Remove') {
@@ -155,8 +161,8 @@ export default class Garage {
             };
           }
           await deleteCar(carID);
+          this.draw();
         }
-        this.draw();
       }
     });
 
@@ -169,12 +175,22 @@ export default class Garage {
     const trackEl: HTMLElement = createElement({ tag: 'div', classes: ['track'] });
     const buttonsWrapper: HTMLElement = createElement({ tag: 'div', classes: ['title__btn-wrapper'] });
     const trackTitle: HTMLElement = createTitle('Track', buttonsWrapper);
+
     const btnRace = createButton({
       priority: 'secondary',
       type: 'filled',
       text: 'Race',
       handler: async () => {
-        console.log('Start race');
+        const carBtn = document.querySelectorAll('[data-btn]');
+        carBtn.forEach((btn) => {
+          if (btn instanceof HTMLButtonElement) {
+            btn.disabled = true;
+          }
+        });
+        btnRace.disabled = true;
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        btnReset.disabled = false;
+        await this.carsController.startCars();
       },
     });
     const btnReset = createButton({
@@ -182,9 +198,14 @@ export default class Garage {
       type: 'filled',
       text: 'Reset',
       handler: async () => {
-        console.log('Reset');
+        btnRace.disabled = false;
+        btnReset.disabled = true;
+        this.carsController.stopCars();
+        this.draw();
       },
     });
+    btnRace.dataset.btnTrack = 'race';
+    btnReset.dataset.btnTrack = 'reset';
     btnReset.disabled = true;
     buttonsWrapper.append(btnRace, btnReset);
     CARS_ON_PAGE.forEach((carInfo) => {

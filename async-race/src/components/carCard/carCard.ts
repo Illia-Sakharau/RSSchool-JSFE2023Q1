@@ -3,6 +3,7 @@ import createElement from '../../utils/createElement';
 import { ICar } from '../../types/types';
 import createButton from '../button/button';
 import createCarViewFront from '../carViewFront/carViewFront';
+import { CarsControls } from '../../functions/carsControls';
 
 export default function createCarCard(params: ICar, isActice: boolean): HTMLElement {
   const { name, color, id } = params;
@@ -12,20 +13,34 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
   const carBtnBarEl: HTMLElement = createElement({ tag: 'div', classes: ['car-card__car-btn-bar'] });
   const imgCarEl: HTMLElement = createCarViewFront(color);
   const engineBtnBarEl: HTMLElement = createElement({ tag: 'div', classes: ['car-card__engine-btn-bar'] });
+
+  let carController = new CarsControls([Number(id)]);
+
   const startBtnEl: HTMLButtonElement = createButton({
     priority: 'positive',
     type: 'bordered',
     text: 'A',
-    handler: () => {
-      console.log('Start car');
+    handler: async () => {
+      const raceBtn = document.querySelector('[data-btn-track="race"]') as HTMLButtonElement;
+      const resetBtn = document.querySelector('[data-btn-track="reset"]') as HTMLButtonElement;
+      carController = new CarsControls([Number(id)]);
+      raceBtn.disabled = true;
+      resetBtn.disabled = false;
+      startBtnEl.disabled = true;
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      stopBtnEl.disabled = false;
+      await carController.startCars();
     },
   });
   const stopBtnEl: HTMLButtonElement = createButton({
     priority: 'negative',
     type: 'bordered',
     text: 'B',
-    handler: () => {
+    handler: async () => {
       console.log('Stop car');
+      startBtnEl.disabled = false;
+      stopBtnEl.disabled = true;
+      await carController.stopCars();
     },
   });
   const removeBtnEl: HTMLButtonElement = createButton({
@@ -43,6 +58,8 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
 
   carCard.id = `${id}`;
 
+  startBtnEl.dataset.btn = 'start';
+  stopBtnEl.dataset.btn = 'stop';
   stopBtnEl.disabled = true;
   engineBtnBarEl.append(startBtnEl, stopBtnEl);
 

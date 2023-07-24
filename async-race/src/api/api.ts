@@ -6,6 +6,7 @@ const baseUrl = 'http://127.0.0.1:3000';
 const path = {
   cars: '/garage',
   winners: '/winners',
+  engine: '/engine',
 };
 
 export const getGarageInfo = async (page: number) => {
@@ -85,4 +86,27 @@ export const updateCar = async (carInfo: ICar, id: number) => {
   });
   await getGarageInfo(GARAGE_PAGES_INFO.current);
   await getWinnersInfo(1, WINNERS_PAGES_INFO.sort, WINNERS_PAGES_INFO.order);
+};
+
+export const startEngine = async (id: number) => {
+  const response = await fetch(`${baseUrl}${path.engine}?id=${id}&status=started`, {
+    method: 'PATCH',
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const driveEngine = async (id: number, controller: AbortController) => {
+  const response = await fetch(`${baseUrl}${path.engine}?id=${id}&status=drive`, {
+    signal: controller.signal,
+    method: 'PATCH',
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const stopEngine = async (id: number) => {
+  await fetch(`${baseUrl}${path.engine}?id=${id}&status=stopped`, {
+    method: 'PATCH',
+  });
 };

@@ -16,7 +16,7 @@ export interface IButtonParams {
   type: 'filled' | 'bordered' | 'icon';
   text?: string;
   icon?: string;
-  handler: () => void;
+  handler: (event?: Event) => void;
 }
 
 export interface ICarPropsInputParams {
@@ -42,4 +42,10 @@ export interface IWinners {
   wins: number;
   time: number;
   id: number;
+}
+
+export interface IEngine {
+  velocity: number;
+  distance: number;
+  id?: number;
 }
