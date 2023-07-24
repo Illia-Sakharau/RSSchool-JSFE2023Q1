@@ -42,6 +42,7 @@ export default class Garage {
 
     if (this.isStartedRace) {
       this.carsController.stopCars();
+      this.isStartedRace = false;
     }
     this.carsController = new CarsControls(CARS_ON_PAGE.map((car) => Number(car.id)));
 
