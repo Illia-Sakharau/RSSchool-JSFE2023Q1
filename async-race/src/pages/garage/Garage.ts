@@ -25,6 +25,8 @@ export default class Garage {
     id: NaN,
   };
 
+  private isStartedRace: boolean = false;
+
   private isFirst = true;
 
   private carsController = new CarsControls(CARS_ON_PAGE.map((car) => Number(car.id)));
@@ -38,9 +40,11 @@ export default class Garage {
     const carsSection: HTMLElement = this.createCarsSection();
     const trackSection: HTMLElement = this.createTrackSection();
 
+    if (this.isStartedRace) {
+      this.carsController.stopCars();
+    }
     this.carsController = new CarsControls(CARS_ON_PAGE.map((car) => Number(car.id)));
 
-    this.carsController.stopCars();
     this.garageView.innerHTML = '';
     wrapper.append(carSection, carsSection);
     garageInner.append(wrapper, trackSection);
@@ -182,6 +186,7 @@ export default class Garage {
       text: 'Race',
       handler: async () => {
         const carBtn = document.querySelectorAll('[data-btn]');
+        this.isStartedRace = true;
         carBtn.forEach((btn) => {
           if (btn instanceof HTMLButtonElement) {
             btn.disabled = true;
@@ -200,7 +205,8 @@ export default class Garage {
       handler: async () => {
         btnRace.disabled = false;
         btnReset.disabled = true;
-        this.carsController.stopCars();
+        this.isStartedRace = false;
+        await this.carsController.stopCars();
         this.draw();
       },
     });
