@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- Slide 1 -->
+				<section> 
+					<h1>History API / Routing</h1>
+					<aside class="notes">
+						Hello everyone, today we'll be delving into the fascinating world of the History API and Routing. This technology plays a crucial role in modern web development, allowing for seamless navigation and dynamic user experiences. Let's dive in!
+					</aside>
+				</section>
+
+				<!-- Slide 2 -->
+				<section>
+					<h3>Introduction to History API</h3>
+					<section>
+							<img src="./imgs/2.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							The History API is a part of the Web API in browsers that allows developers to manipulate the browser's history and control the user's navigation experience without reloading the entire page.
+							<br><br>
+							This API is a foundation for modern web applications that use client-side routing, enabling single-page applications (SPAs) to update the URL and content dynamically without triggering full page reloads.
+						</aside>
+					</section>
+				</section>
+
+				<!-- Slide 3 -->
+				<section>
+					<h3>How History API Works</h3>
+					<section>
+						<img src="./imgs/3.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							The History API provides access to the browser's session history through the history global object. It exposes useful methods and properties that let you navigate back and forth through the user's history, and manipulate the contents of the history stack.
+						</aside>
+					</section>
+					<section>
+						<h6>Methods</h6>
+						<ul>
+
+							<li class="fragment">
+								history.go()
+								<aside class="notes">
+									<b>history.go()</b><br>
+									The history.go() method loads a specific page from the session history. You can use it to move forwards and backwards through history depending on the value of a parameter.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								history.back()
+								<aside class="notes">
+									<b>history.back()</b><br>
+									The history.back() method causes the browser to move back one page in the session history. It has the same effect as calling history.go(-1).
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								history.forward()
+								<aside class="notes">
+									<b>history.forward()</b><br>
+									The history.forward() method causes the browser to move forward one page in the session history. It has the same effect as calling history.go(1).
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								history.pushState()
+								<aside class="notes">
+									<b>history.pushState()</b><br>
+									In an HTML document, the history.pushState() method adds an entry to the browser's session history stack.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								history.replaceState()
+								<aside class="notes">
+									<b>history.replaceState()</b><br>
+									The 'replaceState()' method modifies the current state in the history without creating a new entry.
+									<br><br>
+								</aside>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h6>Event</h6>
+						<pre><code data-trim data-noescape>
+							window.onpopstate = function(event) {
+								//action
+							}
+						</code></pre>
+						<aside class="notes">
+							The 'popstate' event is triggered when the active history entry changes, usually caused by the user clicking the back/forward button or when 'pushState()' or 'replaceState()' is called.
+						</aside>
+					</section>
+				</section>
+
+				<!-- Slide 4 -->
+				<section>
+					<h3>Key Concepts of Routing</h3>
+					<section>
+						<img src="./imgs/4.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							Routing is the process of determining what content to display on the web page based on the URL or user interactions. It maps URLs to specific components or views, making it easier to navigation within a SPA.
+							<br><br>
+							Routing is a core feature of Single-Page Applications (SPAs), where the initial HTML page loads, and subsequent content updates are managed dynamically through JavaScript, enhancing the user experience.
+						</aside>
+					</section>
+				</section>
+
+				<!-- Slide 5 -->
+				<section>
+					<h3>Server-Side vs. Client-Side Routing</h3>
+					<section>
+						<img src="./imgs/5.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							In traditional server-side routing, each URL change triggers a request to the server, which responds with a new page. This approach often results in full-page reloads and delays, leading to a less interactive user experience.
+							<br><br>
+							On the other hand, client-side routing, supported by the History API, allows for faster navigation and smoother transitions by handling route changes entirely on the client-side, without the need for server requests.
+						</aside>
+					</section>
+					<section>
+						<h6>Benefits of Client-Side Routing</h6>
+						<aside class="notes">
+							Client-side routing brings several advantages to modern web development.
+							<hr>
+						</aside>
+						<ul>
+							<li class="fragment">
+								Faster navigation
+								<aside class="notes">
+									<b>Faster navigation:</b><br>
+									Since the page doesn't reload entirely, navigation is faster and smoother, providing a more seamless user experience.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								Reduced server load
+								<aside class="notes">
+									<b>Reduced server load:</b><br>
+									With client-side routing, the server is relieved from handling every URL change, reducing the overall server load and improving scalability.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								Enhanced interactivity
+								<aside class="notes">
+									<b>Enhanced interactivity:</b><br>
+									SPAs can offer more interactivity and dynamic content loading, making the application feel more like a desktop application.
+									<br><br>
+								</aside>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h6>Challenges and Considerations</h6>
+						<aside class="notes">
+							While client-side routing is powerful, it's essential to be aware of some challenges and considerations.
+							<hr>
+						</aside>
+						<ul>
+							<li class="fragment">
+								Bookmarking and SEO
+								<aside class="notes">
+									<b>Bookmarking and SEO:</b><br>Since client-side routing may not trigger full-page reloads, bookmarking specific views and SEO can be impacted. Techniques like server-side rendering or pre-rendering can help address this.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								Handling Browser Compatibility
+								<aside class="notes">
+									<b>Handling Browser Compatibility:</b><br>The History API is supported in modern browsers, but older browsers might have limited or no support. A fallback mechanism might be necessary for broader compatibility.
+									<br><br>
+								</aside>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- Slide 6 -->
+				<section>
+					<h3>Client-Side Routing with Vanilla JavaScript</h3>
+					<section>
+						<img src="./imgs/6.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							To simplify the implementation of client-side routing, various JavaScript libraries are available. While using routing libraries is common and convenient, it's worth noting that you can achieve routing with plain JavaScript too.
+						</aside>
+					</section>
+				</section>
+
+				<!-- Slide 7 -->
+				<section>
+					<h3>Simple example: JavaScript Router</h3>
+					<section>
+						<img src="./imgs/7.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							Typically, for client-side routing using paths (URLs), you would need server-side configuration to handle these routes and serve the correct content. However, for our example, I'll demonstrate an alternative approach using hash-based routing that doesn't require server setup.
+						</aside>
+					</section>
+					<!-- Slide 7.1 -->
+					<section data-markdown data-auto-animate>
+						<textarea data-template data-id="code-html-animation">
+							/index.html
+							```html
+							<!DOCTYPE html>
+							<html lang="en">
+							<head>
+								<meta charset="UTF-8">
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								<meta http-equiv="X-UA-Compatible" content="ie=edge">
+								<title>Simple Routing with Vanilla JavaScript</title>
+							</head>
+							<body>
+								
+							</body>
+							</html>							
+							```
+							Note:
+							Create index.html file with a standard structure. 
+						</textarea>
+					</section>
+					<section data-markdown data-auto-animate>
+						<textarea data-template data-id="code-html-animation">
+							/index.html
+							```html [10-13]
+							<!DOCTYPE html>
+							<html lang="en">
+							<head>
+								<meta charset="UTF-8">
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								<meta http-equiv="X-UA-Compatible" content="ie=edge">
+								<title>Simple Routing with Vanilla JavaScript</title>
+							</head>
+							<body>
+								<ul class="navbar-list">
+									<li class="navbar-item"><a href="#">Home (exists)</a></li>
+									<li class="navbar-item"><a href="#about">About (exists)</a></li>
+								</ul>
+							</body>
+							</html>							
+							```
+							Note:
+							Let's add a navigation bar and 
+						</textarea>
+					</section>
+					<section data-markdown data-auto-animate>
+						<textarea data-template data-id="code-html-animation">
+							/index.html
+							```html [14]
+							<!DOCTYPE html>
+							<html lang="en">
+							<head>
+								<meta charset="UTF-8">
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								<meta http-equiv="X-UA-Compatible" content="ie=edge">
+								<title>Simple Routing with Vanilla JavaScript</title>
+							</head>
+							<body>
+								<ul class="navbar-list">
+									<li class="navbar-item"><a href="#">Home (exists)</a></li>
+									<li class="navbar-item"><a href="#about">About (exists)</a></li>
+								</ul>
+								<a href="#qwerty">Non-existent page</a>
+							</body>
+							</html>							
+							```
+							Note: link with a non-existent page.
+						</textarea>
+					</section>
+					<section data-markdown data-auto-animate>
+						<textarea data-template data-id="code-html-animation">
+							/index.html
+							```html [15]
+							<!DOCTYPE html>
+							<html lang="en">
+							<head>
+								<meta charset="UTF-8">
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								<meta http-equiv="X-UA-Compatible" content="ie=edge">
+								<title>Simple Routing with Vanilla JavaScript</title>
+							</head>
+							<body>
+								<ul class="navbar-list">
+									<li class="navbar-item"><a href="#">Home (exists)</a></li>
+									<li class="navbar-item"><a href="#about">About (exists)</a></li>
+								</ul>
+								<a href="#qwerty">Non-existent page</a>
+								<div id="container"></div>
+							</body>
+							</html>							
+							```
+							Note:
+							Next add a container into which we will later put the contents of the pages
+						</textarea>
+					</section>
+					<section data-markdown data-auto-animate>
+						<textarea data-template data-id="code-html-animation">
+							/index.html
+							```html [16]
+							<!DOCTYPE html>
+							<html lang="en">
+							<head>
+								<meta charset="UTF-8">
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								<meta http-equiv="X-UA-Compatible" content="ie=edge">
+								<title>Simple Routing with Vanilla JavaScript</title>
+							</head>
+							<body>
+								<ul class="navbar-list">
+									<li class="navbar-item"><a href="#">Home (exists)</a></li>
+									<li class="navbar-item"><a href="#about">About (exists)</a></li>
+								</ul>
+								<a href="#qwerty">Non-existent page</a>
+								<div id="container"></div>
+								<script type="module" src="app.js"></script>							
+							</body>
+							</html>							
+							```
+							Note:
+							We will also connect the js file of our application and proceed to its creation.
+						</textarea>
+					</section>
+
+					<!-- Slide 7.2 -->
+					<section data-auto-animate>
+						<p>/pages/about.js</p>
+						<pre data-id="code-about-animation"><code data-trim>
+						</code></pre>
+						<br>
+						<p>/pages/home.js</p>
+						<pre data-id="code-home-animation"><code data-trim>
+						</code></pre>
+						<br>
+						<p>/pages/notFound.js</p>
+						<pre data-id="code-404-animation"><code data-trim>
+						</code></pre>
+						<aside class="notes">
+							But first we will create 3 js files that will generate our content.
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<p>/pages/about.js</p>
+						<pre data-id="code-about-animation"><code data-trim>
+							let aboutContent = `<h1>ABOUT PAGE</h1>`;
+							export { aboutContent };							
+						</code></pre>
+						<p>/pages/home.js</p>
+						<pre data-id="code-home-animation"><code data-trim>
+							let homeContent = `<h1>HOME PAGE</h1>`;
+							export { homeContent };							
+						</code></pre>
+						<p>/pages/notFound.js</p>
+						<pre data-id="code-404-animation"><code data-trim>
+							let notFoundContent = `<h1>404 - Page not found</h1>`;
+							export { notFoundContent };
+						</code></pre>
+						<aside class="notes">
+							To simplify, I just export the headers with the corresponding texts from each file
+						</aside>
+					</section>
+
+					<!-- Slide 7.3 -->
+					<section data-auto-animate>
+						<p>/app.js</p>
+						<pre data-id="code-app-animation"><code data-trim>
+						</code></pre>
+						<aside class="notes">
+							Let's start creating the JS file of our application.
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<p>/app.js</p>
+						<pre data-id="code-app-animation"><code data-trim data-line-numbers="1-5">
+							import { notFoundContent } from './pages/notFound.js';
+							import { homeContent } from './pages/home.js';
+							import { aboutContent } from './pages/about.js';
+
+							const container = document.querySelector('#container');						
+						</code></pre>
+						<aside class="notes">
+							To begin with, we import our pages and find where we will put their contents.
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<p>/app.js</p>
+						<pre data-id="code-app-animation"><code data-trim data-line-numbers="7-20">
+							import { notFoundContent } from './pages/notFound.js';
+							import { homeContent } from './pages/home.js';
+							import { aboutContent } from './pages/about.js';
+
+							const container = document.querySelector('#container');
+
+							const routes = [
+								{
+									path: '#NotFound',
+									view: () => container.innerHTML = notFoundContent
+								},
+								{
+									path: '',
+									view: () => container.innerHTML = homeContent
+								},
+								{
+									path: '#about',
+									view: () => container.innerHTML = aboutContent
+								},
+							];					
+						</code></pre>
+						<aside class="notes">
+							Let's create an array of our routers, where each router is an object with the fields "path" where we will store the hash and "view" - a method that updates the content. 
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<p>/app.js</p>
+						<pre data-id="code-app-animation"><code data-trim data-line-numbers="22-25">
+							import { notFoundContent } from './pages/notFound.js';
+							import { homeContent } from './pages/home.js';
+							import { aboutContent } from './pages/about.js';
+
+							const container = document.querySelector('#container');
+
+							const routes = [
+								{
+									path: '#NotFound',
+									view: () => container.innerHTML = notFoundContent
+								},
+								{
+									path: '',
+									view: () => container.innerHTML = homeContent
+								},
+								{
+									path: '#about',
+									view: () => container.innerHTML = aboutContent
+								},
+							];
+
+							const router = async () => {
+								const match = routes.find((potentialMatch) => potentialMatch.path === location.hash) || routes[0];
+								return match.view();
+							};
+						</code></pre>
+						<aside class="notes">
+							Then we will write a router function in which we will find the route corresponding to the current page hash, and if there is no such thing, we will return "Not found" route.
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<p>/app.js</p>
+						<pre data-id="code-app-animation"><code data-trim data-line-numbers="27">
+							import { notFoundContent } from './pages/notFound.js';
+							import { homeContent } from './pages/home.js';
+							import { aboutContent } from './pages/about.js';
+							
+							const container = document.querySelector('#container');
+							
+							const routes = [
+								{
+									path: '#NotFound',
+									view: () => container.innerHTML = notFoundContent
+								},
+								{
+									path: '',
+									view: () => container.innerHTML = homeContent
+								},
+								{
+									path: '#about',
+									view: () => container.innerHTML = aboutContent
+								},
+							];
+							
+							const router = async () => {
+								const match = routes.find((potentialMatch) => potentialMatch.path === location.hash) || routes[0];
+								return match.view();
+							};
+							
+							router();												
+						</code></pre>
+						<aside class="notes">
+							And run this function.
+						</aside>
+					</section>
+					<section data-auto-animate>
+						<p>/app.js</p>
+						<pre data-id="code-app-animation"><code data-trim data-line-numbers="27">					
+							import { notFoundContent } from './pages/notFound.js';
+							import { homeContent } from './pages/home.js';
+							import { aboutContent } from './pages/about.js';
+							
+							const container = document.querySelector('#container');
+							
+							const routes = [
+								{
+									path: '#NotFound',
+									view: () => container.innerHTML = notFoundContent
+								},
+								{
+									path: '',
+									view: () => container.innerHTML = homeContent
+								},
+								{
+									path: '#about',
+									view: () => container.innerHTML = aboutContent
+								},
+							];
+							
+							const router = async () => {
+								const match = routes.find((potentialMatch) => potentialMatch.path === location.hash) || routes[0];
+								return match.view();
+							};
+							
+							window.addEventListener('popstate', router);
+							router();							
+						</code></pre>
+						<aside class="notes">
+							In order for the content to be updated when the history changes, we will add an EventListener to the popstate event
+						</aside>
+					</section>
+
+					<!-- Slide 7.4 -->
+					<section>
+						<h6 class="fragment">Pros:</h6>
+						<ul>
+							<li class="fragment">
+								Simple setup
+								<aside class="notes">
+									<b>Simple setup</b><br>
+									Setting up the router is relatively easy and doesn't require any external libraries or dependencies.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								No server-side configuration
+								<aside class="notes">
+									<b>No server-side configuration</b><br>
+									Hash-based routing avoids the need for server-side configuration, making it an attractive option for static sites or simple SPAs.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								Standard actions
+								<aside class="notes">
+									<b>Standard actions</b><br>
+									You don't need to reassign the default actions when clicking on links and change the browser's session history
+									<br><br>
+								</aside>
+							</li>
+						</ul>
+						<br>
+						<h6 class="fragment">Cons:</h6>
+						<ul>
+							<li class="fragment">
+								Hash in URLs
+								<aside class="notes">
+									<b>Hash in URLs</b><br>
+									Hash-based routing leaves a visible hash symbol in the URLs, which might not be  SEO-friendly as path-based URLs.
+									<br><br>
+								</aside>
+							</li>
+							<li class="fragment">
+								Limited complexity
+								<aside class="notes">
+									<b>Limited complexity</b><br>
+									This approach is best suited for single-level SPA architectures without nested routes
+									<br><br>
+								</aside>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!-- Slide 8 -->
+				<section>
+					<h3>Conclusion</h3>
+					<section>
+						<img src="./imgs/8.png" alt="" style="opacity: 0.6">
+						<aside class="notes">
+							Understanding the History API and routing is essential for modern web developers to deliver rich user experiences and improve overall application performance.
+							<br><br>
+							Thank you for your attention!
+						</aside>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
