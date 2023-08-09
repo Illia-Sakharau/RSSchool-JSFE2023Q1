@@ -17,15 +17,13 @@ export const getGarageInfo = async (page: number) => {
   CARS_ON_PAGE.length = 0;
   CARS_ON_PAGE.push(...data);
   GARAGE_PAGES_INFO.current = page;
-  GARAGE_PAGES_INFO.car_amount = Number(response.headers.get('X-Total-Count'));
-  GARAGE_PAGES_INFO.page_amount = Math.ceil(Number(response.headers.get('X-Total-Count')) / carsOnPageAmount) || 1;
+  GARAGE_PAGES_INFO.carAmount = Number(response.headers.get('X-Total-Count'));
+  GARAGE_PAGES_INFO.pageAmount = Math.ceil(Number(response.headers.get('X-Total-Count')) / carsOnPageAmount) || 1;
 };
 
 const getCarInfo = async (id: number) => {
   const response = await fetch(`${baseUrl}${path.cars}/${id}`);
-  const data = await response.json();
-
-  return data;
+  return response.json();
 };
 
 export const getWinnersInfo = async (page: number, sort: string = 'id', order: string = 'ASC') => {
@@ -34,12 +32,13 @@ export const getWinnersInfo = async (page: number, sort: string = 'id', order: s
     `${baseUrl}${path.winners}?_page=${page}&_limit=${winnersOnPageAmount}&_sort=${sort}&_order=${order}`,
   );
   const data = await response.json();
+  const winnerAmount = Number(response.headers.get('X-Total-Count'));
 
   WINNERS_ON_PAGE.length = 0;
   WINNERS_ON_PAGE.push(...data);
   WINNERS_PAGES_INFO.current = page;
-  WINNERS_PAGES_INFO.winner_amount = Number(response.headers.get('X-Total-Count'));
-  WINNERS_PAGES_INFO.page_amount = Math.ceil(Number(response.headers.get('X-Total-Count')) / winnersOnPageAmount) || 1;
+  WINNERS_PAGES_INFO.winnerAmount = winnerAmount;
+  WINNERS_PAGES_INFO.pageAmount = Math.ceil(winnerAmount / winnersOnPageAmount) || 1;
 
   WINNERS_CARS_INFO.length = 0;
   for (let i = 0; i < WINNERS_ON_PAGE.length; i++) {

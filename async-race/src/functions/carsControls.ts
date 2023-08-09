@@ -13,9 +13,25 @@ export class CarsControls {
 
   constructor(private IDs: number[]) {}
 
+  private carAnimation(velocity: number, distance: number, carEl: HTMLElement) {
+    let compleateDistance = this.startPoint;
+    const roadLenght = document.documentElement.clientWidth - 128;
+    const frequency = 20;
+    const deltaPX = (velocity * roadLenght * frequency) / distance;
+    const timer = setInterval(() => {
+      if (roadLenght < compleateDistance) {
+        clearInterval(timer);
+      }
+      compleateDistance += deltaPX;
+      if (carEl instanceof HTMLElement) {
+        carEl.style.left = compleateDistance + 'px';
+      }
+    }, frequency);
+    return timer;
+  }
+
   public async startCars() {
     const IDs = this.IDs;
-    const roadLenght = document.documentElement.clientWidth - 128;
     const engines: IEngine[] = [];
     const promisesEngine = IDs.map((id) => startEngine(id));
 
@@ -25,21 +41,10 @@ export class CarsControls {
     });
     this.controller = new AbortController();
     IDs.forEach((id, ind) => {
-      let compleateDistance = this.startPoint;
+      const carEl = document.querySelector(`[data-car="${id}"]`) as HTMLElement;
       const { velocity, distance } = engines[ind];
-      const frequency = 20;
-      const carEl = document.querySelector(`[data-car="${id}"]`);
       const time = (distance / velocity / 1000).toFixed(2);
-      const deltaPX = (velocity * roadLenght * frequency) / distance;
-      const timer = setInterval(() => {
-        if (roadLenght < compleateDistance) {
-          clearInterval(timer);
-        }
-        compleateDistance += deltaPX;
-        if (carEl instanceof HTMLElement) {
-          carEl.style.left = compleateDistance + 'px';
-        }
-      }, frequency);
+      const carAnimation = this.carAnimation(velocity, distance, carEl);
       carEl?.classList.remove('engine-broken');
       carEl?.classList.add('drive');
       driveEngine(id, this.controller)
@@ -56,7 +61,7 @@ export class CarsControls {
           if (err.toString().includes(`Car has`)) {
             carEl?.classList.add('engine-broken');
           }
-          clearInterval(timer);
+          clearInterval(carAnimation);
         });
     });
   }

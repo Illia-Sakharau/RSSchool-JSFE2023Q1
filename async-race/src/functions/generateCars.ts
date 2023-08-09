@@ -24,11 +24,14 @@ function generateColor(): string {
 }
 
 export default async function generateCars() {
-  const howManyCars = 100;
+  const howManyCarsToGenerate = 100;
+  const promisesCars = [];
 
-  for (let i = 0; i < howManyCars; i++) {
+  for (let i = 0; i < howManyCarsToGenerate; i++) {
     const name = generateName();
     const color = generateColor();
-    await createNewCar({ name, color });
+    promisesCars.push(createNewCar({ name, color }));
   }
+
+  await Promise.all(promisesCars);
 }

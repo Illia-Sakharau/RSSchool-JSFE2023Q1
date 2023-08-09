@@ -1,7 +1,7 @@
 import './winnerPopup.scss';
 import createElement from '../../utils/createElement';
 import { ICar } from '../../types/types';
-import createCarView34 from '../carView34/carView34';
+import createCarView from '../carView/carView';
 import createButton from '../button/button';
 import closeIconImg from '../../assets/closeIcon.svg';
 
@@ -21,7 +21,7 @@ export default function winnerPopup(carInfo: ICar, time: number): HTMLElement {
   const nameTextEl: HTMLElement = createElement({ tag: 'span', classes: ['pop-up__name'], content: name });
   const timeTextEl: HTMLElement = createElement({ tag: 'span', classes: ['pop-up__time'], content: `Finish time: ${time}s` });
   const carWrapperEl: HTMLElement = createElement({ tag: 'div', classes: ['pop-up__car-wrapper'] });
-  const carEl: HTMLElement = createCarView34(color);
+  const carEl: HTMLElement = createCarView(color, '34');
 
   carWrapperEl.append(carEl);
   textInnerEl.append(nameTextEl, timeTextEl);

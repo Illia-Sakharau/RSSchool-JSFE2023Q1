@@ -2,7 +2,7 @@ import './carCard.scss';
 import createElement from '../../utils/createElement';
 import { ICar } from '../../types/types';
 import createButton from '../button/button';
-import createCarViewFront from '../carViewFront/carViewFront';
+import createCarView from '../carView/carView';
 import { CarsControls } from '../../functions/carsControls';
 
 export default function createCarCard(params: ICar, isActice: boolean): HTMLElement {
@@ -11,7 +11,7 @@ export default function createCarCard(params: ICar, isActice: boolean): HTMLElem
   const nameEl: HTMLElement = createElement({ tag: 'h6', classes: ['car-card__name'], content: name });
   const innerEl: HTMLElement = createElement({ tag: 'div', classes: ['car-card__inner'] });
   const carBtnBarEl: HTMLElement = createElement({ tag: 'div', classes: ['car-card__car-btn-bar'] });
-  const imgCarEl: HTMLElement = createCarViewFront(color);
+  const imgCarEl: HTMLElement = createCarView(color, 'front');
   const engineBtnBarEl: HTMLElement = createElement({ tag: 'div', classes: ['car-card__engine-btn-bar'] });
 
   let carController = new CarsControls([Number(id)]);

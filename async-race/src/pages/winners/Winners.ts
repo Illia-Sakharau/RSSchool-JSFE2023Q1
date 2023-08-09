@@ -28,7 +28,7 @@ export default class Winners {
     const inner: HTMLElement = createElement({ tag: 'div', classes: ['winners__inner'] });
     const pagination: HTMLElement = createPagination({
       currentPage: WINNERS_PAGES_INFO.current,
-      pagesAmount: WINNERS_PAGES_INFO.page_amount,
+      pagesAmount: WINNERS_PAGES_INFO.pageAmount,
       prevBtnHandler: async () => {
         await getWinnersInfo(WINNERS_PAGES_INFO.current - 1, WINNERS_PAGES_INFO.sort, WINNERS_PAGES_INFO.order);
         this.draw();
@@ -38,7 +38,7 @@ export default class Winners {
         this.draw();
       },
     });
-    const titleEl: HTMLElement = createTitle(`Winners (${WINNERS_PAGES_INFO.winner_amount})`, pagination);
+    const titleEl: HTMLElement = createTitle(`Winners (${WINNERS_PAGES_INFO.winnerAmount})`, pagination);
     const winnerslistHeaderEl: HTMLElement = this.createListHeader();
     const winnersListEl: HTMLElement = createElement({ tag: 'div', classes: ['winners__list'] });
 

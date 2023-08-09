@@ -4,7 +4,7 @@ import Header from '../../components/header/Header';
 import createTitle from '../../components/title/title';
 import createButton from '../../components/button/button';
 import carPropsInput from '../../components/carPropsInput/carPropsInput';
-import createCarView34 from '../../components/carView34/carView34';
+import createCarView from '../../components/carView/carView';
 import createPagination from '../../components/pagination/pagination';
 import createCarCard from '../../components/carCard/carCard';
 import { ICar } from '../../types/types';
@@ -88,7 +88,6 @@ export default class Garage {
     const wrapper: HTMLElement = createElement({ tag: 'div', classes: ['car__wrapper'] });
     const modifyCarSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__modify'] });
     const podiumSubsection: HTMLElement = createElement({ tag: 'div', classes: ['car__podium'] });
-
     const modifyCarTitle: HTMLElement = createTitle('Modify selected car');
     const modifyCarField: HTMLElement = carPropsInput({
       inputText: this.activeCar.name,
@@ -101,6 +100,9 @@ export default class Garage {
         this.draw();
       },
     });
+    const carEl = createCarView(this.activeCar.color, '34');
+    const colorPicker = modifyCarField.querySelector('.propsInput__color');
+    const filter = carEl.querySelector('svg');
 
     modifyCarSubsection.append(modifyCarTitle, modifyCarField);
     if (Number.isNaN(this.activeCar.id)) {
@@ -110,12 +112,10 @@ export default class Garage {
       elems.forEach((el) => (el.disabled = true));
       wrapper.append(modifyCarSubsection);
     } else {
-      podiumSubsection.append(createCarView34(this.activeCar.color));
+      podiumSubsection.append(carEl);
       wrapper.append(modifyCarSubsection, podiumSubsection);
     }
 
-    const colorPicker = modifyCarField.querySelector('.propsInput__color');
-    const filter = podiumSubsection.querySelector('svg');
     if (colorPicker instanceof HTMLInputElement && filter) {
       colorPicker.addEventListener('input', () => {
         filter.style.fill = colorPicker.value;
@@ -129,7 +129,7 @@ export default class Garage {
     const carsSection: HTMLElement = createElement({ tag: 'section', classes: ['cars'] });
     const pagination: HTMLElement = createPagination({
       currentPage: GARAGE_PAGES_INFO.current,
-      pagesAmount: GARAGE_PAGES_INFO.page_amount,
+      pagesAmount: GARAGE_PAGES_INFO.pageAmount,
       prevBtnHandler: async () => {
         await getGarageInfo(GARAGE_PAGES_INFO.current - 1);
         this.draw();
@@ -139,7 +139,7 @@ export default class Garage {
         this.draw();
       },
     });
-    const titleEl: HTMLElement = createTitle(`Garage (${GARAGE_PAGES_INFO.car_amount})`, pagination);
+    const titleEl: HTMLElement = createTitle(`Garage (${GARAGE_PAGES_INFO.carAmount})`, pagination);
     const carsListEl: HTMLElement = createElement({ tag: 'div', classes: ['cars__list'] });
 
     this.carsOnPage.forEach((car) => {
@@ -186,13 +186,9 @@ export default class Garage {
       type: 'filled',
       text: 'Race',
       handler: async () => {
-        const carBtn = document.querySelectorAll('[data-btn]');
+        const carBtn = document.querySelectorAll('[data-btn]') as NodeListOf<HTMLButtonElement>;
         this.isStartedRace = true;
-        carBtn.forEach((btn) => {
-          if (btn instanceof HTMLButtonElement) {
-            btn.disabled = true;
-          }
-        });
+        carBtn.forEach((btn) => (btn.disabled = true));
         btnRace.disabled = true;
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         btnReset.disabled = false;

@@ -15,9 +15,7 @@ export default function carPropsInput(params: ICarPropsInputParams): HTMLElement
     handler: () => {},
   });
 
-  buttonEl.addEventListener('click', () => {
-    btnHandler({ name: inputTextEl.value, color: inputColorEl.value });
-  });
+  buttonEl.addEventListener('click', () => btnHandler({ name: inputTextEl.value, color: inputColorEl.value }));
   if (inputTextEl instanceof HTMLInputElement) {
     inputTextEl.value = inputText;
   }

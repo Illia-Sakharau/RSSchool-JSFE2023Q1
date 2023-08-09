@@ -55,7 +55,7 @@ module.exports = ({develop}) => ({
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'RSS CSS Selectors',
+            title: 'async-race',
             favicon: './public/fav.png'
         }),
         new MiniCssExtractPlugin({
