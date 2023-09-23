@@ -1,4 +1,4 @@
-# RSSchool-JSFE2023Q1
+# Shelter
 
 1. Task: [link](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/shelter/shelter.md)
 2. Screenshot: 
