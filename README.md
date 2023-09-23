@@ -2,9 +2,9 @@
 
 1. Task: [link](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/minesweeper/README.md)
 2. Screenshot:
-<img width="1389" alt="Screenshot 2023-05-21 at 23 39 48" src="https://github.com/rolling-scopes-school/illia-sakharau-JSFE2023Q1/assets/124388500/532600d7-9e76-438b-9bbb-743b29062deb">
+<img width="1389" alt="Screenshot 2023-09-23 at 22 40 22" src="https://github.com/Illia-Sakharau/RSSchool-JSFE2023Q1/assets/124388500/d45e8695-2972-4fac-a850-002b870537d8">
 
-3. Deploy: [link](https://rolling-scopes-school.github.io/illia-sakharau-JSFE2023Q1/minesweeper/)
+3. Deploy: [link](https://illia-sakharau.github.io/RSSchool-JSFE2023Q1/minesweeper/)
 4. Done 21.05.2023 / deadline 23.05.2023
 5. Score: 180 / 180
 * Basic scope (40 / 40)
